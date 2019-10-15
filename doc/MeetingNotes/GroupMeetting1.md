@@ -13,6 +13,14 @@ The other group is responsible for UI interface uml and storyboard.
 
 
 
+## Discussed Question:
+Q: Which Part should we do first?
+
+
+A: UML diagram is abstract. So we should probably focus on UI interface and storyboard at the beginning. Storyboard will give us a concrete impression about how this app will work. And UI interface will tell us what feature this intercase need. After we finish UI, we can start thinking how to implement those features. Like, what methods and attributes do we need to implement it?
+
+
+
 ## Summary:
 We have analyzed some excellent apps in the market and summarized the characteristics of our umood. We tentatively write the preliminary uml chart before October 15 and start the code work.
 
