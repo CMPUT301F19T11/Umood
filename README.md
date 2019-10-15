@@ -1,5 +1,4 @@
-# CMPUT301T11 GroupProject2
-
+# CMPUT301T11
 
 
 
