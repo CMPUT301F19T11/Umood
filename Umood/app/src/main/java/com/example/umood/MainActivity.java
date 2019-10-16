@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
+
+
         Log.d(TAG, "qian2");
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         Log.d(TAG, "qian3");
@@ -51,15 +53,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
     }
-
 }
-
-
-
-
-/*
-
- */
