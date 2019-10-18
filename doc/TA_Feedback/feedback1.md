@@ -3,7 +3,7 @@
 **For the backlog part:**
 - The rationale part is fine.
 - Our story form should contains the content of user needs. (Copy them from description page)
-- We don’t cover all user needs in the problem description. (There are 16 in total, we have 15)
+- We don’t cover all user needs in the problem description. (There are 17 in total, we have 15)
   
   
 **For the user story part:**
