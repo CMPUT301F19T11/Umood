@@ -25,17 +25,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
         Log.d(TAG, "qian5");
 
         Button btnLogin = findViewById(R.id.login);
         Button btnRegister = findViewById(R.id.register);
-        FirebaseFirestore db;
 
         Log.d(TAG, "qian6");
 
-        db = FirebaseFirestore.getInstance();
+
+
         Log.d(TAG, "qian7");
-        final CollectionReference collectionReference = db.collection("users");
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
         Log.d(TAG, "qian5");
+
+
+    }
+
+
+
+
+}
+
+
+
+/*
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,16 +98,4 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
-    }
-
-
-
-
-}
-
-
-
-/*
-
  */

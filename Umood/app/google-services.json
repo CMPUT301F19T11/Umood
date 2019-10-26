@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "67520637091",
+    "firebase_url": "https://cmput301t11.firebaseio.com",
+    "project_id": "cmput301t11",
+    "storage_bucket": "cmput301t11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67520637091:android:30ed6fd5942e083de6f716",
+        "android_client_info": {
+          "package_name": "com.example.umood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67520637091-avojmbqv9v9ldc5e9p7d76vrtc477ul5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiWKm8Er4c1Bj_Cz056xW8XJzqIQpSfWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67520637091-avojmbqv9v9ldc5e9p7d76vrtc477ul5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

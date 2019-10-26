@@ -23,8 +23,8 @@ public class NotificationsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
 
-        // ImageView imageView = root.findViewById(R.id.avater);
-        // imageView.setImageResource(R.drawable.zeldaflat);
+        ImageView imageView = root.findViewById(R.id.avater);
+        imageView.setImageResource(R.drawable.zeldaflat);
         return root;
     }
 }

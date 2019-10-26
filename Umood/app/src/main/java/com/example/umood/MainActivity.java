@@ -45,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
+
+    }
+}
+
+/*
+
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,12 +59,4 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        Intent intent = getIntent();
-
-        String username = intent.getStringExtra("username");
-
-
-
-    }
-}
+ */
