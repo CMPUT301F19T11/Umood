@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -38,18 +40,23 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
 
-        Log.d(TAG, "qian2");
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        Log.d(TAG, "qian3");
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        Log.d(TAG, "qian4");
         NavigationUI.setupWithNavController(navView, navController);
-        Log.d(TAG, "qian5");
+
+
+        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, addEmotionalState.class);
+                startActivity(intent);
+            }
+        });
 
         Intent intent = getIntent();
 
         String username = intent.getStringExtra("username");
-        Log.d(TAG, "qian6");
 
 
 

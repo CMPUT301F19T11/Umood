@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
@@ -27,7 +28,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private static final String TAG = "qian";
     private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
     LatLngBounds.Builder builder  = new LatLngBounds.Builder();
-
+    FloatingActionButton floatingActionButton;
 
     @NonNull
     @Override
@@ -39,6 +40,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         mapView =  root.findViewById(R.id.mapView);
 
         mapView.onCreate(savedInstanceState);
+
 
 
         if(mapView==null)
@@ -63,7 +65,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 .target(edmonton)           // Sets the center of the map to location user
                 .zoom(15)                   // Sets the zoom
                 .bearing(0)                // Sets the orientation of the camera to east
-                //.tilt(40)                   // Sets the tilt of the camera to 30 degrees
                 .build();                   // Creates a CameraPosition from the builder
         gmap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 

@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.umood.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class NotificationsFragment extends Fragment {
 
@@ -22,8 +23,8 @@ public class NotificationsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
 
-        ImageView imageView = root.findViewById(R.id.avater);
-        imageView.setImageResource(R.drawable.zeldaflat);
+        // ImageView imageView = root.findViewById(R.id.avater);
+        // imageView.setImageResource(R.drawable.zeldaflat);
         return root;
     }
 }

@@ -36,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         Log.d(TAG, "qian7");
         final CollectionReference collectionReference = db.collection("users");
-        Log.d(TAG, "qian8");
-
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
 
 
         Log.d(TAG, "qian5");
