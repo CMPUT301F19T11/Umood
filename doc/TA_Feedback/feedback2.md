@@ -18,8 +18,6 @@ Glossary and Information Sources
 - Overall: Excellent.
 
 Tool Practices
-Overall: Excellent.
-
-I should be able to send you your mark in the coming days.
+- Overall: Excellent.
 
 Overall I think it is looking good so far. Good luck on part 3.
