@@ -1,6 +1,6 @@
 # CMPUT301T11
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)                     [![Build Status](https://travis-ci.org/CMPUT301F19T11/RoadToFullStackDeveloper.svg?branch=master)](https://travis-ci.org/CMPUT301F19T11/RoadToFullStackDeveloper)
 
 
 ## License:
