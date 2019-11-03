@@ -6,38 +6,71 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    private static final String TAG = "qian";
+    public static final String TAG = "haha";
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Map<String, Object> user = new HashMap<>();
+    CollectionReference collectionReference = db.collection("users");
+    // Create a new user with a first and last name
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        Log.d(TAG, "qian5");
-
         Button btnLogin = findViewById(R.id.login);
         Button btnRegister = findViewById(R.id.register);
+        final Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-        Log.d(TAG, "qian6");
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText editText = findViewById(R.id.username);
+                String username = editText.getText().toString();
+                User loginUser = new User(username);
 
+                user.put("ID",loginUser);
+                // Add a new document with a generated ID
+                db.collection("users").document(username)
+                        .set(user)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully written!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error writing document", e);
+                            }
+                        });
+                startActivity(intent);
 
-
-        Log.d(TAG, "qian7");
-
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,14 +80,27 @@ public class LoginActivity extends AppCompatActivity {
                     Snackbar.make(view, "The username does not exist!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 else {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
         });
 
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
 
-        Log.d(TAG, "qian5");
+
 
 
     }

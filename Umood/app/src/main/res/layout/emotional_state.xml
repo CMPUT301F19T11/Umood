@@ -14,7 +14,7 @@
         android:layout_marginTop="88dp"
         android:text="Please choose an emotion as your emotional state!!!"
         android:textSize="35dp"
-        android:testStyle="bold"
+        android:textStyle="bold"
 
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,6 @@
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/cancel_button"
         android:text="Cancel"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +46,6 @@
         android:layout_marginLeft="48dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:background="@drawable/next_button"
         android:text="Next"
         android:textColor="#000000"
 
