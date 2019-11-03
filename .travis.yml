@@ -42,6 +42,7 @@ licenses:
     - 'android-sdk-license-.+'
 
 before_install:
+  - cd Umood
   # Accept sdk licenses
   - yes | sdkmanager "platforms;android-29"
 
