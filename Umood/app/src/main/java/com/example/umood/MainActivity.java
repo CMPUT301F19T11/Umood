@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.umood.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
@@ -41,7 +42,7 @@ import androidx.navigation.ui.NavigationUI;
  * Team name:            CMPUT301F19T11
  * Mentor:               Alexander Filbert
  * Instructor:           Kenny Wong
- * Lab Section:          Monady 1700 - 1950
+ * Lab Section:          Monday 1700 - 1950
  * ------------------------------------------------------------------------------------------------------------
  *
  * ------------------------------------------------------------------------------------------------------------
@@ -51,7 +52,7 @@ import androidx.navigation.ui.NavigationUI;
  *  and it can post, track, share users’ mood
  *
  * Last Modified:
- *      October 31 by Qian Yu
+ *      Nov 4 by Qian Yu
  *
  * ------------------------------------------------------------------------------------------------------------
  */
@@ -61,18 +62,17 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "qian";
+    private static final String TAG = "qian-main";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "qian0");
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        Log.d(TAG, "qian1");
-
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -84,19 +84,42 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG,"onStart");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d(TAG,"onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"onStop");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        Log.d(TAG,"onRestart");
     }
 }
-
-/*
-
-        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, addEmotionalState.class);
-                startActivity(intent);
-            }
-        });
- */

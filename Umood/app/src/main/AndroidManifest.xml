@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     package="com.example.umood">
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -12,21 +15,32 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".SignUpActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name">
+        </activity>
+
+        <activity
+            android:name=".addMoodInfo"
+            android:label="@string/app_name">
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAyD9P-8qwSKv2siv5cdZPQ3iiihjI0k2c" />
     </application>
+
 
 </manifest>

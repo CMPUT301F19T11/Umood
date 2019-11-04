@@ -30,10 +30,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String TAG = "haha";
+    public static final String TAG = "qian";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Map<String, Object> user = new HashMap<>();
     CollectionReference collectionReference = db.collection("users");
+
+    Intent intentSignUp;
+    Intent intentSignIn;
     // Create a new user with a first and last name
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,33 +45,13 @@ public class LoginActivity extends AppCompatActivity {
 
         Button btnLogin = findViewById(R.id.login);
         Button btnRegister = findViewById(R.id.register);
-        final Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intentSignUp = new Intent(this, SignUpActivity.class);
+        intentSignIn = new Intent(this, MainActivity.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText editText = findViewById(R.id.username);
-                String username = editText.getText().toString();
-                User loginUser = new User(username);
-
-                user.put("ID",loginUser);
-                // Add a new document with a generated ID
-                db.collection("users").document(username)
-                        .set(user)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully written!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error writing document", e);
-                            }
-                        });
-                startActivity(intent);
-
+                startActivity(intentSignUp);
             }
         });
 
@@ -80,29 +63,49 @@ public class LoginActivity extends AppCompatActivity {
                     Snackbar.make(view, "The username does not exist!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 else {
-                    startActivity(intent);
+                    intentSignIn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intentSignIn);
                 }
             }
         });
 
-        db.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG,"onStart");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        Log.d(TAG,"onResume");
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"onStop");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        Log.d(TAG,"onRestart");
     }
 
 
@@ -113,6 +116,22 @@ public class LoginActivity extends AppCompatActivity {
 
 
 /*
+
+
+        db.collection("users")
+        .get()
+        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d(TAG, document.getId() + " => " + document.getData());
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
