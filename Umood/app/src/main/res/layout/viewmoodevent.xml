@@ -107,7 +107,7 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:background="@drawable/signup_button"
-        android:text="save"
+        android:text="edit"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
