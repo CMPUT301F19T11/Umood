@@ -38,5 +38,4 @@
         android:text="hh:ss"
         android:textSize="20sp" />
 
-
 </LinearLayout>
