@@ -25,6 +25,9 @@ public class User implements Serializable {
     @SerializedName("field5")
     @Expose
     private ArrayList<String> followerList;
+    @SerializedName("field6")
+    @Expose
+    private ArrayList<String> unverifiedList;
 
 
     /**
@@ -39,6 +42,7 @@ public class User implements Serializable {
         moodHistory = new ArrayList<>();
         followingList = new ArrayList<>();
         followerList = new ArrayList<>();
+        unverifiedList = new ArrayList<>();
     }
 
     public User(String username){
@@ -94,6 +98,13 @@ public class User implements Serializable {
     public void removeFollower(String user){
         followerList.remove(user);
     }
+
+
+
+    public ArrayList<String> getunverifiedList() {
+        return this.unverifiedList;
+    }
+
 
 
 }

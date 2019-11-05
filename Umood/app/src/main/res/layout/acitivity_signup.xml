@@ -13,7 +13,7 @@
 
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/next"
         android:layout_width="105dp"
         android:layout_height="40dp"
         android:layout_gravity="start"
