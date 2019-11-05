@@ -16,7 +16,6 @@ public class Mood implements Serializable{
 
     /**
      *
-     * @param user: the user who have a mood event
      * @param date: Date format: yyyy-mm-dd
      * @param time: Time Format: hh-mm
      * @param emotion: List of Emotion: Sad, Happy, Boring, Anxious, Fearful, Angry
@@ -24,8 +23,7 @@ public class Mood implements Serializable{
      * @param socialSituation: There are 3 social situation: alone. along with 1 person, along with many people
      * @param latitude: a google map data type to indicate where the user is when he/she upload  a new mood event.
      */
-    public Mood(User user,String date, String time, String emotion, String reason, String socialSituation, double latitude,double longitude){
-        this.user = user;
+    public Mood(String date, String time, String emotion, String reason, String socialSituation, double latitude,double longitude){
         this.date = date;
         this.time = time;
         this.emotion = emotion;
@@ -41,21 +39,6 @@ public class Mood implements Serializable{
     }
 
 
-    /**
-     *
-     * @return user
-     */
-    public User getUser() {
-        return user;
-    }
-
-    /**
-     *
-     * @param user
-     */
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     /**
      *

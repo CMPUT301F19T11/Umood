@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class addMoodInfo extends AppCompatActivity {
     private static final String TAG = "qian-addMood";
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class addMoodInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("Mood", "Fear");
+                intent.putExtra("Mood", "Cry");
                 setResult(RESULT_OK, intent);
                 finish();
 
@@ -56,7 +57,7 @@ public class addMoodInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("Mood", "Anxious");
+                intent.putExtra("Mood", "Boring");
                 setResult(RESULT_OK, intent);
                 finish();
             }

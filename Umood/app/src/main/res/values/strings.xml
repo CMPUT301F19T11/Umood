@@ -22,8 +22,8 @@
     <string name="enterMoodPrompt">Please choose an emotion as your emotional state!</string>
     <string name="moodHappy">Happy</string>
     <string name="moodSad">Sad</string>
-    <string name="moodAnxious">Anxious</string>
-    <string name="moodFear">Fear</string>
+    <string name="moodAnxious">Boring</string>
+    <string name="moodFear">Cry</string>
     <string name="moodBack">Cancel</string>
     <string name="moodForward">Next</string>
 

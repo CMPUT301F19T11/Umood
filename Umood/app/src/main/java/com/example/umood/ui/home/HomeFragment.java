@@ -1,13 +1,18 @@
 package com.example.umood.ui.home;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +27,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -35,7 +42,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -49,7 +59,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docref;
     private CollectionReference collectionReference = db.collection("users");
-    private Mood mood;
 
 
     private User user;
@@ -94,14 +103,53 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         super.onActivityResult(requestCode,resultCode,data);
         if(requestCode == PICK_MOOD_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
-                String strMood = data.getStringExtra("Mood");
+                String emotion = data.getStringExtra("Mood");
                 double latitude = 53.5232+ 0.04*Math.random();
                 double longitude = -113.5263 + 0.04*Math.random();
                 LatLng edmonton = new LatLng(latitude, longitude);
-                gMap.addMarker(new MarkerOptions().position(edmonton).title(strMood).snippet("I am "+strMood));
+                BitmapDescriptor myIcon;
 
-                mood = new Mood(user,"DatePlaceholder","TimePlaceholder",strMood,"reason","social",latitude,longitude);
+                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+
+
+                switch (emotion){
+                    case "Happy":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
+                        break;
+                    case "Sad":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sad);
+                        break;
+                    case "Cry":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.crying);
+                        break;
+                    default:
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.bored);
+                        break;
+
+                }
+
+                // New a mood event
+                Mood mood = new Mood(currentDate,
+                            currentTime,
+                            emotion,
+                            "reason",
+                            "social",
+                            latitude,
+                            longitude);
+
+                String Description = "Today: " + currentDate + "    Time: " + currentTime;
+                // Add a new marker to maap
+                gMap.addMarker(new MarkerOptions()
+                        .position(edmonton)
+                        .title(emotion)
+                        .snippet(Description)
+                        .icon(myIcon));
+
+                // Update the mood event to database
                 docref.update("moodHistory", FieldValue.arrayUnion(mood));
+
+                // I do not know why i put it here
                 mapView.getMapAsync(this);
             }
             else
@@ -119,6 +167,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         double latitude = 53.5232;
         double longitude = -113.5263;
         LatLng edmonton = new LatLng(latitude, longitude);
+        BitmapDescriptor myIcon;
+
+
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(edmonton)           // Sets the center of the map to location user
@@ -132,7 +183,28 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             double latitudeMood = mood.getLatitude();
             double longitudeMood = mood.getLongitude();
             LatLng location = new LatLng(latitudeMood, longitudeMood);
-            googleMap.addMarker(new MarkerOptions().position(location).title(emotion).snippet("I am " + emotion));
+            switch (emotion){
+                case "Happy":
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
+                    break;
+                case "Sad":
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sad);
+                    break;
+                case "Cry":
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.crying);
+                    break;
+                default:
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.bored);
+                    break;
+
+            }
+
+            String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
+            googleMap.addMarker(new MarkerOptions()
+                    .position(location)
+                    .title(emotion)
+                    .snippet(Description)
+                    .icon(myIcon));
         }
 
         // CameraPosition cameraPosition = new CameraPosition.Builder().target(edmonton).zoom(12).build();
@@ -161,6 +233,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
+    }
+
+
+    private BitmapDescriptor getMarkerIconFromDrawable(Drawable drawable) {
+        Canvas canvas = new Canvas();
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
 
     @Override
