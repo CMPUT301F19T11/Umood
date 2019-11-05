@@ -18,7 +18,7 @@
 
 
 
-
+    <!--  string are used in addMoodInfo xml -->
     <string name="enterMoodPrompt">Please choose an emotion as your emotional state!</string>
     <string name="moodHappy">Happy</string>
     <string name="moodSad">Sad</string>

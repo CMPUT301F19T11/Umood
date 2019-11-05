@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -43,10 +44,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button btnLogin = findViewById(R.id.login);
+        Button btnLogin= findViewById(R.id.login);
         Button btnRegister = findViewById(R.id.register);
-        intentSignUp = new Intent(this, SignUpActivity.class);
         intentSignIn = new Intent(this, MainActivity.class);
+        intentSignUp = new Intent(this, SignUpActivity.class);
+
+
+
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,20 +59,36 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean accountExist = true;
-                if(!accountExist)
-                    Snackbar.make(view, "The username does not exist!", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                else {
-                    intentSignIn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intentSignIn);
-                }
-            }
-        });
+                EditText editText = findViewById(R.id.username);
+                final String username = editText.getText().toString();
 
+                collectionReference.document(username)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                User user = document.toObject(User.class);
+                                intentSignIn.putExtra("User",user);
+                                startActivity(intentSignIn);
+                            } else {
+                                Log.d(TAG, "No such document");
+                                Toast.makeText(getBaseContext(),"The username does not exist",Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+            }
+
+        });
     }
 
     @Override
@@ -112,55 +132,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 }
-
-
-
 /*
 
-
-        db.collection("users")
-        .get()
-        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                    }
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
-            }
-        });
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText usernameText = findViewById(R.id.username);
-                String username = usernameText.getText().toString();
-                HashMap<String, String> data = new HashMap<>();
-
-                if (username.length() > 0) {
-                    data.put("ID", username);
-                    collectionReference
-                            .document(username)
-                            .set(data)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "data addition");
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "Data addition failed");
-                                }
-                            });
-
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("username",username);
-                    startActivity(intent);
-                }
-            }
-        });
  */
