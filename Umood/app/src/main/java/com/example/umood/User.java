@@ -4,13 +4,32 @@ import java.util.ArrayList;
 
 public class User {
     private String username;
+    private String avatar;
     private ArrayList<Mood> moodHistory;
-    private ArrayList<User> friendList;
+    private ArrayList<User> followingList;
+    private ArrayList<User> followerList;
+
+
+    /**
+     *
+     * @param username: An unique ID
+     * @param avatar: The user's avatar
+     */
+    public User(String username, String avatar){
+        this.username = username;
+        this.avatar = avatar;
+
+        moodHistory = new ArrayList<>();
+        followingList = new ArrayList<>();
+        followerList = new ArrayList<>();
+    }
 
     public User(String username){
         this.username = username;
+
         moodHistory = new ArrayList<>();
-        friendList = new ArrayList<>();
+        followingList = new ArrayList<>();
+        followerList = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -19,6 +38,8 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+
 
     public ArrayList<Mood> getMoodHistory() {
         return moodHistory;
@@ -30,13 +51,29 @@ public class User {
         moodHistory.remove(mood);
     }
 
-    public ArrayList<User> getFriendList() {
-        return friendList;
+
+
+    public ArrayList<User> getFollowing() {
+        return this.followingList;
     }
-    public void addFriend(User user) {
-        friendList.add(user);
+    public void addFollowing(User user){
+        followingList.add(user);
     }
-    public void removeFriend(User user){
-        friendList.remove(user);
+    public void removeFollowing(User user){
+        followingList.remove(user);
     }
+
+
+
+    public ArrayList<User> getFollower() {
+        return this.followerList;
+    }
+    public void addFollower(User user){
+        followerList.add(user);
+    }
+    public void removeFollower(User user){
+        followerList.remove(user);
+    }
+
+
 }

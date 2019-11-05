@@ -14,4 +14,20 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="username">username</string>
+
+
+
+
+
+    <string name="enterMoodPrompt">Please choose an emotion as your emotional state!</string>
+    <string name="moodHappy">Happy</string>
+    <string name="moodSad">Sad</string>
+    <string name="moodAnxious">Anxious</string>
+    <string name="moodFear">Fear</string>
+    <string name="moodBack">Cancel</string>
+    <string name="moodForward">Next</string>
+
+
 </resources>
+
+
