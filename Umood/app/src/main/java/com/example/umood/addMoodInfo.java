@@ -27,6 +27,7 @@ public class addMoodInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.putExtra("Mood", "Happy");
+                setResult(RESULT_OK, intent);
                 finish();
 
             }
@@ -36,6 +37,7 @@ public class addMoodInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.putExtra("Mood", "Sad");
+                setResult(RESULT_OK, intent);
                 finish();
 
             }
@@ -44,7 +46,8 @@ public class addMoodInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("Mood", "Anxious");
+                intent.putExtra("Mood", "Fear");
+                setResult(RESULT_OK, intent);
                 finish();
 
             }
@@ -53,9 +56,9 @@ public class addMoodInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("Mood", "Fear");
+                intent.putExtra("Mood", "Anxious");
+                setResult(RESULT_OK, intent);
                 finish();
-
             }
         });
 

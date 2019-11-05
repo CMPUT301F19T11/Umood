@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
 
-    <Button
+    <!--<Button
         android:id="@+id/login"
         android:layout_width="80dp"
         android:layout_height="33dp"
@@ -37,7 +37,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" /> -->
 
     <Button
         android:id="@+id/buttonHappy"
