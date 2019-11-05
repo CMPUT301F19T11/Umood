@@ -2,6 +2,7 @@ package com.example.umood;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("users");
     private User user;
+
+    private LocationManager locationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

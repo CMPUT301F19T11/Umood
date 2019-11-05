@@ -66,26 +66,30 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 EditText editText = findViewById(R.id.username);
                 final String username = editText.getText().toString();
-
-                collectionReference.document(username)
-                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                User user = document.toObject(User.class);
-                                intentSignIn.putExtra("User",user);
-                                startActivity(intentSignIn);
+                if(username.isEmpty()){
+                    Toast.makeText(getBaseContext(),"The username cannot be empty",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    collectionReference.document(username)
+                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    User user = document.toObject(User.class);
+                                    intentSignIn.putExtra("User",user);
+                                    startActivity(intentSignIn);
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                    Toast.makeText(getBaseContext(),"The username does not exist",Toast.LENGTH_LONG).show();
+                                }
                             } else {
-                                Log.d(TAG, "No such document");
-                                Toast.makeText(getBaseContext(),"The username does not exist",Toast.LENGTH_LONG).show();
+                                Log.d(TAG, "get failed with ", task.getException());
                             }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
                         }
-                    }
-                });
+                    });
+                }
             }
 
         });
