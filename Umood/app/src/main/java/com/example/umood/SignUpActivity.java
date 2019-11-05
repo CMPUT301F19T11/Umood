@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_signup);
 
-        Button btnRegister = findViewById(R.id.register);
+        Button btnRegister = findViewById(R.id.next);
         intent = new Intent(this, MainActivity.class);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {

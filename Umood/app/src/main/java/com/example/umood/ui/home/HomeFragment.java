@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+
 import android.location.LocationListener;
 import android.location.LocationManager;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -111,8 +113,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                 String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-
-
+                if(emotion.isEmpty())
+                    return;
                 switch (emotion){
                     case "Happy":
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
@@ -123,10 +125,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     case "Cry":
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.crying);
                         break;
+                    case "Love":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.inlove);
+                        break;
+                    case "Confused":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.confused);
+                        break;
                     default:
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.bored);
                         break;
-
                 }
 
                 // New a mood event
@@ -139,7 +146,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             longitude);
 
                 String Description = "Today: " + currentDate + "    Time: " + currentTime;
-                // Add a new marker to maap
+
+
+                // Add a new marker to aap
                 gMap.addMarker(new MarkerOptions()
                         .position(edmonton)
                         .title(emotion)
@@ -153,7 +162,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 mapView.getMapAsync(this);
             }
             else
-                Log.d(TAG, "????2");
+                Log.d(TAG, "Failed to get result!");
         }
         else
             Log.d(TAG, "What happened??");
@@ -183,6 +192,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             double latitudeMood = mood.getLatitude();
             double longitudeMood = mood.getLongitude();
             LatLng location = new LatLng(latitudeMood, longitudeMood);
+
+
             switch (emotion){
                 case "Happy":
                     myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
@@ -193,10 +204,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 case "Cry":
                     myIcon = BitmapDescriptorFactory.fromResource(R.drawable.crying);
                     break;
+                case "Love":
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.inlove);
+                    break;
+                case "Confused":
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.confused);
+                    break;
                 default:
                     myIcon = BitmapDescriptorFactory.fromResource(R.drawable.bored);
                     break;
-
             }
 
             String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
