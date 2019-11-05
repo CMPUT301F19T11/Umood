@@ -4,101 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
 
     <ImageView
         android:id="@+id/mainpic"
-        android:layout_width="410dp"
-        android:layout_height="147dp"
+        android:layout_width="412dp"
+        android:layout_height="196dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:paddingLeft="@android:dimen/notification_large_icon_width"
+        android:paddingRight="@android:dimen/notification_large_icon_width"
+        android:scaleX="2"
+        android:scaleY="1.1"
+        android:src="@drawable/cat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008"
-        app:srcCompat="@drawable/googleg_standard_color_18" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/cat" />
 
     <TextView
         android:id="@+id/emotionstate2"
         android:layout_width="154dp"
         android:layout_height="45dp"
         android:alpha="@dimen/activity_vertical_margin"
-        android:text="Emotion state"
+        android:text="@string/emotion_state"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
-
-    <TextView
-        android:id="@+id/date2"
-        android:layout_width="83dp"
-        android:layout_height="27dp"
-        android:text="Date"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467" />
+        app:layout_constraintVertical_bias="0.341" />
 
     <TextView
         android:id="@+id/time2"
-        android:layout_width="81dp"
-        android:layout_height="26dp"
-        android:text="Time"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="@string/time"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549" />
+        app:layout_constraintVertical_bias="0.542" />
+
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="@string/date"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459" />
 
     <TextView
         android:id="@+id/reason2"
-        android:layout_width="85dp"
-        android:layout_height="26dp"
-        android:text="Reason"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:text="@string/reason"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.021"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        app:layout_constraintVertical_bias="0.627" />
 
     <TextView
         android:id="@+id/SocialSitution2"
-        android:layout_width="113dp"
-        android:layout_height="27dp"
-        android:text="Social Sitution"
+        android:layout_width="80dp"
+        android:layout_height="39dp"
+        android:text="@string/social_sitution"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696" />
-
-    <TextView
-        android:id="@+id/location2"
-        android:layout_width="87dp"
-        android:layout_height="25dp"
-        android:text="Location"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.012"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
+        app:layout_constraintVertical_bias="0.721" />
 
     <Button
         android:id="@+id/editbutton"
@@ -107,77 +100,86 @@
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:background="@drawable/signup_button"
-        android:text="edit"
+        android:text="@string/edit"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896" />
+        app:layout_constraintVertical_bias="0.906" />
 
     <EditText
         android:id="@+id/reasonText2"
-        android:layout_width="306dp"
-        android:layout_height="40dp"
+        android:layout_width="320dp"
+        android:layout_height="56dp"
         android:ems="10"
+        android:hint="@string/reason"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.621" />
+        app:layout_constraintVertical_bias="0.636" />
 
     <EditText
         android:id="@+id/situtionText2"
-        android:layout_width="293dp"
-        android:layout_height="37dp"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
         android:ems="10"
+        android:hint="@string/social_sitution"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.864"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.725" />
 
     <ImageView
         android:id="@+id/statemood2"
         android:layout_width="96dp"
         android:layout_height="72dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.774"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:srcCompat="@android:drawable/ic_delete" />
+        app:layout_constraintVertical_bias="0.336"
+        app:srcCompat="@drawable/happy" />
 
     <EditText
         android:id="@+id/timeText2"
-        android:layout_width="277dp"
-        android:layout_height="50dp"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
         android:ems="10"
+        android:hint="@string/time"
+        android:importantForAutofill="no"
         android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.753"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.542" />
+        app:layout_constraintVertical_bias="0.547" />
 
     <EditText
         android:id="@+id/dateText2"
-        android:layout_width="274dp"
+        android:layout_width="320dp"
         android:layout_height="60dp"
         android:ems="10"
+        android:hint="@string/date"
+        android:importantForAutofill="no"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.715"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.453" />
+        app:layout_constraintVertical_bias="0.456" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
