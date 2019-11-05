@@ -25,6 +25,7 @@ public class NotificationsFragment extends Fragment {
 
         ImageView imageView = root.findViewById(R.id.avater);
         imageView.setImageResource(R.drawable.zeldaflat);
+
         return root;
     }
 }

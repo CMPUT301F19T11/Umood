@@ -1,13 +1,33 @@
 package com.example.umood;
 
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
+    @SerializedName("field1")
+    @Expose
     private String username;
+    @SerializedName("field2")
+    @Expose
     private String avatar;
+    @SerializedName("field3")
+    @Expose
     private ArrayList<Mood> moodHistory;
-    private ArrayList<User> followingList;
-    private ArrayList<User> followerList;
+    @SerializedName("field4")
+    @Expose
+    private ArrayList<String> followingList;
+    @SerializedName("field5")
+    @Expose
+    private ArrayList<String> followerList;
+    @SerializedName("field6")
+    @Expose
+    private ArrayList<String> unverifiedList;
 
 
     /**
@@ -22,6 +42,7 @@ public class User {
         moodHistory = new ArrayList<>();
         followingList = new ArrayList<>();
         followerList = new ArrayList<>();
+        unverifiedList = new ArrayList<>();
     }
 
     public User(String username){
@@ -30,6 +51,9 @@ public class User {
         moodHistory = new ArrayList<>();
         followingList = new ArrayList<>();
         followerList = new ArrayList<>();
+    }
+    public User(){
+
     }
 
     public String getUsername() {
@@ -53,27 +77,34 @@ public class User {
 
 
 
-    public ArrayList<User> getFollowing() {
+    public ArrayList<String> getFollowing() {
         return this.followingList;
     }
-    public void addFollowing(User user){
+    public void addFollowing(String user){
         followingList.add(user);
     }
-    public void removeFollowing(User user){
+    public void removeFollowing(String user){
         followingList.remove(user);
     }
 
 
 
-    public ArrayList<User> getFollower() {
+    public ArrayList<String> getFollower() {
         return this.followerList;
     }
-    public void addFollower(User user){
+    public void addFollower(String user){
         followerList.add(user);
     }
-    public void removeFollower(User user){
+    public void removeFollower(String user){
         followerList.remove(user);
     }
+
+
+
+    public ArrayList<String> getunverifiedList() {
+        return this.unverifiedList;
+    }
+
 
 
 }
