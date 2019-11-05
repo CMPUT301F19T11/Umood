@@ -31,22 +31,17 @@ public class SignUpActivity extends AppCompatActivity {
 
         Button btnRegister = findViewById(R.id.register);
         intent = new Intent(this, MainActivity.class);
-        Log.d(TAG, "debug2");
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "debug3");
                 EditText editText = findViewById(R.id.username);
-                Log.d(TAG, "debug3-2");
                 String username = editText.getText().toString();
                 User loginUser = new User(username);
-                Log.d(TAG, "debug4");
 
-                user.put("ID",loginUser);
                 // Add a new document with a generated ID
                 db.collection("users").document(username)
-                        .set(user)
+                        .set(loginUser)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

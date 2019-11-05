@@ -1,13 +1,18 @@
 package com.example.umood;
 
-public class Mood {
+import com.google.android.gms.maps.model.LatLng;
+
+import java.io.Serializable;
+
+public class Mood implements Serializable{
     private User user;
     private String date;
     private String time;
     private String emotion;
     private String reason;
     private String socialSituation;
-    private String location;
+    private double latitude;
+    private double longitude;
 
     /**
      *
@@ -17,18 +22,24 @@ public class Mood {
      * @param emotion: List of Emotion: Sad, Happy, Boring, Anxious, Fearful, Angry
      * @param reason: A string to explain your emotion. Should be less than 50 chars.
      * @param socialSituation: There are 3 social situation: alone. along with 1 person, along with many people
-     * @param location: a google map data type to indicate where the user is when he/she upload  a new mood event.
+     * @param latitude: a google map data type to indicate where the user is when he/she upload  a new mood event.
      */
-    Mood(User user,String date, String time, String emotion, String reason, String socialSituation, String location){
+    public Mood(User user,String date, String time, String emotion, String reason, String socialSituation, double latitude,double longitude){
         this.user = user;
         this.date = date;
         this.time = time;
         this.emotion = emotion;
         this.reason = reason;
         this.socialSituation = socialSituation;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
 
     }
+
+    public Mood(){
+
+    }
+
 
     /**
      *
@@ -56,7 +67,7 @@ public class Mood {
 
     /**
      *
-     * @param date
+     * @param date: Date format: yyyy-mm-dd
      */
     public void setDate(String date) {
         this.date = date;
@@ -107,13 +118,20 @@ public class Mood {
         this.socialSituation = socialSituation;
     }
 
-    public String getLocation() {
-        return location;
+
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
 
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 }

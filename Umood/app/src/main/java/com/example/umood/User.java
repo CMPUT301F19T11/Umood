@@ -1,12 +1,29 @@
 package com.example.umood;
 
+import android.os.Parcelable;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
+    @SerializedName("field1")
+    @Expose
     private String username;
+    @SerializedName("field2")
+    @Expose
     private String avatar;
+    @SerializedName("field3")
+    @Expose
     private ArrayList<Mood> moodHistory;
+    @SerializedName("field4")
+    @Expose
     private ArrayList<User> followingList;
+    @SerializedName("field5")
+    @Expose
     private ArrayList<User> followerList;
 
 
@@ -30,6 +47,9 @@ public class User {
         moodHistory = new ArrayList<>();
         followingList = new ArrayList<>();
         followerList = new ArrayList<>();
+    }
+    public User(){
+
     }
 
     public String getUsername() {
