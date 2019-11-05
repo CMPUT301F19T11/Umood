@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -18,14 +20,16 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private long click;
+    ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SwipeMenuListView listView = (SwipeMenuListView) findViewById(R.id.listView);
+        final SwipeMenuListView listView = (SwipeMenuListView) findViewById(R.id.listView);
 
-        ArrayList<String> list = new ArrayList<>();
+        list = new ArrayList<>();
         list.add("apple");
         list.add("apple");
         list.add("apple");
@@ -39,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("apple");
 
 
-        ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1,list);
+        final ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1,list);
         listView.setAdapter(adapter);
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 // set item width
                 openItem.setWidth(170);
                 // set item title
-                openItem.setTitle("Open");
+                openItem.setTitle("DELETE");
                 // set item title fontsize
                 openItem.setTitleSize(18);
                 // set item title font color
@@ -81,12 +85,19 @@ public class MainActivity extends AppCompatActivity {
         // set creator
         listView.setMenuCreator(creator);
 
+
+
         listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                //click = adapter.getItemId(position);
                 switch (index) {
                     case 0:
                         Log.d(TAG,"onMenuClick: clicked item "+ index);
+                        //int c = (int) click;
+                        //list.remove(c);
+                        //adapter.notifyDataSetChanged();
+
                         break;
                     case 1:
                         Log.d(TAG,"onMenuClick: clicked item "+ index);
