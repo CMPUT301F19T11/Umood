@@ -1,7 +1,0 @@
-#Tue Nov 05 16:22:45 MST 2019
-base.0=/Users/yanwenfa/Desktop/RoadToFullStackDeveloper/SwipeDelete/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.1=classes.dex
-renamed.1=classes2.dex
-path.0=classes.dex
-renamed.0=classes.dex
-base.1=/Users/yanwenfa/Desktop/SwipeDelete/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
