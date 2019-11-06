@@ -23,7 +23,6 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "qian";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Map<String, Object> user = new HashMap<>();
     CollectionReference collectionReference = db.collection("users");
 
     Intent intentSignUp;

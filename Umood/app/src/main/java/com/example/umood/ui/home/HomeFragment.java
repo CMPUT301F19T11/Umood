@@ -178,8 +178,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         LatLng edmonton = new LatLng(latitude, longitude);
         BitmapDescriptor myIcon;
 
-
-
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(edmonton)           // Sets the center of the map to location user
                 .zoom(12)                   // Sets the zoom

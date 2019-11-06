@@ -75,7 +75,6 @@ public class MoodHistory extends AppCompatActivity {
                 click = adapter.getItemId(i);
             }
         });
-
          */
 
         listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
