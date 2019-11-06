@@ -39,22 +39,12 @@ public class MoodHistory extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("User");
         Log.d(TAG, user.getUsername());
         moodList = user.getMoodHistory();
-<<<<<<< HEAD
-
-        adapter = new MoodAdapter(
-                this,
-                R.layout.content,
-                moodList);
-=======
         Log.d(TAG, "1");
         adapter = new MoodAdapter(this, R.layout.content, moodList);
         Log.d(TAG, "2");
->>>>>>> 94f667333a232539022dc8953407d62998ce3f6c
 
         listView = (SwipeMenuListView) findViewById(R.id.moodListView);
         listView.setAdapter(adapter);
-<<<<<<< HEAD
-=======
         Log.d(TAG, "3");
 
         SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -85,7 +75,6 @@ public class MoodHistory extends AppCompatActivity {
                 click = adapter.getItemId(i);
             }
         });
-
          */
 
         listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
@@ -106,7 +95,6 @@ public class MoodHistory extends AppCompatActivity {
         });
 
         listView.setAdapter(adapter);
->>>>>>> 94f667333a232539022dc8953407d62998ce3f6c
 
     }
 }
