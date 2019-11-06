@@ -5,33 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/friendList"
-        android:layout_width="362dp"
-        android:layout_height="498dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addFollowing" />
-
-    <TextView
-        android:id="@+id/fsearch"
-        android:layout_width="383dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="4dp"
-        android:text="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/request"
         android:layout_width="371dp"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
-        android:text="Following Requtes"
+        android:background="@drawable/signup_button"
+        android:text="@string/request"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fsearch" />
@@ -40,8 +20,13 @@
         android:id="@+id/follower"
         android:layout_width="371dp"
         android:layout_height="38dp"
-        android:layout_marginTop="8dp"
-        android:text="Follower"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/signup_button"
+        android:text="@string/follower"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request" />
@@ -50,12 +35,37 @@
         android:id="@+id/addFollowing"
         android:layout_width="371dp"
         android:layout_height="38dp"
-        android:layout_marginTop="8dp"
-        android:text="Add Following"
-        app:layout_constraintBottom_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/signup_button"
+        android:text="@string/add_fllow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/follower"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/follower" />
+
+    <ListView
+        android:id="@+id/friendList"
+        android:layout_width="412dp"
+        android:layout_height="499dp"
+
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fsearch"
+        android:layout_width="377dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

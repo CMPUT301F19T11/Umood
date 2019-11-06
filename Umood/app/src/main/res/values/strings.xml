@@ -37,6 +37,22 @@
     <!--  String below are used in filter xml -->
     <string name="feed">Feed</string>
 
+    <!--  String below are used in fragment_Following xml -->
+    <string name="search">SearchBar</string>
+    <string name="add_fllow">Add Following</string>
+    <string name="follower">Follower</string>
+    <string name="request">Following Request</string>
+
+
+    <!--  String below are used in add_Following xml -->
+    <string name="add_f_confirm">Confirm</string>
+    <string name="add_f_following">add following</string>
+    <string name="add_f_back">Back</string>
+
+    <!--  String below are used in following request xml -->
+    <string name="f_request_text">Following Request</string>
+    <string name="f_request_button_ok">Accept</string>
+
 
 </resources>
 

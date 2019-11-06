@@ -7,8 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
-import android.location.LocationListener;
-import android.location.LocationManager;
 
 import android.os.Bundle;
 import android.util.Log;
