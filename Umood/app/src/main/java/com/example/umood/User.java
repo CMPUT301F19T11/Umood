@@ -105,6 +105,14 @@ public class User implements Serializable {
         return this.unverifiedList;
     }
 
+    public Mood getMostRecentMood() {
+        if(this.moodHistory.isEmpty()){
+            return null;
+        }
+        int length = this.moodHistory.size()-1;
+        return this.moodHistory.get(length);
+    }
+
 
 
 }

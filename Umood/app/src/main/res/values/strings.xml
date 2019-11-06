@@ -16,9 +16,13 @@
     <string name="username">username</string>
 
 
+<<<<<<< HEAD
 
 
     <!--  string are used in addMoodInfo xml -->
+=======
+    <!--  String below are used in addMoodInfo xml -->
+>>>>>>> 27f9d3eda8bc9486f61a5540addc77fa02132363
     <string name="enterMoodPrompt">Please choose an emotion as your emotional state!</string>
     <string name="moodHappy">Happy</string>
     <string name="moodSad">Sad</string>
@@ -41,6 +45,9 @@
     <string name="emo_state">emo_state</string>
     <string name="filter">filter</string>
     <string name="history">history</string>
+
+    <!--  String below are used in filter xml -->
+    <string name="feed">Feed</string>
 
 
 </resources>
