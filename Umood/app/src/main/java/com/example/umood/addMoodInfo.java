@@ -5,11 +5,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class addMoodInfo extends AppCompatActivity {
     private static final String TAG = "qian-addMood";
+
+    private String emotion;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,50 +23,82 @@ public class addMoodInfo extends AppCompatActivity {
         Log.d(TAG,"in 1");
         setContentView(R.layout.emotional_state);
 
-        Button happy = findViewById(R.id.buttonHappy);
-        Button sad = findViewById(R.id.buttonSad);
-        Button fear = findViewById(R.id.buttonFear);
-        Button anxious = findViewById(R.id.buttonAnxious);
+        ImageButton happy = findViewById(R.id.happyButton);
+        ImageButton sad = findViewById(R.id.sadButton);
+        ImageButton confused = findViewById(R.id.confusedButton);
+        ImageButton love = findViewById(R.id.loveButton);
+        ImageButton cry = findViewById(R.id.cryButton);
+        ImageButton bored = findViewById(R.id.boringButton);
+        Button next = findViewById(R.id.next);
+        Button cancel = findViewById(R.id.cancel);
+
         happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra("Mood", "Happy");
-                setResult(RESULT_OK, intent);
-                finish();
+                emotion = "Happy";
+
 
             }
         });
         sad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra("Mood", "Sad");
-                setResult(RESULT_OK, intent);
-                finish();
+                emotion = "Sad";
 
             }
         });
-        fear.setOnClickListener(new View.OnClickListener() {
+        confused.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emotion = "Confused";
+
+
+            }
+        });
+        love.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emotion = "Love";
+
+            }
+        });
+        cry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emotion = "Cry";
+
+            }
+        });
+        bored.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emotion = "Bored";
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(emotion.isEmpty()){
+                    Toast.makeText(getBaseContext(), "Choose an emotion!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent();
+                    intent.putExtra("Mood", emotion);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.putExtra("Mood", "Fear");
-                setResult(RESULT_OK, intent);
-                finish();
-
-            }
-        });
-        anxious.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra("Mood", "Anxious");
-                setResult(RESULT_OK, intent);
+                setResult(RESULT_CANCELED, intent);
                 finish();
             }
         });
-
     }
 
 

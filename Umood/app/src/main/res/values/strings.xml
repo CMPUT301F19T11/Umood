@@ -16,16 +16,26 @@
     <string name="username">username</string>
 
 
-
-
-    <!--  string are used in addMoodInfo xml -->
+    <!--  String below are used in addMoodInfo xml -->
     <string name="enterMoodPrompt">Please choose an emotion as your emotional state!</string>
     <string name="moodHappy">Happy</string>
     <string name="moodSad">Sad</string>
-    <string name="moodAnxious">Anxious</string>
-    <string name="moodFear">Fear</string>
+    <string name="moodBoring">Boring</string>
+    <string name="moodCry">Cry</string>
+    <string name="moodLove">Love</string>
+    <string name="moodConfused">Confused</string>
     <string name="moodBack">Cancel</string>
     <string name="moodForward">Next</string>
+
+
+    <!--  String below are used in filter xml -->
+    <string name="filter">Back</string>
+    <string name="emo_state">  emotional state</string>
+    <string name="history">  Mood History</string>
+
+
+    <!--  String below are used in filter xml -->
+    <string name="feed">Feed</string>
 
 
 </resources>

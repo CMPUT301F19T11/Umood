@@ -2,6 +2,7 @@ package com.example.umood;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -72,13 +73,14 @@ public class MainActivity extends AppCompatActivity {
     private CollectionReference collectionReference = db.collection("users");
     private User user;
 
+    private LocationManager locationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         Log.d(TAG, "Almost ");
-
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
@@ -128,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
         Log.d(TAG,"onResume");
     }
 

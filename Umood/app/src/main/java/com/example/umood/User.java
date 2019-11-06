@@ -21,10 +21,13 @@ public class User implements Serializable {
     private ArrayList<Mood> moodHistory;
     @SerializedName("field4")
     @Expose
-    private ArrayList<User> followingList;
+    private ArrayList<String> followingList;
     @SerializedName("field5")
     @Expose
-    private ArrayList<User> followerList;
+    private ArrayList<String> followerList;
+    @SerializedName("field6")
+    @Expose
+    private ArrayList<String> unverifiedList;
 
 
     /**
@@ -39,6 +42,7 @@ public class User implements Serializable {
         moodHistory = new ArrayList<>();
         followingList = new ArrayList<>();
         followerList = new ArrayList<>();
+        unverifiedList = new ArrayList<>();
     }
 
     public User(String username){
@@ -73,27 +77,42 @@ public class User implements Serializable {
 
 
 
-    public ArrayList<User> getFollowing() {
+    public ArrayList<String> getFollowing() {
         return this.followingList;
     }
-    public void addFollowing(User user){
+    public void addFollowing(String user){
         followingList.add(user);
     }
-    public void removeFollowing(User user){
+    public void removeFollowing(String user){
         followingList.remove(user);
     }
 
 
 
-    public ArrayList<User> getFollower() {
+    public ArrayList<String> getFollower() {
         return this.followerList;
     }
-    public void addFollower(User user){
+    public void addFollower(String user){
         followerList.add(user);
     }
-    public void removeFollower(User user){
+    public void removeFollower(String user){
         followerList.remove(user);
     }
+
+
+
+    public ArrayList<String> getunverifiedList() {
+        return this.unverifiedList;
+    }
+
+    public Mood getMostRecentMood() {
+        if(this.moodHistory.isEmpty()){
+            return null;
+        }
+        int length = this.moodHistory.size()-1;
+        return this.moodHistory.get(length);
+    }
+
 
 
 }

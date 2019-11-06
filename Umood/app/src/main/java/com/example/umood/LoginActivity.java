@@ -6,26 +6,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.FirebaseException;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +23,6 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "qian";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Map<String, Object> user = new HashMap<>();
     CollectionReference collectionReference = db.collection("users");
 
     Intent intentSignUp;
@@ -44,13 +33,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button btnLogin= findViewById(R.id.login);
-        Button btnRegister = findViewById(R.id.register);
+        Button btnLogin= findViewById(R.id.cancel);
+        Button btnRegister = findViewById(R.id.next);
         intentSignIn = new Intent(this, MainActivity.class);
         intentSignUp = new Intent(this, SignUpActivity.class);
-
-
-
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,33 +45,35 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText editText = findViewById(R.id.username);
                 final String username = editText.getText().toString();
-
-                collectionReference.document(username)
-                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                User user = document.toObject(User.class);
-                                intentSignIn.putExtra("User",user);
-                                startActivity(intentSignIn);
+                if(username.isEmpty()){
+                    Toast.makeText(getBaseContext(),"The username cannot be empty",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    collectionReference.document(username)
+                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    User user = document.toObject(User.class);
+                                    intentSignIn.putExtra("User",user);
+                                    startActivity(intentSignIn);
+                                } else {
+                                    Log.d(TAG, "No such document");
+                                    Toast.makeText(getBaseContext(),"The username does not exist",Toast.LENGTH_LONG).show();
+                                }
                             } else {
-                                Log.d(TAG, "No such document");
-                                Toast.makeText(getBaseContext(),"The username does not exist",Toast.LENGTH_LONG).show();
+                                Log.d(TAG, "get failed with ", task.getException());
                             }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
                         }
-                    }
-                });
+                    });
+                }
             }
 
         });
