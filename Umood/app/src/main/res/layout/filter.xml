@@ -9,10 +9,9 @@
         android:id="@+id/emotional_state"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:inputType="textPersonName"
-        android:text="  emotional state"
+        android:text="@string/emo_state"
         android:textSize="30sp" />
 
 
@@ -20,10 +19,9 @@
         android:id="@+id/filter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="305dp"
         android:layout_marginTop="50dp"
         android:background="@android:color/holo_blue_dark"
-        android:text="Filter" />
+        android:text="@string/filter" />
 
     <ListView
         android:id="@+id/list_mood"
