@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.d(TAG, "Almost ");
 
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
@@ -131,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
         Log.d(TAG,"onResume");
     }
 

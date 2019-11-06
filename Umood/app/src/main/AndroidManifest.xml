@@ -39,6 +39,10 @@
             android:name=".addMoodInfo"
             android:label="@string/app_name">
         </activity>
+        <activity
+            android:name=".MoodHistory"
+            android:label="@string/app_name">
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

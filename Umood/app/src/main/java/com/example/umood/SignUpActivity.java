@@ -80,8 +80,6 @@ public class SignUpActivity extends AppCompatActivity {
                             } else {
                                 Log.d(TAG, "get failed with ", task.getException());
                             }
-
-
                         }
                     });
                 }
@@ -98,7 +96,6 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         Log.d(TAG,"onResume");
     }
 
