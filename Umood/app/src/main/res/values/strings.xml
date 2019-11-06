@@ -38,7 +38,9 @@
 
     <string name="date">date</string>
     <string name="time">time</string>
-
+    <string name="emo_state">emo_state</string>
+    <string name="filter">filter</string>
+    <string name="history">history</string>
 
 
 </resources>
