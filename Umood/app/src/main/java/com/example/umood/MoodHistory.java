@@ -29,15 +29,14 @@ public class MoodHistory extends AppCompatActivity {
         user = (User)intent.getSerializableExtra("User");
         Log.d(TAG, user.getUsername());
         moodList = user.getMoodHistory();
-        Log.d(TAG, "1");
+
         adapter = new MoodAdapter(
                 this,
                 R.layout.content,
                 moodList);
-        Log.d(TAG, "2");
 
         listView = findViewById(R.id.moodListView);
         listView.setAdapter(adapter);
-        Log.d(TAG, "3");
+
     }
 }
