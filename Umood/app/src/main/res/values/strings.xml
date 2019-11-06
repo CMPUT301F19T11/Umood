@@ -49,9 +49,9 @@
     <string name="add_f_following">add following</string>
     <string name="add_f_back">Back</string>
 
-
-
-
+    <!--  String below are used in following request xml -->
+    <string name="f_request_text">Following Request</string>
+    <string name="f_request_button_ok">Accept</string>
 
 
 </resources>

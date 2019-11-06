@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.umood.AddFollowingActivity;
+import com.example.umood.DisplayFollowerActivity;
+import com.example.umood.FollowingRequest;
 import com.example.umood.MainActivity;
 import com.example.umood.MoodAdapter;
 import com.example.umood.R;
@@ -39,6 +41,7 @@ public class DashboardFragment extends Fragment{
     private ArrayAdapter<User> adapter;
     private ArrayList<String> followingList;
     private ArrayList<User> followingUserList;
+    MainActivity activity;
 
     Intent intent;
 
@@ -46,7 +49,7 @@ public class DashboardFragment extends Fragment{
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        MainActivity activity = (MainActivity) getActivity();
+        activity = (MainActivity) getActivity();
         user = activity.getUser();
 
 
@@ -55,8 +58,7 @@ public class DashboardFragment extends Fragment{
         Button follower = root.findViewById(R.id.follower);
         Button addFollowing = root.findViewById(R.id.addFollowing);
         ListView listView = root.findViewById(R.id.friendList);
-        intent = new Intent(activity,AddFollowingActivity.class);
-        intent.putExtra("user",user);
+
 
         // Init
         followingUserList = new ArrayList<>();
@@ -87,15 +89,38 @@ public class DashboardFragment extends Fragment{
             }
         }
 
+        adapter = new UserAdapter(activity , R.layout.content_following, followingUserList);
+        listView.setAdapter(adapter);
+
+
+
         addFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                intent = new Intent(activity,AddFollowingActivity.class);
+                intent.putExtra("user",user);
                 startActivity(intent);
 
             }
         });
-        adapter = new UserAdapter(activity , R.layout.content_following, followingUserList);
-        listView.setAdapter(adapter);
+
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, FollowingRequest.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
+        follower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, DisplayFollowerActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
 
         return root;
     }
