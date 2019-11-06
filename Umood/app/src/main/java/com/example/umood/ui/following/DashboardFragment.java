@@ -2,6 +2,7 @@ package com.example.umood.ui.following;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,51 +14,88 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.umood.AddFollowingActivity;
 import com.example.umood.MainActivity;
+import com.example.umood.MoodAdapter;
 import com.example.umood.R;
 import com.example.umood.User;
+import com.example.umood.UserAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment{
     User user;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private DocumentReference docref;
     private CollectionReference collectionReference = db.collection("users");
     private static final String TAG = "yan";
-    private ListView listView;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> list;
-    private ArrayList<String> following;
+    private ArrayAdapter<User> adapter;
+    private ArrayList<String> followingList;
+    private ArrayList<User> followingUserList;
 
     Intent intent;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        //MainActivity activity = (MainActivity) getActivity();
-        //user = activity.getUser();
+        MainActivity activity = (MainActivity) getActivity();
+        user = activity.getUser();
 
-        EditText editText = root.findViewById(R.id.fsearch);
+
+        // Buttons and views in XML
         Button request = root.findViewById(R.id.request);
         Button follower = root.findViewById(R.id.follower);
         Button addFollowing = root.findViewById(R.id.addFollowing);
-        listView = root.findViewById(R.id.friendList);
+        ListView listView = root.findViewById(R.id.friendList);
+        intent = new Intent(activity,AddFollowingActivity.class);
+        intent.putExtra("user",user);
 
+        // Init
+        followingUserList = new ArrayList<>();
 
-        list = new ArrayList<>();
-        list.add("aFriend");
-        list.add("cFriend");
+        // Obtain Data from database
 
+        followingList = user.getFollowing();
+        if(followingList!=null) {
+            for (final String username : followingList) {
+                collectionReference.document(username)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                user = document.toObject(User.class);
+                                followingUserList.add(user);
 
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+            }
+        }
 
-        
+        addFollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
+
+            }
+        });
+        adapter = new UserAdapter(activity , R.layout.content_following, followingUserList);
+        listView.setAdapter(adapter);
 
         return root;
     }

@@ -51,6 +51,7 @@ public class User implements Serializable {
         moodHistory = new ArrayList<>();
         followingList = new ArrayList<>();
         followerList = new ArrayList<>();
+        unverifiedList = new ArrayList<>();
     }
     public User(){
 
@@ -101,8 +102,14 @@ public class User implements Serializable {
 
 
 
-    public ArrayList<String> getunverifiedList() {
+    public ArrayList<String> getUnverifiedList() {
         return this.unverifiedList;
+    }
+    public void addUnverifiedUser(String username) {
+        this.unverifiedList.add(username);
+    }
+    public void removeUnverifiedUser(String username) {
+        this.unverifiedList.remove(username);
     }
 
     public Mood getMostRecentMood() {
