@@ -19,8 +19,8 @@ public class Mood implements Serializable{
      * @param date: Date format: yyyy-mm-dd
      * @param time: Time Format: hh-mm
      * @param emotion: List of Emotion: Sad, Happy, Boring, Anxious, Fearful, Angry
-     * @param reason: A string to explain your emotion. Should be less than 50 chars.
-     * @param socialSituation: There are 3 social situation: alone. along with 1 person, along with many people
+     * @param reason: A string to explain your emotion. Should be no more than 20 chars or 3 words.
+     * @param socialSituation: There are 3 social situation: alone, with one other person, with two to several people, or with a crowd
      * @param latitude: a google map data type to indicate where the user is when he/she upload  a new mood event.
      */
     public Mood(String date, String time, String emotion, String reason, String socialSituation, double latitude,double longitude){
