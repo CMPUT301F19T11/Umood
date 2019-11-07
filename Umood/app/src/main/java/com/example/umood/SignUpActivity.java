@@ -56,7 +56,6 @@ public class SignUpActivity extends AppCompatActivity {
                                 if (document.exists()) {
                                     Toast.makeText(getBaseContext(), "The Username has been taken!", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Log.d(TAG, "No such document");
                                     // Add a new document with a generated ID
                                     String username = newUser.getUsername();
                                     db.collection("users").document(username)
