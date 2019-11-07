@@ -14,26 +14,26 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="105dp"
-        android:layout_height="40dp"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
         android:layout_gravity="start"
         android:layout_marginLeft="48dp"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="216dp"
         android:background="@drawable/signup_button"
         android:text="@string/action_sign_up"
 
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="258dp"
-        android:layout_height="47dp"
+        android:layout_width="384dp"
+        android:layout_height="71dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="96dp"
         android:layout_marginEnd="24dp"
@@ -43,20 +43,20 @@
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496" />
-
+        app:layout_constraintVertical_bias="0.358" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:layout_width="379dp"
+        android:layout_height="77dp"
+        android:layout_marginTop="120dp"
         android:gravity="center"
         android:text="Create your account"
-        android:textSize="40dp"
+        android:textColor="#0A9EA4"
+        android:textSize="50dp"
         android:textStyle="bold"
 
         app:autoSizeTextType="uniform"
@@ -65,21 +65,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </TextView>
-
-    <ImageView
-        android:id="@+id/ImageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="72dp"
-
-        android:src="@drawable/logo"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </ImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
