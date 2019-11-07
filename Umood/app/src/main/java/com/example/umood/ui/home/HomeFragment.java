@@ -182,6 +182,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 .bearing(0)                 // Sets the orientation of the camera to east
                 .build();                   // Creates a CameraPosition from the builder
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
         ArrayList<Mood> moodHistory = user.getMoodHistory();
         for(Mood mood:moodHistory) {
             String emotion = mood.getEmotion();

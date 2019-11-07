@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -18,40 +18,42 @@ import com.example.umood.AddFollowingActivity;
 import com.example.umood.DisplayFollowerActivity;
 import com.example.umood.FollowingRequest;
 import com.example.umood.MainActivity;
-import com.example.umood.MoodAdapter;
+
 import com.example.umood.R;
 import com.example.umood.User;
 import com.example.umood.UserAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.umood.UserList;
+
 
 import java.util.ArrayList;
 
 public class DashboardFragment extends Fragment{
-    User user;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference docref;
-    private CollectionReference collectionReference = db.collection("users");
-    private static final String TAG = "yan";
+    // Data from database
+    private User user;
+    private UserList UnverifiedUser;
+    private UserList followerUserList;
+    private UserList followingUserList;
+
+    // ListView Component:
     private ArrayAdapter<User> adapter;
     private ArrayList<String> followingList;
-    private ArrayList<User> followingUserList;
-    MainActivity activity;
 
-    Intent intent;
+    //Debug:
+    private static final String TAG = "qian-following";
+
+    private MainActivity activity;
+    private Intent intent;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
         activity = (MainActivity) getActivity();
-        user = activity.getUser();
 
+        // Obtain Data from database
+        user = activity.getUser();
+        followingUserList = activity.getFollowingUserList();
+        followerUserList = activity.getFollowerUserList();
+        UnverifiedUser = activity.getUnverifiedUser();
 
         // Buttons and views in XML
         Button request = root.findViewById(R.id.request);
@@ -59,40 +61,16 @@ public class DashboardFragment extends Fragment{
         Button addFollowing = root.findViewById(R.id.addFollowing);
         ListView listView = root.findViewById(R.id.friendList);
 
-
-        // Init
-        followingUserList = new ArrayList<>();
-
-        // Obtain Data from database
-
-        followingList = user.getFollowing();
-        if(followingList!=null) {
-            for (final String username : followingList) {
-                collectionReference.document(username)
-                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                user = document.toObject(User.class);
-                                followingUserList.add(user);
-
-                            } else {
-                                Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
+        ArrayList<User> userView = followingUserList.getList();
+        Log.d(TAG, ""+userView.size());
+        Log.d(TAG, ""+followerUserList.size());
+        if(userView.size()>0) {
+            for (User u : userView) {
+                Log.d(TAG, u.getUsername());
             }
         }
-
-        adapter = new UserAdapter(activity , R.layout.content_following, followingUserList);
+        adapter = new UserAdapter(activity , R.layout.content_following, userView);
         listView.setAdapter(adapter);
-
-
 
         addFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +78,6 @@ public class DashboardFragment extends Fragment{
                 intent = new Intent(activity,AddFollowingActivity.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
-
             }
         });
 
@@ -109,6 +86,7 @@ public class DashboardFragment extends Fragment{
             public void onClick(View view) {
                 intent = new Intent(activity, FollowingRequest.class);
                 intent.putExtra("user",user);
+                intent.putExtra("user_list",UnverifiedUser);
                 startActivity(intent);
             }
         });
@@ -118,10 +96,12 @@ public class DashboardFragment extends Fragment{
             public void onClick(View view) {
                 intent = new Intent(activity, DisplayFollowerActivity.class);
                 intent.putExtra("user",user);
+                intent.putExtra("follower_list",followerUserList);
                 startActivity(intent);
             }
         });
 
         return root;
     }
+
 }

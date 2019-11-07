@@ -8,6 +8,7 @@
     <Button
         android:id="@+id/request"
         android:layout_width="371dp"
+        android:textColor="@color/colorPrimary"
         android:layout_height="38dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/signup_button"
@@ -27,12 +28,14 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/signup_button"
         android:text="@string/follower"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request" />
 
     <Button
         android:id="@+id/addFollowing"
+        android:textColor="@color/colorPrimary"
         android:layout_width="371dp"
         android:layout_height="38dp"
         android:layout_marginStart="16dp"
@@ -48,14 +51,16 @@
 
     <ListView
         android:id="@+id/friendList"
-        android:layout_width="412dp"
-        android:layout_height="499dp"
+        android:layout_width="407dp"
+        android:layout_height="465dp"
 
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addFollowing"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/fsearch"
