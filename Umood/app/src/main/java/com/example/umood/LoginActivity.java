@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (document.exists()) {
                                     User user = document.toObject(User.class);
                                     intentSignIn.putExtra("User",user);
+                                    intentSignIn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intentSignIn);
                                 } else {
                                     Log.d(TAG, "No such document");
