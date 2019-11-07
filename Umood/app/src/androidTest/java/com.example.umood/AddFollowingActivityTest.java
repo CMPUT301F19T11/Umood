@@ -1,3 +1,5 @@
+
+/*
 package com.example.umood;
 
 import android.app.Activity;
@@ -12,10 +14,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-/**
- * Test class for AddFollowingActivity. All the UI tests are written here. Robotium test framework is
- used
- */
 public class AddFollowingActivityTest {
     private Solo solo;
 
@@ -34,10 +32,6 @@ public class AddFollowingActivityTest {
 
     }
 
-
-
-
-
     @After
     public void tearDown(){
         solo.finishOpenedActivities();
@@ -45,3 +39,4 @@ public class AddFollowingActivityTest {
 
 
 }
+*/
