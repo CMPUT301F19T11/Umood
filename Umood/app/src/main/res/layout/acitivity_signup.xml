@@ -26,7 +26,7 @@
         app:srcCompat="@drawable/title" />
 
     <EditText
-        android:id="@+id/username2"
+        android:id="@+id/username"
         android:layout_width="337dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -77,7 +77,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/username2"
+        app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.319"
         app:layout_constraintStart_toStartOf="parent">
