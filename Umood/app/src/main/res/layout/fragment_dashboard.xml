@@ -5,84 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+    <Button
+        android:id="@+id/request"
+        android:layout_width="371dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/signup_button"
+        android:text="@string/request"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/colorPrimary" />
+    <Button
+        android:id="@+id/follower"
+        android:layout_width="371dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/signup_button"
+        android:text="@string/follower"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/request" />
 
-        <Button
-            android:id="@+id/request"
-            android:layout_width="434dp"
-            android:layout_height="36dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/universal"
+    <Button
+        android:id="@+id/addFollowing"
+        android:layout_width="371dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/signup_button"
+        android:text="@string/add_fllow"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/follower" />
 
-            android:text="@string/request"
-            android:textColor="#5F6A6A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.521"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fsearch" />
-
-        <Button
-            android:id="@+id/follower"
-            android:layout_width="436dp"
-            android:layout_height="34dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/universal"
-            android:text="@string/follower"
-            android:textColor="#5F6A6A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/request" />
-
-        <Button
-            android:id="@+id/addFollowing"
-            android:layout_width="437dp"
-            android:layout_height="33dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/universal"
-            android:text="@string/add_fllow"
-            android:textColor="#5F6A6A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/follower" />
-
-        <ListView
-            android:id="@+id/friendList"
-            android:layout_width="412dp"
-            android:layout_height="499dp"
-
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.408"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/fsearch"
-            android:layout_width="377dp"
-            android:layout_height="31dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.487"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view_following"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:layout_marginTop="32dp"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addFollowing"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

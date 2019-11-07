@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">Umood</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Following</string>
+    <string name="title_notifications">Profile</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in"> &#60; Sign in </string>
-    <string name="action_sign_up">Sign up ></string>
+
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -15,6 +14,21 @@
     <string name="login_failed">"Login failed"</string>
     <string name="username">Enter your username</string>
 
+
+
+
+    <!--  String below are used in Login xml -->
+    <string name="no_account"> Sign up</string>
+    <string name="action_sign_in"> Sign in </string>
+    <string name="action_sign_up"> Sign up</string>
+    <string name="adv"> Share your mood with friends </string>
+    <string name="enter_username"> Username </string>
+    <string name="title"> Title</string>
+    <string name="Slogan"> Slogan </string>
+    <string name="team"> Designed by CMPUT301F19T11</string>
+
+    <!--  String below are used in Signup xml -->
+    <string name="sign_up_prompt"> Create your account:</string>
 
     <!--  String below are used in addMoodInfo xml -->
     <string name="enterMoodPrompt">Choose your emoticon for now</string>

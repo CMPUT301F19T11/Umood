@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import android.widget.GridLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.umood.AddFollowingActivity;
 import com.example.umood.DisplayFollowerActivity;
@@ -35,12 +38,11 @@ public class DashboardFragment extends Fragment{
     private UserList followingUserList;
 
     // ListView Component:
-    private ArrayAdapter<User> adapter;
+    private UserAdapter adapter;
     private ArrayList<String> followingList;
 
     //Debug:
     private static final String TAG = "qian-following";
-
     private MainActivity activity;
     private Intent intent;
 
@@ -55,22 +57,29 @@ public class DashboardFragment extends Fragment{
         followerUserList = activity.getFollowerUserList();
         UnverifiedUser = activity.getUnverifiedUser();
 
-        // Buttons and views in XML
-        Button request = root.findViewById(R.id.request);
-        Button follower = root.findViewById(R.id.follower);
-        Button addFollowing = root.findViewById(R.id.addFollowing);
-        ListView listView = root.findViewById(R.id.friendList);
 
         ArrayList<User> userView = followingUserList.getList();
         Log.d(TAG, ""+userView.size());
-        Log.d(TAG, ""+followerUserList.size());
         if(userView.size()>0) {
             for (User u : userView) {
                 Log.d(TAG, u.getUsername());
             }
         }
-        adapter = new UserAdapter(activity , R.layout.content_following, userView);
-        listView.setAdapter(adapter);
+
+        // Buttons and views in XML
+        Button request = root.findViewById(R.id.request);
+        Button follower = root.findViewById(R.id.follower);
+        Button addFollowing = root.findViewById(R.id.addFollowing);
+
+        Log.d(TAG, "size+"+userView.size());
+        // RecycleView Components:
+        RecyclerView recyclerView = root.findViewById(R.id.recycle_view_following);
+        GridLayoutManager layoutManager = new GridLayoutManager(root.getContext(),1);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new UserAdapter(userView);
+        recyclerView.setAdapter(adapter);
+
+
 
         addFollowing.setOnClickListener(new View.OnClickListener() {
             @Override

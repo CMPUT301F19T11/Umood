@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,9 +75,11 @@ public class MainActivity extends AppCompatActivity {
     private CollectionReference collectionReference = db.collection("users");
     private User user;
 
-    private UserList UnverifiedUser = new UserList();
-    private UserList followerUserList = new UserList();
-    private UserList followingUserList = new UserList();
+    private UserList UnverifiedUser;
+    private UserList followerUserList;
+    private UserList followingUserList;
+
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,21 +101,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Log.d(TAG, "debug1");
         user = (User) intent.getSerializableExtra("User");
-
-        Log.d(TAG, user.getUsername());
-        boolean a = user.getFollowing() == null;
-        if(a){
-            user.initFollowing();
-        }
-        boolean b = user.getFollower() == null;
-        if(b){
-            user.initFollower();
-        }
-        boolean c = user.getUnverifiedList() == null;
-        if(c){
-            user.initUnverifiedList();
-        }
-        Log.d(TAG, ""+a+b+c+"size: "+user.getFollowing().size());
     }
 
 
@@ -172,7 +160,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Obtain Data from database
+        UnverifiedUser = new UserList();
+        followerUserList = new UserList();
+        followingUserList = new UserList();
         ArrayList<String> followingList = user.getFollowing();
+
         Log.d(TAG, "followingListSize:"+user.getFollowing().size());
         if(followingList!=null) {
             for (String username:followingList) {

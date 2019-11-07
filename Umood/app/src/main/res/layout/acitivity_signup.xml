@@ -9,59 +9,92 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     tools:context=".LoginActivity">
 
 
-    <Button
-        android:id="@+id/next"
-        android:layout_width="140dp"
-        android:layout_height="53dp"
-        android:layout_gravity="start"
-
-        android:layout_marginBottom="224dp"
-        android:background="@drawable/signup_button"
-        android:text="@string/action_sign_up"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/title2"
+        android:layout_width="309dp"
+        android:layout_height="246dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.966"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/title" />
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="391dp"
-        android:layout_height="89dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="24dp"
-
-        android:hint="@string/username"
+        android:layout_width="337dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/enter_user_name"
+        android:hint="@string/enter_username"
         android:inputType="textEmailAddress"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:selectAllOnFocus="true"
+        android:textCursorDrawable="@drawable/color_cursor"
+
+
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="335dp"
+        android:layout_height="66dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="188dp"
+        android:background="@drawable/login_button"
+        android:text="@string/action_sign_up"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="365dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="88dp"
-        android:gravity="center"
-        android:text="Create your account"
-        android:textColor="#0A9EA4"
-        android:textSize="40dp"
-        android:textStyle="bold"
+        android:layout_width="302dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/sign_up_prompt"
+        android:textColor="#000000"
 
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.343"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintStart_toStartOf="parent">
 
     </TextView>
+
+    <ImageButton
+        android:id="@+id/signup_cancel"
+        android:layout_width="46dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="332dp"
+        android:layout_marginLeft="332dp"
+        android:background="#00000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
