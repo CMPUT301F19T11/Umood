@@ -37,8 +37,8 @@ public class DisplayFollowerActivity extends AppCompatActivity {
             Log.d(TAG, u.getUsername());
         }
 
-        adapter = new UserAdapter(this, R.layout.content_following_request,userList);
-        listView.setAdapter(adapter);
+        // adapter = new UserAdapter(this, R.layout.content_following_request,userList);
+        // listView.setAdapter(adapter);
 
 
 
