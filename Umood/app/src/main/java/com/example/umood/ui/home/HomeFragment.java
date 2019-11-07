@@ -7,8 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
-import android.location.LocationListener;
-import android.location.LocationManager;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -177,8 +175,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         double longitude = -113.5263;
         LatLng edmonton = new LatLng(latitude, longitude);
         BitmapDescriptor myIcon;
-
-
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(edmonton)           // Sets the center of the map to location user

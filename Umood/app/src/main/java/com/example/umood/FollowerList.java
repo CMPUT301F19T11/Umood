@@ -18,8 +18,6 @@ public class FollowerList {
     public User getUser() {
         return user;
     }
-
-
 }
 
 

@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.umood.FeedActivity;
 import com.example.umood.MainActivity;
 import com.example.umood.MoodHistory;
 import com.example.umood.R;
@@ -33,6 +34,7 @@ public class NotificationsFragment extends Fragment {
     private DocumentReference docref;
     private CollectionReference collectionReference = db.collection("users");
     private static final String TAG = "qian-profile";
+    MainActivity activity;
 
     Intent intent;
 
@@ -41,36 +43,40 @@ public class NotificationsFragment extends Fragment {
         Log.d(TAG, "0");
 
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        MainActivity activity = (MainActivity) getActivity();
+        activity = (MainActivity) getActivity();
         user = activity.getUser();
         docref = collectionReference.document(user.getUsername());
         Log.d(TAG, "1");
         ImageView imageView = root.findViewById(R.id.avater);
         imageView.setImageResource(R.drawable.zeldaflat);
 
-        intent = new Intent(activity, MoodHistory.class);
+
 
         Button history =  root.findViewById(R.id.button_history);
-        Log.d(TAG, "2");
 
 
         Button chart =  root.findViewById(R.id.button_chart);
 
         Button feed =  root.findViewById(R.id.button_feed);
         Button setting =  root.findViewById(R.id.button_setting);
-        Log.d(TAG, "3");
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "4limian");
+                intent = new Intent(activity, MoodHistory.class);
                 intent.putExtra("User",user );
-                Log.d(TAG, "4limian2");
                 startActivity(intent);
             }
         });
-        Log.d(TAG, "4");
 
+        feed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, FeedActivity.class);
+                intent.putExtra("User",user );
+                startActivity(intent);
+            }
+        });
 
         return root;
     }
