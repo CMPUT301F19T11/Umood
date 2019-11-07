@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background"
+    android:background="@drawable/background_vague"
     >
 
     <Button
@@ -17,12 +17,12 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="132dp"
+        android:layout_marginBottom="124dp"
         android:background="@drawable/login_button"
         android:text="@string/add_f_confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.835"
+        app:layout_constraintHorizontal_bias="0.865"
         app:layout_constraintStart_toEndOf="@+id/back" />
 
     <Button
@@ -38,20 +38,20 @@
 
     <EditText
         android:id="@+id/add_following"
-        android:layout_width="308dp"
-        android:layout_height="39dp"
+        android:layout_width="411dp"
+        android:layout_height="64dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/boundary"
         android:gravity="center"
         android:hint="@string/search"
-        android:textSize="30sp"
         android:inputType="text"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

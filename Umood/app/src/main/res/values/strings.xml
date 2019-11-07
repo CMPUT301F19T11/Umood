@@ -31,7 +31,7 @@
     <string name="sign_up_prompt"> Create your account:</string>
 
     <!--  String below are used in addMoodInfo xml -->
-    <string name="enterMoodPrompt">Choose your emoticon for now</string>
+    <string name="enterMoodPrompt">Choose your emotion for now</string>
     <string name="moodHappy">Happy</string>
     <string name="moodSad">Sad</string>
     <string name="moodBoring">Boring</string>
