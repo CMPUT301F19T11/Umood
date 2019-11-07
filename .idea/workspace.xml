@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f58ab138-7cfb-4cbe-aa6f-15c2f8d0b3ab" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Umood/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/dashboard/DashboardFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/dashboard/DashboardFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/dashboard/DashboardViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/home/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/home/HomeViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/notifications/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/app/src/main/java/com/example/umood/ui/notifications/NotificationsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Umood/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Umood/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f58ab138-7cfb-4cbe-aa6f-15c2f8d0b3ab" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,19 +11,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="194" />
-    <option name="y" value="202" />
-    <option name="width" value="828" />
-    <option name="height" value="455" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="826" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -69,10 +57,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="826" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.32980973" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32980973" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
