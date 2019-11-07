@@ -1,39 +1,67 @@
 package com.example.umood;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserAdapter extends ArrayAdapter<User> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private int resourceId;
-    public UserAdapter(Context context, int textViewResourceId, ArrayList<User> objects){
-        super(context, textViewResourceId, objects);
-        resourceId = textViewResourceId;
+    private Context mycontext;
+    private ArrayList<User> myUserList;
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
+        ImageView imageView;
+        TextView username;
+
+        public ViewHolder(View view) {
+            super(view);
+            cardView = (CardView) view;
+            imageView = (ImageView) view.findViewById(R.id.following_avatar);
+            username = (TextView) view.findViewById(R.id.following_name);
+        }
+    }
+
+    public UserAdapter(ArrayList<User> objects) {
+        myUserList = objects;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
-        User user  = getItem(position);
-
-        View view = LayoutInflater.from(getContext()).inflate(resourceId,
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (mycontext == null) {
+            mycontext = parent.getContext();
+        }
+        View view = LayoutInflater.from(mycontext).inflate(R.layout.user_item,
                 parent,
-                false
-        );
+                false);
+        return new ViewHolder(view);
+    }
 
-        TextView UserName =  view.findViewById(R.id.following_username);
-        TextView idk =  view.findViewById(R.id.foll);
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        User user = myUserList.get(position);
+        holder.username.setText(user.getUsername());
+        holder.imageView.setImageResource(R.drawable.zeldaflat);
 
-        UserName.setText(user.getUsername());
+    }
 
-        return view;
-
+    @Override
+    public int getItemCount(){
+        return myUserList.size();
     }
 }
