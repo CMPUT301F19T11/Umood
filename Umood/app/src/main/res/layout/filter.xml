@@ -12,16 +12,22 @@
         android:layout_marginTop="40dp"
         android:inputType="textPersonName"
         android:text="@string/emo_state"
-        android:textSize="30sp" />
+        android:textColor="#A6ACAF"
+        android:textSize="28sp" />
 
 
     <Button
         android:id="@+id/filter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginRight="21dp"
         android:background="@android:color/holo_blue_dark"
-        android:text="@string/filter" />
+        android:text="@string/filter"
+        android:textColor="#FFFFFF" />
 
     <ListView
         android:id="@+id/list_mood"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#EEEEEE">
 
 
     <Button
@@ -12,12 +12,11 @@
         android:layout_width="408dp"
         android:layout_height="52dp"
         android:layout_marginTop="256dp"
-        android:background="#eeeeee"
+        android:background="#FBFCFC"
         android:gravity="left|center_vertical"
-        android:text="               Setting                                                                           >"
+        android:text="               Settings                                                                           >"
         android:textAlignment="gravity"
 
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,12 +27,11 @@
         android:layout_width="408dp"
         android:layout_height="52dp"
         android:layout_marginTop="204dp"
-        android:background="#eeeeee"
+        android:background="#FBFCFC"
         android:gravity="left|center_vertical"
-        android:text="               Activity                                                                         >"
+        android:text="               Activity                                                                             >"
         android:textAlignment="gravity"
 
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,10 +42,9 @@
         android:layout_width="408dp"
         android:layout_height="52dp"
         android:layout_marginTop="152dp"
-        android:background="#eeeeee"
-        android:text="    Mood Statistics                                                       >"
+        android:background="#FBFCFC"
+        android:text="     Statistics                                                                       >"
 
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,10 +55,9 @@
         android:layout_width="408dp"
         android:layout_height="52dp"
         android:layout_marginTop="100dp"
-        android:background="#eeeeee"
-        android:text="    Mood History                                                             >"
-
-        android:textStyle="bold"
+        android:background="#FBFCFC"
+        android:text="History                                                                        >"
+        android:drawableLeft="@drawable/history"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,9 +69,10 @@
         android:layout_height="143dp"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@color/colorPrimary" />
+        app:srcCompat="@color/colorWhite" />
 
     <TextView
         android:id="@+id/textView5"

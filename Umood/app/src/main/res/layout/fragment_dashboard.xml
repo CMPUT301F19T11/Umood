@@ -5,44 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/colorPrimary" />
+
     <Button
         android:id="@+id/request"
-        android:layout_width="371dp"
-        android:layout_height="38dp"
+        android:layout_width="434dp"
+        android:layout_height="36dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/signup_button"
+        android:background="@drawable/universal"
+
         android:text="@string/request"
+        android:textColor="#5F6A6A"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fsearch" />
 
     <Button
         android:id="@+id/follower"
-        android:layout_width="371dp"
-        android:layout_height="38dp"
+        android:layout_width="436dp"
+        android:layout_height="34dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/signup_button"
+        android:background="@drawable/universal"
         android:text="@string/follower"
+        android:textColor="#5F6A6A"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/request" />
 
     <Button
         android:id="@+id/addFollowing"
-        android:layout_width="371dp"
-        android:layout_height="38dp"
+        android:layout_width="437dp"
+        android:layout_height="33dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/signup_button"
+        android:background="@drawable/universal"
         android:text="@string/add_fllow"
+        android:textColor="#5F6A6A"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/follower" />
 

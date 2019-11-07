@@ -17,6 +17,7 @@
         android:layout_marginBottom="132dp"
         android:background="@drawable/login_button"
         android:text="@string/add_f_confirm"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.835"
@@ -30,6 +31,7 @@
         android:layout_marginLeft="24dp"
         android:background="@drawable/signup_button"
         android:text="@string/add_f_back"
+        android:textColor="#FFFFFF"
         app:layout_constraintBaseline_toBaselineOf="@+id/confirm"
         app:layout_constraintStart_toStartOf="parent" />
 
