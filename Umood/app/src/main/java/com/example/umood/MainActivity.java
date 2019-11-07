@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
     private UserList UnverifiedUser;
     private UserList followerUserList;
     private UserList followingUserList;
+
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         followerUserList = new UserList();
         followingUserList = new UserList();
         ArrayList<String> followingList = user.getFollowing();
+
         Log.d(TAG, "followingListSize:"+user.getFollowing().size());
         if(followingList!=null) {
             for (String username:followingList) {

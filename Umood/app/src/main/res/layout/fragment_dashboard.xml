@@ -38,6 +38,7 @@
         android:id="@+id/addFollowing"
         android:layout_width="300dp"
         android:layout_height="40dp"
+
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
@@ -50,12 +51,12 @@
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/follower" />
 
-    <ListView
-        android:id="@+id/friendList"
-        android:layout_width="407dp"
-        android:layout_height="465dp"
-
-        android:layout_marginBottom="16dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_view_following"
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:layout_marginTop="32dp"
+        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
