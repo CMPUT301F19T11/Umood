@@ -66,6 +66,9 @@
     <!--  String below are used in following request xml -->
     <string name="f_request_text">Following Request</string>
     <string name="f_request_button_ok">Accept</string>
+    <string name="todo1">TODO</string>
+    <string name="todo2">TODO</string>
+    <string name="todo3">TODO</string>
 
 
 </resources>
