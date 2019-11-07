@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEEEEE">
+    android:background="@drawable/background">
 
 
     <Button
@@ -13,7 +13,7 @@
         android:layout_marginTop="256dp"
         android:background="#FBFCFC"
         android:gravity="left|center_vertical"
-        android:text="               Settings                                                                           >"
+        android:text="       Settings                                                                                >"
         android:textAlignment="gravity"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginTop="204dp"
         android:background="#FBFCFC"
         android:gravity="left|center_vertical"
-        android:text="               Activity                                                                             >"
+        android:text="       Activity                                                                                 >"
         android:textAlignment="gravity"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,8 @@
         android:layout_height="52dp"
         android:layout_marginTop="152dp"
         android:background="#FBFCFC"
-        android:text="     Statistics                                                                       >"
+        android:gravity="left|center_vertical"
+        android:text="       Statistics                                                                            >"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
@@ -55,7 +56,8 @@
         android:layout_height="52dp"
         android:layout_marginTop="100dp"
         android:background="#FBFCFC"
-        android:text="History                                                                        >"
+        android:gravity="left|center_vertical"
+        android:text="       History                                                                                  >"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".FollowingRequest">
 
     <ListView
@@ -31,7 +32,7 @@
         android:background="@drawable/boundary"
         android:text="@string/f_request_text"
         android:textSize="35sp"
-        android:textStyle="bold|italic"
+        android:textStyle="italic|bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
