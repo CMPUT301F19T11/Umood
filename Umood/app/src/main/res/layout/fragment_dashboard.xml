@@ -8,14 +8,14 @@
     <Button
         android:id="@+id/request"
         android:layout_width="371dp"
-        android:textColor="@color/colorPrimary"
         android:layout_height="38dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/signup_button"
         android:text="@string/request"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fsearch" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/follower"
@@ -61,16 +61,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addFollowing"
         app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/fsearch"
-        android:layout_width="377dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

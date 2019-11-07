@@ -1,3 +1,5 @@
+/*
+
 package com.example.umood;
 
 import android.app.Activity;
@@ -16,10 +18,6 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
-/**
- * Test class for AddFollowingActivity. All the UI tests are written here. Robotium test framework is
- used
- */
 public class addMoodInfoTest {
     private Solo solo;
 
@@ -59,3 +57,4 @@ public class addMoodInfoTest {
 
 
 }
+*/
