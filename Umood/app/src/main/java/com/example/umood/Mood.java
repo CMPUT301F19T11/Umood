@@ -3,8 +3,14 @@ package com.example.umood;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
-public class Mood implements Serializable{
+public class Mood implements Serializable,Comparable<Mood>{
     private User user;
     private String date;
     private String time;
@@ -31,14 +37,10 @@ public class Mood implements Serializable{
         this.socialSituation = socialSituation;
         this.latitude = latitude;
         this.longitude = longitude;
-
     }
-
     public Mood(){
 
     }
-
-
 
     /**
      *
@@ -116,5 +118,19 @@ public class Mood implements Serializable{
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public void mySorting(){
+        String sDate = date+" "+time;
+
+    }
+
+    @Override
+    public int compareTo(Mood o) {
+        if (getTime() == null || o.getDate() == null|| o.getTime() == null|| getDate() == null)
+            return 0;
+        String s1 = getDate()+getTime();
+        String s2 = o.getDate()+o.getTime();
+        return s2.compareTo(s1);
     }
 }

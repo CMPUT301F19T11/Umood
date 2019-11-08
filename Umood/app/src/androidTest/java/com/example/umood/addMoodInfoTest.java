@@ -34,9 +34,9 @@ public class addMoodInfoTest {
     public void checkHappy() {
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
-        solo.clickOnImageButton(R.drawable.happy);
-        solo.clickOnButton("Next");
-        solo.assertCurrentActivity("Wrong Activity", HomeFragment.class);
+        solo.clickOnImageButton(0);
+        solo.clickOnButton("Finish");
+        solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
     }
 

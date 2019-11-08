@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spingarr">
+        <item>Alone</item>
+        <item>Along with one person</item>
+        <item>Along with two to several persons</item>
+        <item>With a Crowd</item>
+    </string-array>
+</resources>

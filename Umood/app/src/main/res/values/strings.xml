@@ -14,6 +14,15 @@
     <string name="login_failed">"Login failed"</string>
     <string name="username">Enter your username</string>
 
+    <!--  String below are used in Add emotion xml -->
+    <string name="social_situation"> Social Situation</string>
+    <string name="location"> Location</string>
+    <string name="reason"> Reason</string>
+    <string name="optional"> Optional(*)</string>
+    <string name="finish"> Finish</string>
+    <string name="map"> Map Logo</string>
+    <string name="cancel"> Cancel</string>
+
 
 
 
@@ -66,6 +75,9 @@
     <!--  String below are used in following request xml -->
     <string name="f_request_text">Following Request</string>
     <string name="f_request_button_ok">Accept</string>
+    <string name="todo1">TODO</string>
+    <string name="todo2">TODO</string>
+    <string name="todo3">TODO</string>
     <string name="do_you_want_to_receive_strangers_following_request">Do you want to receive strangers following request?</string>
     <string name="do_you_want_to_add_your_current_location_to_your_mood_event_automatically">Do you want to add your current location to your mood event automatically?</string>
     <string name="apply">apply</string>
