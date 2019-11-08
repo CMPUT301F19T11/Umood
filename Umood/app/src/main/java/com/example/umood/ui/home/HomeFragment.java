@@ -140,7 +140,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             reason,
                             socialSituation,
                             latitude,
-                            longitude);
+                            longitude,
+                            user.getUsername());
 
                 String Description = "Today: " + currentDate + "    Time: " + currentTime + socialSituation;
 
