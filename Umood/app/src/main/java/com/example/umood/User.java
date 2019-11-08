@@ -6,27 +6,20 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class User implements Serializable {
-    @SerializedName("field1")
-    @Expose
+
     private String username;
-    @SerializedName("field2")
-    @Expose
+
     private String avatar;
-    @SerializedName("field3")
-    @Expose
+
     private ArrayList<Mood> moodHistory;
-    @SerializedName("field4")
-    @Expose
+
     private ArrayList<String> followingList;
-    @SerializedName("field5")
-    @Expose
+
     private ArrayList<String> followerList;
-    @SerializedName("field6")
-    @Expose
+
     private ArrayList<String> unverifiedList;
 
 
@@ -45,15 +38,33 @@ public class User implements Serializable {
         unverifiedList = new ArrayList<>();
     }
 
+
+
     public User(String username){
         this.username = username;
-
         moodHistory = new ArrayList<>();
         followingList = new ArrayList<>();
         followerList = new ArrayList<>();
+        unverifiedList = new ArrayList<>();
     }
     public User(){
+    }
 
+
+    public void setMoodHistory(ArrayList<Mood> moodHistory) {
+        this.moodHistory = moodHistory;
+    }
+
+    public void setFollowing(ArrayList<String> followingList) {
+        this.followingList = followingList;
+    }
+
+    public void setFollower(ArrayList<String> followerList) {
+        this.followerList = followerList;
+    }
+
+    public void setUnverifiedList(ArrayList<String> unverifiedList) {
+        this.unverifiedList = unverifiedList;
     }
 
     public String getUsername() {
@@ -64,10 +75,10 @@ public class User implements Serializable {
     }
 
 
-
     public ArrayList<Mood> getMoodHistory() {
         return moodHistory;
     }
+
     public void addMood(Mood mood){
         moodHistory.add(mood);
     }
@@ -77,8 +88,13 @@ public class User implements Serializable {
 
 
 
+
+
     public ArrayList<String> getFollowing() {
         return this.followingList;
+    }
+    public void initFollowing() {
+        followingList = new ArrayList<>();
     }
     public void addFollowing(String user){
         followingList.add(user);
@@ -89,8 +105,12 @@ public class User implements Serializable {
 
 
 
+
     public ArrayList<String> getFollower() {
         return this.followerList;
+    }
+    public void initFollower(){
+        followerList = new ArrayList<>();
     }
     public void addFollower(String user){
         followerList.add(user);
@@ -101,9 +121,24 @@ public class User implements Serializable {
 
 
 
-    public ArrayList<String> getunverifiedList() {
+
+
+    public ArrayList<String> getUnverifiedList() {
         return this.unverifiedList;
     }
+    public void initUnverifiedList(){
+        unverifiedList = new ArrayList<>();
+    }
+    public void addUnverifiedUser(String username) {
+        this.unverifiedList.add(username);
+    }
+    public void removeUnverifiedUser(String username) {
+        this.unverifiedList.remove(username);
+    }
+
+
+
+
 
     public Mood getMostRecentMood() {
         if(this.moodHistory.isEmpty()){

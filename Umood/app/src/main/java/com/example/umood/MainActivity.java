@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
+
 /**
  * ------------------------------------------------------------------------------------------------------------
  * License:
@@ -44,7 +47,7 @@ import androidx.navigation.ui.NavigationUI;
  *
  * ------------------------------------------------------------------------------------------------------------
  * Assignment:           Group Project Part 3
- * Due Date:             November 1, 2019
+ * Due Date:             November 8, 2019
  * Team name:            CMPUT301F19T11
  * Mentor:               Alexander Filbert
  * Instructor:           Kenny Wong
@@ -58,8 +61,7 @@ import androidx.navigation.ui.NavigationUI;
  *  and it can post, track, share users’ mood
  *
  * Last Modified:
- *      Nov 4 by Qian Yu
- *
+ *      Nov 6 by Qian Yu
  * ------------------------------------------------------------------------------------------------------------
  */
 
@@ -73,15 +75,15 @@ public class MainActivity extends AppCompatActivity {
     private CollectionReference collectionReference = db.collection("users");
     private User user;
 
-    private LocationManager locationManager;
+    private UserList UnverifiedUser = new UserList();
+    private UserList followerUserList = new UserList();
+    private UserList followingUserList  = new UserList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "Almost ");
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
@@ -90,20 +92,30 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
 
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
         Intent intent = getIntent();
-        user = (User)intent.getSerializableExtra("User");
-
-        Log.d(TAG, user.getUsername());
-
+        Log.d(TAG, "debug1");
+        user = (User) intent.getSerializableExtra("User");
     }
+
+
     public User getUser(){
         return user;
     }
+    public UserList getUnverifiedUser(){
+        return UnverifiedUser;
+    }
+    public UserList getFollowerUserList(){
+        return followerUserList;
+    }
+    public UserList getFollowingUserList(){
+        return followingUserList;
+    }
+
+
 
     @Override
     protected void onStart() {
@@ -114,22 +126,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        collectionReference.document(user.getUsername())
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        user = document.toObject(User.class);
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
+        update();
         Log.d(TAG,"onResume");
     }
 
@@ -155,5 +152,107 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart(){
         super.onRestart();
         Log.d(TAG,"onRestart");
+    }
+
+    private void update(){
+        collectionReference.document(user.getUsername())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        user = document.toObject(User.class);
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        // Obtain Data from database
+        ArrayList<String> followingList = user.getFollowing();
+        Log.d(TAG, "followingListSize:"+user.getFollowing().size());
+        if(followingList!=null) {
+            for (String username:followingList) {
+                collectionReference.document(username)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                user = document.toObject(User.class);
+                                boolean a = followingUserList.getList().contains(user);
+                                Log.d(TAG, "true/false: "+a);
+                                if(!followingUserList.is_contain(user.getUsername()))
+                                    followingUserList.addUser(user);
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+            }
+        }
+
+        ArrayList<String> unverifyList = user.getUnverifiedList();
+        if(unverifyList!=null) {
+            for (String username : unverifyList) {
+                Log.d(TAG, "loop");
+                collectionReference.document(username)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                User user = document.toObject(User.class);
+                                boolean a = user==null;
+                                Log.d(TAG, ""+a);
+                                if(!UnverifiedUser.is_contain(user.getUsername()))
+                                    UnverifiedUser.addUser(user);
+                            } else {
+                                Log.d(TAG, "not exist");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+            }
+        }
+
+        ArrayList<String> followerList = user.getFollower();
+        if(followerList!=null) {
+            for (String username:followerList) {
+                Log.d(TAG, "loop");
+                collectionReference.document(username)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                User user = document.toObject(User.class);
+                                boolean a = user==null;
+                                Log.d(TAG, ""+a);
+                                if(!followerUserList.is_contain(user.getUsername()))
+                                    followerUserList.addUser(user);
+                            } else {
+                                Log.d(TAG, "not exist");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
+            }
+        }
+
     }
 }
