@@ -16,10 +16,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
@@ -55,6 +57,7 @@ public class MoodHistory extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MoodAdapter(moodList);
+        //new ItemTouchHelper(itemTouchHelperCallBack).attachToRecyclerView();
 
         recyclerView.setAdapter(adapter);
 
@@ -69,6 +72,24 @@ public class MoodHistory extends AppCompatActivity {
         });
 
     }
+    /*
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            moodList.remove(viewHolder.getAdapterPosition());
+            adapter.notifyDataSetChanged();
+        }
+    };
+
+
+     */
+
+
 }
 
 /*
