@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
                                 boolean cond = true;
                                 ArrayList<Mood> abc = moodEventList.getList();
                                 for(Mood m:abc){
-                                    if(m.getTime()==madd.getTime()){
+                                    if(m.getTime().equals(madd.getTime())){
                                         cond = false;
                                         break;
                                     }
