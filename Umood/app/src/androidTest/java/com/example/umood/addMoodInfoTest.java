@@ -30,6 +30,10 @@ public class addMoodInfoTest {
         Activity activity = rule.getActivity();
 
     }
+    /**
+     *Test addMoodInfo
+     * click happy
+     */
     @Test
     public void checkHappy() {
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
@@ -39,29 +43,41 @@ public class addMoodInfoTest {
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
     }
+    /**
+     *Test addMoodInfo
+     * click Scared
+     */
     @Test
-    public void checkSad() {
+    public void checkScared() {
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
-        solo.clickOnImageButton(0);
+        solo.clickOnImageButton(3);
         solo.clickOnButton("Finish");
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
     }
+    /**
+     *Test addMoodInfo
+     * click Sick
+     */
     @Test
-    public void checkCry() {
+    public void checkSick() {
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
-        solo.clickOnImageButton(0);
+        solo.clickOnImageButton(2);
         solo.clickOnButton("Finish");
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
     }
+    /**
+     *Test addMoodInfo
+     * click Angry
+     */
     @Test
-    public void checkConfused() {
+    public void checkAngry() {
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
-        solo.clickOnImageButton(0);
+        solo.clickOnImageButton(1);
         solo.clickOnButton("Finish");
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
