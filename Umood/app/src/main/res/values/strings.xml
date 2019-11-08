@@ -75,6 +75,9 @@
     <!--  String below are used in following request xml -->
     <string name="f_request_text">Following Request</string>
     <string name="f_request_button_ok">Accept</string>
+    <string name="todo1">TODO</string>
+    <string name="todo2">TODO</string>
+    <string name="todo3">TODO</string>
     <string name="do_you_want_to_receive_strangers_following_request">Do you want to receive strangers following request?</string>
     <string name="do_you_want_to_add_your_current_location_to_your_mood_event_automatically">Do you want to add your current location to your mood event automatically?</string>
     <string name="apply">apply</string>
