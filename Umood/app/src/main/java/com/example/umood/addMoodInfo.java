@@ -45,18 +45,26 @@ public class addMoodInfo extends AppCompatActivity {
         sick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                emotion = "Sad";
+                emotion = "Sick";
 
             }
         });
         angry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                emotion = "angry";
+                emotion = "Angry";
             }
         });
+        scared.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                emotion = "Scared";
 
+            }
+        });
         Spinner socialSituation = findViewById(R.id.spinner2);
+
+
         socialSituation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -70,19 +78,14 @@ public class addMoodInfo extends AppCompatActivity {
         });
 
 
-        scared.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emotion = "scared";
-
-            }
-        });
-
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(emotion.isEmpty()){
+                if(emotion == null){
                     Toast.makeText(getBaseContext(), "Choose an emotion!", Toast.LENGTH_LONG).show();
+                }
+                else if(situation==null){
+                    Toast.makeText(getBaseContext(), "Choose an Social Situation!", Toast.LENGTH_LONG).show();
                 }
                 else {
                     Intent intent = new Intent();
