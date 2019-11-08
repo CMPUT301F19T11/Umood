@@ -14,11 +14,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class addMoodInfo extends AppCompatActivity {
     private static final String TAG = "qian-addMood";
 
     private String emotion;
     private String situation;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = db.collection("users");
 
 
     @Override
@@ -88,13 +94,20 @@ public class addMoodInfo extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Choose an Social Situation!", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Intent intent = new Intent();
                     EditText reasonText = findViewById(R.id.reason_text);
-                    intent.putExtra("Reason",reasonText.getText().toString());
-                    intent.putExtra("SocialSituation",situation);
-                    intent.putExtra("Mood", emotion);
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    String reason = reasonText.getText().toString();
+                    if(reason.length()>20)
+                        Toast.makeText(getBaseContext(), "Reason has to be less than 20 characters or 3 words!", Toast.LENGTH_LONG).show();
+                    else if(testWords(reason))
+                        Toast.makeText(getBaseContext(), "Reason has to be less than 3 words!", Toast.LENGTH_LONG).show();
+                    else {
+                        Intent intent = new Intent();
+                        intent.putExtra("Reason",reason);
+                        intent.putExtra("SocialSituation", situation);
+                        intent.putExtra("Mood", emotion);
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
                 }
             }
         });
@@ -107,6 +120,15 @@ public class addMoodInfo extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    private boolean testWords(String s){
+        int count = 0;
+        for(char letter:s.toCharArray())
+            if(letter==' ')
+                count+=1;
+        return count>2;
     }
 
 

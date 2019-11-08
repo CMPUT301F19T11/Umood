@@ -2,10 +2,15 @@ package com.example.umood;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,15 +21,18 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class FeedActivity extends AppCompatActivity {
     private static final String TAG = "qian-Feed";
     private User user;
-    private ArrayList<Mood> moodEventList;
+
     private ArrayList<String> followingList;
     private MoodAdapter adapter;
     private ListView listView;
+    MainActivity activity;
 
+    private ArrayList<Mood> moodEventList;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference collectionReference = db.collection("users");
 
@@ -32,33 +40,39 @@ public class FeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
-        listView = findViewById(R.id.feedListView);
 
         Intent intent = getIntent();
-        user = (User)intent.getSerializableExtra("User");
+        user = (User) intent.getSerializableExtra("User");
+        MoodList EventList = (MoodList) intent.getSerializableExtra("EventList");
         followingList = user.getFollowing();
-        for(String username:followingList){
-            collectionReference.document(username)
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            User user = document.toObject(User.class);
-                            if(user.getMostRecentMood()!=null){
-                                moodEventList.add(user.getMostRecentMood());
-                            }
 
-                        } else {
-                            Log.d(TAG, "No such document");
-                        }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
-                    }
-                }
-            });
-        }
+        moodEventList = EventList.getList();
+        Log.d(TAG, ""+moodEventList.size());
+        Collections.sort(moodEventList);
+        RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new MoodAdapter(moodEventList);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(adapter);
+
+
+        ImageButton cancelButton = findViewById(R.id.signup_cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+
+
+
+
+
+
+
 /*
         adapter = new MoodAdapter(
                 this,
@@ -71,7 +85,6 @@ public class FeedActivity extends AppCompatActivity {
 
 
 
-    }
     @Override
     protected void onStart() {
         super.onStart();

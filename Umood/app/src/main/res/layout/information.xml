@@ -17,7 +17,7 @@
         android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/signup_button"
-        android:text="SAVE   >"
+        android:text="Delete"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -54,11 +54,10 @@
         app:srcCompat="@drawable/place" />
 
 
-
     <ImageView
         android:id="@+id/image_import"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="180dp"
         android:background="#00000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

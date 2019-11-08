@@ -49,7 +49,6 @@ public class MoodHistory extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User)intent.getSerializableExtra("User");
         moodList = user.getMoodHistory();
-
         Collections.sort(moodList);
 
         RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
