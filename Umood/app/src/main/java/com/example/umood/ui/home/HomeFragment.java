@@ -38,7 +38,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -46,7 +46,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
 
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
@@ -106,8 +105,13 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 String emotion = data.getStringExtra("Mood");
                 String socialSituation = data.getStringExtra("SocialSituation");
                 String reason = data.getStringExtra("Reason");
+                String path = data.getStringExtra("Path");
+
                 if(reason==null || reason.isEmpty())
                     reason = "";
+                if(path ==null || path.isEmpty())
+                    path = "";
+
                 double latitude = 53.5232+ 0.04*Math.random();
                 double longitude = -113.5263 + 0.04*Math.random();
                 LatLng edmonton = new LatLng(latitude, longitude);
@@ -141,7 +145,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                             socialSituation,
                             latitude,
                             longitude,
-                            user.getUsername());
+                            user.getUsername(),
+                            path);
 
                 String Description = "Today: " + currentDate + "    Time: " + currentTime + socialSituation;
 

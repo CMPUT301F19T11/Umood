@@ -1,5 +1,7 @@
 package com.example.umood;
 
+import android.graphics.Bitmap;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
@@ -20,6 +22,7 @@ public class Mood implements Serializable,Comparable<Mood>{
     private double latitude;
     private double longitude;
     private String username;
+    private String imagePath;
 
     public String getUsername() {
         return username;
@@ -27,6 +30,15 @@ public class Mood implements Serializable,Comparable<Mood>{
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 
     /**
@@ -37,7 +49,7 @@ public class Mood implements Serializable,Comparable<Mood>{
      * @param socialSituation: There are 3 social situation: alone. along with 1 person, along with many people
      * @param latitude: a google map data type to indicate where the user is when he/she upload  a new mood event.
      */
-    public Mood(String date, String time, String emotion, String reason, String socialSituation, double latitude,double longitude,String username){
+    public Mood(String date, String time, String emotion, String reason, String socialSituation, double latitude,double longitude,String username,String imagePath){
         this.date = date;
         this.time = time;
         this.emotion = emotion;
@@ -46,6 +58,7 @@ public class Mood implements Serializable,Comparable<Mood>{
         this.latitude = latitude;
         this.longitude = longitude;
         this.username = username;
+        this.imagePath = imagePath;
     }
     public Mood(){
     }
