@@ -23,7 +23,7 @@
 
         android:background="@drawable/login_button"
         android:text="@string/add_f_confirm"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_following" />
