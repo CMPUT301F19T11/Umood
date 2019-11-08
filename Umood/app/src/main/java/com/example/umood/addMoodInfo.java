@@ -14,11 +14,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class addMoodInfo extends AppCompatActivity {
     private static final String TAG = "qian-addMood";
 
     private String emotion;
     private String situation;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = db.collection("users");
 
 
     @Override

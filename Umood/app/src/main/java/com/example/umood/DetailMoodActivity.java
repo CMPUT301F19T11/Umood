@@ -11,8 +11,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class DetailMoodActivity extends AppCompatActivity {
     private static final String TAG = "qian-follower";
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference collectionReference = db.collection("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +42,24 @@ public class DetailMoodActivity extends AppCompatActivity {
         String social = mood.getSocialSituation();
         switch(social){
             case "Alone":
-                spinner.setSelection(0);
-                break;
-            case "Along with one person":
                 spinner.setSelection(1);
                 break;
-            case "Along with two to several persons":
+            case "Along with one person":
                 spinner.setSelection(2);
                 break;
-            default:
+            case "Along with two to several persons":
                 spinner.setSelection(3);
                 break;
+            case "With a Crowd":
+                spinner.setSelection(4);
+                break;
+            default:
+                spinner.setSelection(0);
+
         }
+
+
+
 
         ImageButton buttonCancel = findViewById(R.id.add_cancel);
         buttonCancel.setOnClickListener(new View.OnClickListener() {

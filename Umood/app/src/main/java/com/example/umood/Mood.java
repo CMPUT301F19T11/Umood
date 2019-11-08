@@ -120,10 +120,6 @@ public class Mood implements Serializable,Comparable<Mood>{
         this.longitude = longitude;
     }
 
-    public void mySorting(){
-        String sDate = date+" "+time;
-
-    }
 
     @Override
     public int compareTo(Mood o) {
