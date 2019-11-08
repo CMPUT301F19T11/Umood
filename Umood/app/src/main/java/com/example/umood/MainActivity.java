@@ -28,6 +28,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * ------------------------------------------------------------------------------------------------------------
@@ -63,6 +64,32 @@ import java.util.ArrayList;
  * Last Modified:
  *      Nov 6 by Qian Yu
  * ------------------------------------------------------------------------------------------------------------
+ *
+ * ------------------------------------------------------------------------------------------------------------
+ * Implemented Features:
+ *      - 01.01.01
+ *      - 01.02.01
+ *      - 01.03.01
+ *      - 02.01.01
+ *      - 02.03.01
+ *      - 03.01.01
+ *      - 04.01.01
+ *
+ * Unimplemented Features:
+ *      - 01.04.01
+ *      - 01.05.01
+ *      - 02.02.01
+ *      - 04.02.01
+ *      - 05.01.01 (*)
+ *      - 05.02.01 (*)
+ *      - 05.03.01 (*)
+ *      - 06.01.01
+ *      - 06.02.01
+ *      - 06.03.01
+ *
+ * Last Modified:
+ *      Nov 6 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
  */
 
 
@@ -78,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
     private UserList UnverifiedUser = new UserList();
     private UserList followerUserList = new UserList();
     private UserList followingUserList  = new UserList();
+    private MoodList moodEventList = new MoodList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
     }
     public UserList getFollowingUserList(){
         return followingUserList;
+    }
+    public MoodList getMoodEventList(){
+        return moodEventList;
     }
 
 
@@ -184,11 +215,11 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                user = document.toObject(User.class);
-                                boolean a = followingUserList.getList().contains(user);
+                                User user2 = document.toObject(User.class);
+                                boolean a = followingUserList.getList().contains(user2);
                                 Log.d(TAG, "true/false: "+a);
-                                if(!followingUserList.is_contain(user.getUsername()))
-                                    followingUserList.addUser(user);
+                                if(!followingUserList.is_contain(user2.getUsername()))
+                                    followingUserList.addUser(user2);
                             } else {
                                 Log.d(TAG, "No such document");
                             }
@@ -199,6 +230,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }
+
+
 
         ArrayList<String> unverifyList = user.getUnverifiedList();
         if(unverifyList!=null) {
@@ -211,11 +244,11 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                User user = document.toObject(User.class);
-                                boolean a = user==null;
+                                User user2 = document.toObject(User.class);
+                                boolean a = user2==null;
                                 Log.d(TAG, ""+a);
-                                if(!UnverifiedUser.is_contain(user.getUsername()))
-                                    UnverifiedUser.addUser(user);
+                                if(!UnverifiedUser.is_contain(user2.getUsername()))
+                                    UnverifiedUser.addUser(user2);
                             } else {
                                 Log.d(TAG, "not exist");
                             }
@@ -226,6 +259,8 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         }
+
+
 
         ArrayList<String> followerList = user.getFollower();
         if(followerList!=null) {
@@ -238,11 +273,11 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                User user = document.toObject(User.class);
+                                User user2 = document.toObject(User.class);
                                 boolean a = user==null;
                                 Log.d(TAG, ""+a);
-                                if(!followerUserList.is_contain(user.getUsername()))
-                                    followerUserList.addUser(user);
+                                if(!followerUserList.is_contain(user2.getUsername()))
+                                    followerUserList.addUser(user2);
                             } else {
                                 Log.d(TAG, "not exist");
                             }
@@ -252,6 +287,46 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+        }
+
+
+
+        for (String username : followingList) {
+            collectionReference.document(username)
+                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            User following = document.toObject(User.class);
+                            Log.d(TAG, "Following obtained");
+                            if (following.getMoodHistory()!=null && !following.getMoodHistory().isEmpty()) {
+                                ArrayList<Mood> moodhis = following.getMoodHistory();
+                                Collections.sort(moodhis);
+                                Mood madd = moodhis.get(0);
+                                boolean cond = true;
+                                ArrayList<Mood> abc = moodEventList.getList();
+                                for(Mood m:abc){
+                                    if(m.getTime().equals(madd.getTime())){
+                                        cond = false;
+                                        break;
+                                    }
+                                }
+                                if(cond){
+                                    moodEventList.addUser(madd);
+                                }
+                                Log.d(TAG, "Following Added");
+                            }
+
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
         }
 
     }

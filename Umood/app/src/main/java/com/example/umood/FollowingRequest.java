@@ -91,7 +91,6 @@ public class FollowingRequest extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                User follower = document.toObject(User.class);
                                 collectionReference.document(vuser.getUsername()).update("following", FieldValue.arrayUnion(user.getUsername()));
                             } else {
                                 Log.d(TAG, "No such document");

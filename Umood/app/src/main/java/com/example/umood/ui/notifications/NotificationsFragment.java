@@ -19,7 +19,9 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.umood.FeedActivity;
 import com.example.umood.MainActivity;
+import com.example.umood.Mood;
 import com.example.umood.MoodHistory;
+import com.example.umood.MoodList;
 import com.example.umood.R;
 import com.example.umood.User;
 import com.example.umood.addMoodInfo;
@@ -27,6 +29,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 public class NotificationsFragment extends Fragment {
     User user;
@@ -38,12 +43,13 @@ public class NotificationsFragment extends Fragment {
 
     Intent intent;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         activity = (MainActivity) getActivity();
+        final MoodList moodEventList = activity.getMoodEventList();
         user = activity.getUser();
         docref = collectionReference.document(user.getUsername());
 
@@ -80,10 +86,12 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 intent = new Intent(activity, FeedActivity.class);
-                intent.putExtra("User",user );
+                intent.putExtra("User",user);
+                intent.putExtra("EventList",moodEventList);
                 startActivity(intent);
             }
         });
+
         return root;
     }
 

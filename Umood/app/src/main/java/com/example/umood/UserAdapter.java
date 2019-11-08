@@ -2,6 +2,7 @@ package com.example.umood;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             cardView = (CardView) view;
             imageView = (ImageView) view.findViewById(R.id.following_avatar);
             username = (TextView) view.findViewById(R.id.following_name);
+
         }
     }
 
@@ -59,7 +61,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.imageView.setImageResource(R.drawable.zeldaflat);
 
     }
-
     @Override
     public int getItemCount(){
         return myUserList.size();

@@ -222,20 +222,4 @@ public class User implements Serializable {
     public void removeUnverifiedUser(String username) {
         this.unverifiedList.remove(username);
     }
-
-
-    /**
-     *
-     * @return most recently mood event
-     */
-
-
-    public Mood getMostRecentMood() {
-        if(this.moodHistory.isEmpty()){
-            return null;
-        }
-        int length = this.moodHistory.size()-1;
-        return this.moodHistory.get(length);
-    }
-
 }

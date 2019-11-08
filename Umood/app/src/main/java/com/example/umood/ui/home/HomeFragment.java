@@ -106,6 +106,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 String emotion = data.getStringExtra("Mood");
                 String socialSituation = data.getStringExtra("SocialSituation");
                 String reason = data.getStringExtra("Reason");
+                if(reason==null || reason.isEmpty())
+                    reason = "";
                 double latitude = 53.5232+ 0.04*Math.random();
                 double longitude = -113.5263 + 0.04*Math.random();
                 LatLng edmonton = new LatLng(latitude, longitude);
@@ -198,7 +200,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 case "Scared":
                     myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
                     break;
-
                 default:
                     myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
                     break;
@@ -222,22 +223,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         super.onResume();
 
         mapView.onResume();
-        collectionReference.document(user.getUsername())
-                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        user = document.toObject(User.class);
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
     }
 
 
