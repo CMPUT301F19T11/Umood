@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,7 +38,7 @@ public class AddFollowingActivity extends AppCompatActivity {
         //XML touchable
         addFollowing = findViewById(R.id.add_following);
         Button confirm = findViewById(R.id.confirm);
-        Button back = findViewById(R.id.back);
+        ImageButton back = findViewById(R.id.cancel);
 
         Intent intent = getIntent();
         me = (User) intent.getSerializableExtra("user");

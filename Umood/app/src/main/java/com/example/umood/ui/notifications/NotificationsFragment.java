@@ -40,23 +40,30 @@ public class NotificationsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        Log.d(TAG, "0");
+
 
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
         activity = (MainActivity) getActivity();
         user = activity.getUser();
         docref = collectionReference.document(user.getUsername());
-        Log.d(TAG, "1");
+
         ImageView imageView = root.findViewById(R.id.avater);
         imageView.setImageResource(R.drawable.zeldaflat);
 
 
+        // Text view Setting
+        TextView usernameView = root.findViewById(R.id.username);
+        TextView followingNumber = root.findViewById(R.id.following_number);
+        TextView followerNumber = root.findViewById(R.id.follower_number);
+        TextView postNumber =  root.findViewById(R.id.postNumber);
+
+        usernameView.setText(user.getUsername());
+        followerNumber.setText(String.valueOf(activity.getFollowerUserList().size()) );
+        followingNumber.setText(String.valueOf(activity.getFollowingUserList().size()));
+        postNumber.setText(String.valueOf(user.getMoodHistory().size()));
 
         Button history =  root.findViewById(R.id.button_history);
-
-
         Button chart =  root.findViewById(R.id.button_chart);
-
         Button feed =  root.findViewById(R.id.button_feed);
         Button setting =  root.findViewById(R.id.button_setting);
 
@@ -77,7 +84,6 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return root;
     }
 

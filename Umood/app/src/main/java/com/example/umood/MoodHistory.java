@@ -1,16 +1,25 @@
 package com.example.umood;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -32,16 +41,35 @@ public class MoodHistory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "0");
         super.onCreate(savedInstanceState);
-
+        getSupportActionBar().hide();
         setContentView(R.layout.mood_history);
 
         Intent intent = getIntent();
         user = (User)intent.getSerializableExtra("User");
-        Log.d(TAG, user.getUsername());
         moodList = user.getMoodHistory();
         Log.d(TAG, "1");
+
+        RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,1);
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new MoodAdapter(moodList);
+        recyclerView.setAdapter(adapter);
+
+
+        ImageButton cancelButton = findViewById(R.id.cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+    }
+}
+
+/*
+Code Created by PY(Swipe List View):
         adapter = new MoodAdapter(this, R.layout.content, moodList);
-        Log.d(TAG, "2");
 
         listView = (SwipeMenuListView) findViewById(R.id.moodListView);
         listView.setAdapter(adapter);
@@ -68,16 +96,7 @@ public class MoodHistory extends AppCompatActivity {
         };
         listView.setMenuCreator(creator);
 
-        /*
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                click = adapter.getItemId(i);
-            }
-        });
-         */
-
-        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+                listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                 switch (index) {
@@ -95,6 +114,13 @@ public class MoodHistory extends AppCompatActivity {
         });
 
         listView.setAdapter(adapter);
+ */
 
-    }
-}
+        /*
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                click = adapter.getItemId(i);
+            }
+        });
+         */

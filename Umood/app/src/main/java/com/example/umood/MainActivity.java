@@ -75,11 +75,9 @@ public class MainActivity extends AppCompatActivity {
     private CollectionReference collectionReference = db.collection("users");
     private User user;
 
-    private UserList UnverifiedUser;
-    private UserList followerUserList;
-    private UserList followingUserList;
-
-    private ListView listView;
+    private UserList UnverifiedUser = new UserList();
+    private UserList followerUserList = new UserList();
+    private UserList followingUserList  = new UserList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +126,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        update();
         Log.d(TAG,"onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"onStop");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.d(TAG,"onDestroy");
+    }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        Log.d(TAG,"onRestart");
+    }
+
+    private void update(){
         collectionReference.document(user.getUsername())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -146,25 +172,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        boolean a = user.getFollowing() == null;
-        if(a){
-            user.initFollowing();
-        }
-        boolean b = user.getFollower() == null;
-        if(b){
-            user.initFollower();
-        }
-        boolean c = user.getUnverifiedList() == null;
-        if(c){
-            user.initUnverifiedList();
-        }
-
         // Obtain Data from database
-        UnverifiedUser = new UserList();
-        followerUserList = new UserList();
-        followingUserList = new UserList();
         ArrayList<String> followingList = user.getFollowing();
-
         Log.d(TAG, "followingListSize:"+user.getFollowing().size());
         if(followingList!=null) {
             for (String username:followingList) {
@@ -176,7 +185,10 @@ public class MainActivity extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 user = document.toObject(User.class);
-                                followingUserList.addUser(user);
+                                boolean a = followingUserList.getList().contains(user);
+                                Log.d(TAG, "true/false: "+a);
+                                if(!followingUserList.is_contain(user.getUsername()))
+                                    followingUserList.addUser(user);
                             } else {
                                 Log.d(TAG, "No such document");
                             }
@@ -193,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
             for (String username : unverifyList) {
                 Log.d(TAG, "loop");
                 collectionReference.document(username)
-                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
@@ -202,7 +214,8 @@ public class MainActivity extends AppCompatActivity {
                                 User user = document.toObject(User.class);
                                 boolean a = user==null;
                                 Log.d(TAG, ""+a);
-                                UnverifiedUser.addUser(user);
+                                if(!UnverifiedUser.is_contain(user.getUsername()))
+                                    UnverifiedUser.addUser(user);
                             } else {
                                 Log.d(TAG, "not exist");
                             }
@@ -228,7 +241,8 @@ public class MainActivity extends AppCompatActivity {
                                 User user = document.toObject(User.class);
                                 boolean a = user==null;
                                 Log.d(TAG, ""+a);
-                                followerUserList.addUser(user);
+                                if(!followerUserList.is_contain(user.getUsername()))
+                                    followerUserList.addUser(user);
                             } else {
                                 Log.d(TAG, "not exist");
                             }
@@ -240,29 +254,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG,"onStop");
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        Log.d(TAG,"onDestroy");
-    }
-
-    @Override
-    protected void onRestart(){
-        super.onRestart();
-        Log.d(TAG,"onRestart");
     }
 }
