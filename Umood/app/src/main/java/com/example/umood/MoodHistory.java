@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +28,8 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class MoodHistory extends AppCompatActivity {
     private MoodAdapter adapter;
@@ -35,7 +38,6 @@ public class MoodHistory extends AppCompatActivity {
     User user;
     private static final String TAG = "qian-MoodHistory";
     private static final String TAG2 = "py";
-    private long click;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +49,17 @@ public class MoodHistory extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User)intent.getSerializableExtra("User");
         moodList = user.getMoodHistory();
-        Log.d(TAG, "1");
+
+        Collections.sort(moodList);
 
         RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MoodAdapter(moodList);
+
         recyclerView.setAdapter(adapter);
 
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 
         ImageButton cancelButton = findViewById(R.id.cancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
