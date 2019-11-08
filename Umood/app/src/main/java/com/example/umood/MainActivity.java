@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG,"onRestart");
     }
 
-    private void update(){
+    public void update(){
         collectionReference.document(user.getUsername())
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override

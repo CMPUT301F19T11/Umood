@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private DocumentReference docref;
     private CollectionReference collectionReference = db.collection("users");
 
-
+    private MainActivity activity;
     private User user;
 
     @NonNull
@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        MainActivity activity = (MainActivity) getActivity();
+        activity = (MainActivity) getActivity();
         user = activity.getUser();
         docref = collectionReference.document(user.getUsername());
 
@@ -227,10 +227,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onResume() {
         super.onResume();
-
+        activity.update();
         mapView.onResume();
-    }
 
+    }
 
     private BitmapDescriptor getMarkerIconFromDrawable(Drawable drawable) {
         Canvas canvas = new Canvas();
@@ -244,6 +244,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onPause() {
         super.onPause();
+        activity.update();
         mapView.onPause();
     }
 

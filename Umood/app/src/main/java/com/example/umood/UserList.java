@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserList implements Serializable {
-    ArrayList<User> list;
+    private ArrayList<User> list;
 
     public UserList() {
         list = new ArrayList<>();
