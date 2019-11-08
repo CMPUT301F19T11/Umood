@@ -1,6 +1,8 @@
 package com.example.umood;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,17 +59,39 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Mood mood = myMoodList.get(position);
-        String text1 = mood.getDate()+"   "+mood.getTime();
+        final Mood mood = myMoodList.get(position);
+        String text1 = mood.getDate()+mood.getTime();
         holder.dateAndTime.setText(text1);
-        holder.socialSituation.setText("Alone");
-        holder.imageView.setImageResource(R.drawable.happy);
-    }
+        holder.socialSituation.setText(mood.getSocialSituation());
+        String emo = mood.getEmotion();
+        switch(emo){
+            case"Happy":
+                holder.imageView.setImageResource(R.drawable.happy);
+                break;
+            case "Sick":
+                holder.imageView.setImageResource(R.drawable.sick);
+                break;
+            case "Scared":
+                holder.imageView.setImageResource(R.drawable.scared);
+                break;
+            default:
+                holder.imageView.setImageResource(R.drawable.angry);
+        }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent detailIntent = new Intent(mycontext, DetailMoodActivity.class);
+                detailIntent.putExtra("myMood", mood);
+                mycontext.startActivity(detailIntent);
+            }
+        });
+    }
     @Override
     public int getItemCount(){
         return myMoodList.size();
     }
+
 }
 
 

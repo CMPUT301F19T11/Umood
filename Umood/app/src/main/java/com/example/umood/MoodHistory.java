@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,8 +54,10 @@ public class MoodHistory extends AppCompatActivity {
         GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MoodAdapter(moodList);
+
         recyclerView.setAdapter(adapter);
 
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
 
         ImageButton cancelButton = findViewById(R.id.cancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
