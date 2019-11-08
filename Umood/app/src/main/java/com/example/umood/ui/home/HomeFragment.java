@@ -104,6 +104,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         if(requestCode == PICK_MOOD_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 String emotion = data.getStringExtra("Mood");
+                String socialSituation = data.getStringExtra("SocialSituation");
+                String reason = data.getStringExtra("Reason");
                 double latitude = 53.5232+ 0.04*Math.random();
                 double longitude = -113.5263 + 0.04*Math.random();
                 LatLng edmonton = new LatLng(latitude, longitude);
@@ -111,26 +113,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                 String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-                if(emotion.isEmpty())
+                if(emotion==null || emotion.isEmpty())
                     return;
                 switch (emotion){
                     case "Happy":
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
                         break;
-                    case "Sad":
-                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sad);
+                    case "Sick":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sick);
                         break;
-                    case "Cry":
-                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.crying);
+                    case "Scared":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
                         break;
-                    case "Love":
-                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.inlove);
-                        break;
-                    case "Confused":
-                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.confused);
-                        break;
+
                     default:
-                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.bored);
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
                         break;
                 }
 
@@ -138,12 +135,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 Mood mood = new Mood(currentDate,
                             currentTime,
                             emotion,
-                            "reason",
-                            "social",
+                            reason,
+                            socialSituation,
                             latitude,
                             longitude);
 
-                String Description = "Today: " + currentDate + "    Time: " + currentTime;
+                String Description = "Today: " + currentDate + "    Time: " + currentTime + socialSituation;
 
 
                 // Add a new marker to aap
@@ -195,20 +192,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 case "Happy":
                     myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
                     break;
-                case "Sad":
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sad);
+                case "Sick":
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sick);
                     break;
-                case "Cry":
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.crying);
+                case "Scared":
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
                     break;
-                case "Love":
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.inlove);
-                    break;
-                case "Confused":
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.confused);
-                    break;
+
                 default:
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.bored);
+                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
                     break;
             }
 

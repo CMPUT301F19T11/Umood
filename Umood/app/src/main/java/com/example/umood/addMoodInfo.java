@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +18,8 @@ public class addMoodInfo extends AppCompatActivity {
     private static final String TAG = "qian-addMood";
 
     private String emotion;
-    
+    private String situation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,66 +29,69 @@ public class addMoodInfo extends AppCompatActivity {
         setContentView(R.layout.emotional_state);
 
         ImageButton happy = findViewById(R.id.happyButton);
-        ImageButton sad = findViewById(R.id.sadButton);
-        ImageButton confused = findViewById(R.id.confusedButton);
-        ImageButton love = findViewById(R.id.loveButton);
-        ImageButton cry = findViewById(R.id.cryButton);
-        ImageButton bored = findViewById(R.id.boringButton);
+        ImageButton sick = findViewById(R.id.sickButton);
+        ImageButton angry = findViewById(R.id.angryButton);
+        ImageButton scared = findViewById(R.id.scaredButton);
+
         Button next = findViewById(R.id.next);
-        Button cancel = findViewById(R.id.cancel);
+        ImageButton cancel = findViewById(R.id.add_cancel);
 
         happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 emotion = "Happy";
-
-
             }
         });
-        sad.setOnClickListener(new View.OnClickListener() {
+        sick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                emotion = "Sad";
+                emotion = "Sick";
 
             }
         });
-        confused.setOnClickListener(new View.OnClickListener() {
+        angry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                emotion = "Confused";
-
-
+                emotion = "Angry";
             }
         });
-        love.setOnClickListener(new View.OnClickListener() {
+        scared.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                emotion = "Love";
+                emotion = "Scared";
 
             }
         });
-        cry.setOnClickListener(new View.OnClickListener() {
+        Spinner socialSituation = findViewById(R.id.spinner2);
+
+
+        socialSituation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View view) {
-                emotion = "Cry";
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                situation = ((TextView)view).getText().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-        bored.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emotion = "Bored";
-            }
-        });
+
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(emotion.isEmpty()){
+                if(emotion == null){
                     Toast.makeText(getBaseContext(), "Choose an emotion!", Toast.LENGTH_LONG).show();
+                }
+                else if(situation==null){
+                    Toast.makeText(getBaseContext(), "Choose an Social Situation!", Toast.LENGTH_LONG).show();
                 }
                 else {
                     Intent intent = new Intent();
+                    EditText reasonText = findViewById(R.id.reason_text);
+                    intent.putExtra("Reason",reasonText.getText().toString());
+                    intent.putExtra("SocialSituation",situation);
                     intent.putExtra("Mood", emotion);
                     setResult(RESULT_OK, intent);
                     finish();
