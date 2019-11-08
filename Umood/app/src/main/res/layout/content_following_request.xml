@@ -25,21 +25,7 @@
         android:layout_gravity="center_vertical"
         android:textStyle="italic"
         />
-    <!--
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="@string/f_request_button_ok"
-        android:textColor="#FFFFFF"
-
-=======
->>>>>>> 158b8338dd7bcb6e2974ddf62dfbf4f0e0616294
-        android:background="@drawable/signup_button"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"
-
-        android:text="@string/f_request_button_ok" /> -->
+    
 
 
 </LinearLayout>
