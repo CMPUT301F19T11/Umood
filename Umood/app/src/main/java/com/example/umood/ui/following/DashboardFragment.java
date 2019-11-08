@@ -77,7 +77,6 @@ public class DashboardFragment extends Fragment{
         recyclerView.setAdapter(adapter);
 
 
-
         addFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -23,5 +23,14 @@ public class UserList implements Serializable {
     public int size() {
         return list.size();
     }
-
+    public boolean is_contain(String username){
+        if(list==null)
+            return false;
+        for(User user:list){
+            if(username.equals(user.getUsername())){
+                return true;
+            }
+        }
+        return false;
+    }
 }
