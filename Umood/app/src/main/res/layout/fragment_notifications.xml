@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/button_setting"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="256dp"
         android:background="#FBFCFC"
@@ -23,7 +23,7 @@
 
     <Button
         android:id="@+id/button_feed"
-        android:layout_width="356dp"
+        android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="204dp"
         android:background="#FBFCFC"
@@ -38,7 +38,7 @@
 
     <Button
         android:id="@+id/button_chart"
-        android:layout_width="354dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="152dp"
         android:background="#FBFCFC"
@@ -52,7 +52,7 @@
 
     <Button
         android:id="@+id/button_history"
-        android:layout_width="353dp"
+        android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginTop="96dp"
         android:background="#FBFCFC"

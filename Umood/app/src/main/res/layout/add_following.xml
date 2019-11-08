@@ -23,6 +23,7 @@
 
         android:background="@drawable/login_button"
         android:text="@string/add_f_confirm"
+
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,6 @@
         android:inputType="textEmailAddress"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-
 
         android:selectAllOnFocus="true"
         android:textCursorDrawable="@drawable/color_cursor"
