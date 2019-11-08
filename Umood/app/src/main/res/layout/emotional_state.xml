@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+<<<<<<< HEAD
+=======
+    android:background="@drawable/background_vague"
+>>>>>>> 19503ebdc190f86bd8274ca9a5174c912a92358b
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background">
@@ -57,9 +61,15 @@
         android:background="#00000000"
         android:contentDescription="@string/moodLove"
         android:foreground="?android:attr/selectableItemBackground"
+<<<<<<< HEAD
         app:layout_constraintStart_toEndOf="@+id/sickButton"
         app:layout_constraintTop_toBottomOf="@+id/angryButton"
         app:srcCompat="@drawable/scared" />
+=======
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/confusedButton"
+        app:srcCompat="@drawable/shy" />
+>>>>>>> 19503ebdc190f86bd8274ca9a5174c912a92358b
 
     <ImageButton
         android:id="@+id/sickButton"
