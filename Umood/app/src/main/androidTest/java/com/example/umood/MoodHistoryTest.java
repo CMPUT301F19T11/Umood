@@ -1,6 +1,7 @@
 package com.example.umood;
 
 import android.app.Activity;
+import android.widget.EditText;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -16,18 +17,29 @@ public class MoodHistoryTest {
 
     private Solo solo;
     @Rule
-    public ActivityTestRule<MoodHistory> rule =
-            new ActivityTestRule<>(MoodHistory.class, true, true);
+    public ActivityTestRule<LoginActivity> rule =
+            new ActivityTestRule<>(LoginActivity.class, true, true);
 
     /**
      * Runs before all tests and creates solo instance.
-     *
      * @throws Exception
      */
     @Before
-    public void setUp() throws Exception {
-        solo = new Solo(InstrumentationRegistry.getInstrumentation(), rule.getActivity());
+    public void setUp() throws Exception{
+        solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
+        solo.assertCurrentActivity("wrong activity", LoginActivity.class);
+        solo.enterText((EditText)solo.getView(R.id.username),"yifan");
+        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.waitForActivity(MainActivity.class, 2000);
+
     }
+
+
+    @Test
+    public void checkMainActivity(){
+        solo.assertCurrentActivity("wrong activity", MainActivity.class);
+    }
+
 
     /**
      * Gets the Activity
@@ -52,4 +64,3 @@ public class MoodHistoryTest {
     }
 
 }
-
