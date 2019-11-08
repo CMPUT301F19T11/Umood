@@ -31,7 +31,7 @@
     <string name="sign_up_prompt"> Create your account:</string>
 
     <!--  String below are used in addMoodInfo xml -->
-    <string name="enterMoodPrompt">Choose your emoticon for now</string>
+    <string name="enterMoodPrompt">Choose your emotion for now</string>
     <string name="moodHappy">Happy</string>
     <string name="moodSad">Sad</string>
     <string name="moodBoring">Boring</string>
@@ -69,6 +69,9 @@
     <string name="todo1">TODO</string>
     <string name="todo2">TODO</string>
     <string name="todo3">TODO</string>
+    <string name="do_you_want_to_receive_strangers_following_request">Do you want to receive strangers following request?</string>
+    <string name="do_you_want_to_add_your_current_location_to_your_mood_event_automatically">Do you want to add your current location to your mood event automatically?</string>
+    <string name="apply">apply</string>
 
 
 </resources>
