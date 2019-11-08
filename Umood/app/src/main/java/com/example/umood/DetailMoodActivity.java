@@ -1,12 +1,16 @@
 package com.example.umood;
 
+import android.Manifest;
 import android.content.Intent;
+
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,6 +28,8 @@ public class DetailMoodActivity extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("users");
+    private String[] galleryPermissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +39,21 @@ public class DetailMoodActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mood = (Mood)intent.getSerializableExtra("myMood");
 
-
         TextView date = findViewById(R.id.reason_text);
         TextView time = findViewById(R.id.reason_text2);
         TextView reason = findViewById(R.id.reason_text3);
+        ImageView photo = findViewById(R.id.image_import);
+
 
         date.setText(mood.getDate());
         time.setText(mood.getTime());
         reason.setText(mood.getReason());
         Spinner spinner = findViewById(R.id.spinner2);
+
+
+        if(mood.getImagePath()!=null && !mood.getImagePath().isEmpty()){
+            photo.setImageBitmap(BitmapFactory.decodeFile(mood.getImagePath()));
+        }
         intent2 = new Intent(this,MainActivity.class);
 
 
@@ -76,6 +88,7 @@ public class DetailMoodActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+
 
 
         ImageButton buttonCancel = findViewById(R.id.add_cancel);

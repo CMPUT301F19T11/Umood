@@ -17,6 +17,7 @@
     <!--  String below are used in Add emotion xml -->
     <string name="social_situation"> Social Situation</string>
     <string name="location"> Location</string>
+    <string name="location2"> Image</string>
     <string name="reason"> Reason</string>
     <string name="optional"> Optional(*)</string>
     <string name="finish"> Finish</string>
