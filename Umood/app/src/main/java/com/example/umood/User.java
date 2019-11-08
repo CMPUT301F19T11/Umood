@@ -238,6 +238,4 @@ public class User implements Serializable {
         return this.moodHistory.get(length);
     }
 
-
-
 }
