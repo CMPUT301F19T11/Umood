@@ -104,6 +104,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         if(requestCode == PICK_MOOD_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 String emotion = data.getStringExtra("Mood");
+                String socialSituation = data.getStringExtra("SocialSituation");
+                String reason = data.getStringExtra("Reason");
                 double latitude = 53.5232+ 0.04*Math.random();
                 double longitude = -113.5263 + 0.04*Math.random();
                 LatLng edmonton = new LatLng(latitude, longitude);
@@ -138,12 +140,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 Mood mood = new Mood(currentDate,
                             currentTime,
                             emotion,
-                            "reason",
-                            "social",
+                            reason,
+                            socialSituation,
                             latitude,
                             longitude);
 
-                String Description = "Today: " + currentDate + "    Time: " + currentTime;
+                String Description = "Today: " + currentDate + "    Time: " + currentTime + socialSituation;
 
 
                 // Add a new marker to aap
