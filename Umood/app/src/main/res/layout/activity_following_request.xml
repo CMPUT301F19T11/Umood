@@ -31,6 +31,8 @@
         android:text="@string/f_request_text"
         android:textSize="35sp"
         android:textStyle="italic|bold"
+        android:typeface="serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

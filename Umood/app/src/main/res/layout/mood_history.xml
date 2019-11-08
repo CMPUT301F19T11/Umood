@@ -9,14 +9,15 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="207dp"
-        android:layout_height="61dp"
+        android:layout_width="241dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:text="@string/history"
-        android:textStyle="italic|bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="30sp"
+        android:textStyle="italic|bold"
+        android:typeface="serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
