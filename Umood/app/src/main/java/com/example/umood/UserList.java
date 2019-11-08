@@ -10,19 +10,43 @@ public class UserList implements Serializable {
         list = new ArrayList<>();
     }
 
-
+    /**
+     * 
+     * @return a list of users
+     */
     public ArrayList<User> getList() {
         return list;
     }
+
+    /**
+     * 
+     * @param user add a new user to the list
+     */
     public void addUser(User user) {
         list.add(user);
     }
+
+    /**
+     * 
+     * @param pos remove a user from the list
+     */
     public void removeUser(int pos) {
         list.remove(pos);
     }
+
+    /**
+     * 
+     * @return the size of user list
+     */
     public int size() {
         return list.size();
     }
+
+    /**
+     * 
+     * @param username check if user inside the list
+     * @return true or false
+     */
     public boolean is_contain(String username){
         if(list==null)
             return false;
