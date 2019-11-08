@@ -14,6 +14,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
+
 public class LoginActivityTest {
     private Solo solo;
 
@@ -44,19 +48,178 @@ public class LoginActivityTest {
 
         //enter an exist username
         solo.enterText((EditText) solo.getView(R.id.username),"test");
+        assertTrue(solo.waitForText("test",1,10000));
         solo.clickOnButton("Sign in");
+        solo.clearEditText((EditText) solo.getView(R.id.username));
+
         solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
     }
 
-
-/*
     @Test
-    public void checkSignUp(){
-        solo.assertCurrentActivity("Wrong Activity",LoginActivity.class);
-        solo.clickOnButton("Sign up");
-        solo.assertCurrentActivity("Wrong Activity",SignUpActivity.class);
+    public void checkHappy() {
+        solo.enterText((EditText) solo.getView(R.id.username),"test");
+        assertTrue(solo.waitForText("test",1,10000));
+        solo.clickOnButton("Sign in");
+
+
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
+
+        solo.clickOnImageButton(0);
+        assertTrue(solo.waitForActivity(addMoodInfo.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",addMoodInfo.class);
+
+
+        solo.clickOnImageButton(0);
+        solo.enterText((EditText)solo.getView(R.id.reason_text),"no reason");
+        //assertTrue(solo.waitForText("no reason",1,10000));
+
+        assertTrue(solo.waitForText("no reason",1,2000));
+        solo.clickOnButton("Finish");
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+        assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
+        //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
+
+    }
+    @Test
+    public void checkCry() {
+        solo.enterText((EditText) solo.getView(R.id.username),"test");
+        assertTrue(solo.waitForText("test",1,10000));
+        solo.clickOnButton("Sign in");
+
+
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
+
+        solo.clickOnImageButton(0);
+        assertTrue(solo.waitForActivity(addMoodInfo.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",addMoodInfo.class);
+
+
+        solo.clickOnImageButton(1);
+        solo.enterText((EditText)solo.getView(R.id.reason_text),"no reason");
+        //assertTrue(solo.waitForText("no reason",1,10000));
+
+        assertTrue(solo.waitForText("no reason",1,2000));
+        solo.clickOnButton("Finish");
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+        assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
+        //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
+
+    }
+    @Test
+    public void checkAngry() {
+        solo.enterText((EditText) solo.getView(R.id.username),"test");
+        assertTrue(solo.waitForText("test",1,10000));
+        solo.clickOnButton("Sign in");
+
+
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
+
+        solo.clickOnImageButton(0);
+        assertTrue(solo.waitForActivity(addMoodInfo.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",addMoodInfo.class);
+
+
+        solo.clickOnImageButton(2);
+        solo.enterText((EditText)solo.getView(R.id.reason_text),"no reason");
+        //assertTrue(solo.waitForText("no reason",1,10000));
+
+        assertTrue(solo.waitForText("no reason",1,2000));
+        solo.clickOnButton("Finish");
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+        assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
+        //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
+
+    }
+    @Test
+    public void checkSad() {
+        solo.enterText((EditText) solo.getView(R.id.username),"test");
+        assertTrue(solo.waitForText("test",1,10000));
+        solo.clickOnButton("Sign in");
+
+
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
+
+        solo.clickOnImageButton(0);
+        assertTrue(solo.waitForActivity(addMoodInfo.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",addMoodInfo.class);
+
+
+        solo.clickOnImageButton(3);
+        solo.enterText((EditText)solo.getView(R.id.reason_text),"no reason");
+        //assertTrue(solo.waitForText("no reason",1,10000));
+
+        assertTrue(solo.waitForText("no reason",1,2000));
+        solo.clickOnButton("Finish");
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+        assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
+        //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
+
     }
 
- */
+    @Test
+    public void checkMoodHistory() {
+        solo.enterText((EditText) solo.getView(R.id.username),"test");
+        assertTrue(solo.waitForText("test",1,10000));
+        solo.clickOnButton("Sign in");
+
+
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
+
+        solo.clickOnImageButton(0);
+        assertTrue(solo.waitForActivity(addMoodInfo.class,2000));
+
+        solo.assertCurrentActivity("Wrong Activity",addMoodInfo.class);
+
+
+        solo.clickOnImageButton(3);
+        solo.enterText((EditText)solo.getView(R.id.reason_text),"no reason");
+        //assertTrue(solo.waitForText("no reason",1,10000));
+
+        assertTrue(solo.waitForText("no reason",1,2000));
+        solo.clickOnButton("Finish");
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+        assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
+
+
+        solo.clickOnText("Profile");
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+        solo.clickOnText("History");
+        assertTrue(solo.waitForActivity(MoodHistory.class,2000));
+
+        solo.clickOnImage(0);
+        assertTrue(solo.waitForActivity(DetailMoodActivity.class,2000));
+        assertEquals(solo.getCurrentActivity().getClass(),DetailMoodActivity.class);
+        solo.clickOnText("Delete");
+        solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
+
+
+        solo.clickOnText("Profile");
+        assertTrue(solo.waitForActivity(MainActivity.class,2000));
+        assertFalse(solo.searchText("99"));
+
+
+
+
+
+        //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
+
+    }
+
+
+
 
 }

@@ -14,6 +14,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static junit.framework.TestCase.assertTrue;
+
 public class DetailedMoodActivityTest {
     private Solo solo;
 
@@ -25,25 +27,30 @@ public class DetailedMoodActivityTest {
         solo = new Solo(InstrumentationRegistry.getInstrumentation(), rule.getActivity());
 
     }
-/*
+
     @Test
     public void start() throws Exception {
         Activity activity = rule.getActivity();
 
     }
-/*
-    /*
+
+
     @Test
     public void checkMoodDetail(){
+
         solo.assertCurrentActivity("Wrong Activity",DetailMoodActivity.class);
         //solo.enterText((EditText)solo.getView(R.id.reason_text2),"11:48:52");
         //solo.enterText((EditText)solo.getView(R.id.reason_text),"2019-11-08");
-        //solo.enterText((EditText)solo.getView(R.id.reason_text3),"no reason");
+        solo.enterText((EditText)solo.getView(R.id.reason_text3),"no reason");
+        assertTrue(solo.waitForText("test",1,10000));
         solo.clickOnButton("Delete");
+
         solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
 
     }
 
-     */
+
+
+
 
 }
