@@ -39,6 +39,35 @@ public class addMoodInfoTest {
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
 
     }
+    @Test
+    public void checkSad() {
+        solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
+
+        solo.clickOnImageButton(0);
+        solo.clickOnButton("Finish");
+        solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
+
+    }
+    @Test
+    public void checkCry() {
+        solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
+
+        solo.clickOnImageButton(0);
+        solo.clickOnButton("Finish");
+        solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
+
+    }
+    @Test
+    public void checkConfused() {
+        solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
+
+        solo.clickOnImageButton(0);
+        solo.clickOnButton("Finish");
+        solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
+
+    }
+
+
 
     @After
     public void tearDown(){
