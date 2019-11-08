@@ -6,11 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 
-import android.widget.GridLayout;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -26,7 +24,6 @@ import com.example.umood.R;
 import com.example.umood.User;
 import com.example.umood.UserAdapter;
 import com.example.umood.UserList;
-
 
 import java.util.ArrayList;
 
@@ -78,7 +75,6 @@ public class DashboardFragment extends Fragment{
         recyclerView.setLayoutManager(layoutManager);
         adapter = new UserAdapter(userView);
         recyclerView.setAdapter(adapter);
-
 
 
         addFollowing.setOnClickListener(new View.OnClickListener() {

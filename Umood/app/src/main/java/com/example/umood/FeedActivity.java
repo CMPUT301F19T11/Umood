@@ -59,13 +59,15 @@ public class FeedActivity extends AppCompatActivity {
                 }
             });
         }
-
+/*
         adapter = new MoodAdapter(
                 this,
                 R.layout.content,
                 moodEventList);
         listView = findViewById(R.id.moodListView);
         listView.setAdapter(adapter);
+
+ */
 
 
 

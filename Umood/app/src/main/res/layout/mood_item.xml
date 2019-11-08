@@ -32,7 +32,7 @@
             android:layout_toRightOf="@+id/following_avatar"
             android:orientation="vertical">
             <TextView
-                android:id = "@+id/following_name"
+                android:id = "@+id/date_and_time"
                 android:paddingBottom="0dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -40,7 +40,7 @@
                 android:layout_height="30dp"/>
 
             <TextView
-                android:id="@+id/following_name2"
+                android:id="@+id/social_situation"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="20dp"/>
