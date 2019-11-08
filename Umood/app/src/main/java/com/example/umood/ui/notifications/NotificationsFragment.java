@@ -94,6 +94,17 @@ public class NotificationsFragment extends Fragment {
 
         return root;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.update();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        activity.update();
+    }
 
 
 }
