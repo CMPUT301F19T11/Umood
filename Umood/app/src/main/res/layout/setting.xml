@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/background_vague">
 
     <TextView
         android:id="@+id/textView1"
@@ -12,6 +13,7 @@
         android:layout_height="57dp"
         android:layout_marginTop="60dp"
         android:text="@string/do_you_want_to_receive_strangers_following_request"
+        android:textStyle="bold"
 
         android:textSize="30sp"
         app:autoSizeTextType="uniform"
@@ -27,6 +29,7 @@
         android:layout_marginTop="168dp"
         android:text="@string/do_you_want_to_add_your_current_location_to_your_mood_event_automatically"
         android:textSize="30sp"
+        android:textStyle="bold"
 
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toStartOf="@+id/switch2"
