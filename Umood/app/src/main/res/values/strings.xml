@@ -84,6 +84,21 @@
     <string name="apply">apply</string>
 
 
+
+    <!--  String below are used in profile xml -->
+    <string name="profile_setting">Settings</string>
+    <string name="profile_feed">Activity</string>
+    <string name="profile_moodHistory">Mood History</string>
+    <string name="profile_chart">Mood Statistics</string>
+    <string name="profile_post">Posts</string>
+    <string name="profile_following">Following</string>
+    <string name="profile_follower">Follower</string>
+    <string name="profile_avatar">The avatar of this user</string>
+    <string name="profile_background">The background</string>
+    <string name="profile_sample_username">sample</string>
+
+
+
 </resources>
 
 

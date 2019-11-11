@@ -33,7 +33,6 @@ public class addMoodInfo extends AppCompatActivity {
     private String situation;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference = db.collection("users");
 
     private int RESULT_LOAD_IMAGE = 2;
     ImageButton image;
@@ -166,12 +165,17 @@ public class addMoodInfo extends AppCompatActivity {
 
     public String getPath(Uri uri) {
         String[] filePathColumn = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getContentResolver().query(imageUri ,filePathColumn, null, null, null);
+        Cursor cursor = getContentResolver().query(uri ,filePathColumn, null, null, null);
         int column_index = cursor
                 .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
-        return cursor.getString(column_index);
+        String val = cursor.getString(column_index);
+        cursor.close();
+        return val;
     }
+
+
+
 
     private boolean testWords(String s){
         int count = 0;

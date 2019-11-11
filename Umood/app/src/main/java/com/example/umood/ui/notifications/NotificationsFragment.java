@@ -2,7 +2,6 @@ package com.example.umood.ui.notifications;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,28 +9,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.umood.FeedActivity;
 import com.example.umood.MainActivity;
-import com.example.umood.Mood;
 import com.example.umood.MoodHistory;
 import com.example.umood.MoodList;
 import com.example.umood.R;
 import com.example.umood.User;
-import com.example.umood.addMoodInfo;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class NotificationsFragment extends Fragment {
     User user;
@@ -53,7 +42,7 @@ public class NotificationsFragment extends Fragment {
         user = activity.getUser();
         docref = collectionReference.document(user.getUsername());
 
-        ImageView imageView = root.findViewById(R.id.avater);
+        ImageView imageView = root.findViewById(R.id.avatar);
         imageView.setImageResource(R.drawable.zeldaflat);
 
 
