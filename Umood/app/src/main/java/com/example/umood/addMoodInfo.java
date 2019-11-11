@@ -1,10 +1,17 @@
 package com.example.umood;
 
+import android.Manifest;
 import android.app.Activity;
+
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,27 +25,43 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Locale;
 
 public class addMoodInfo extends AppCompatActivity {
     private static final String TAG = "qian-addMood";
 
     private String emotion;
     private String situation;
+    private double longitude;
+    private double latitude;
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Geocoder geocoder;
 
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private int RESULT_LOAD_IMAGE = 2;
-    ImageButton image;
-    Uri imageUri;
-    Bitmap selectedImage;
-    String imagePath = "";
+    private FusedLocationProviderClient fusedLocationClient;
+
+    private TextView cityNameView;
+    private TextView addressNameView;
+    private ImageButton image;
+    private Uri imageUri;
+    private Bitmap selectedImage;
+    private String imagePath = "";
+    private ImageButton geoMap;
+    private addMoodInfo activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +75,18 @@ public class addMoodInfo extends AppCompatActivity {
         ImageButton angry = findViewById(R.id.angryButton);
         ImageButton scared = findViewById(R.id.scaredButton);
 
+        addressNameView = findViewById(R.id.textView11);
+        image = findViewById(R.id.imageButton2);
+        cityNameView = findViewById(R.id.textView10);
+        geocoder = new Geocoder(this, Locale.getDefault());
+        geoMap = findViewById(R.id.imageButton4);
+
+
         Button next = findViewById(R.id.next);
         ImageButton cancel = findViewById(R.id.add_cancel);
 
+
+        // 4 emotions:
         happy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,13 +115,77 @@ public class addMoodInfo extends AppCompatActivity {
         });
         Spinner socialSituation = findViewById(R.id.spinner2);
 
-        image = findViewById(R.id.imageButton2);
+        // Location Part:
+        geoMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String [] permissions = new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                };
+                Log.d(TAG, "pos1");
+                if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                    fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity);
+                    Log.d(TAG, "pos2");
+                    fusedLocationClient.getLastLocation()
+                            .addOnSuccessListener(activity, new OnSuccessListener<Location>() {
+                                @Override
+                                public void onSuccess(Location location) {
+                                    // Got last known location. In some rare situations this can be null.
+                                    Log.d(TAG, "pos3");
+                                    if (location != null) {
+                                        // Logic to handle location object
+                                        Log.d(TAG, "pos3");
+                                        try {
+                                            Log.d(TAG, "pos3");
+                                            longitude = location.getLongitude();
+                                            latitude = location.getLatitude();
+                                            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                                            String cityName = addresses.get(0).getLocality();
+                                            String address = addresses.get(0).getThoroughfare();
+                                            cityNameView.setText(cityName);
+                                            addressNameView.setText(address);
+                                            Log.d(TAG, address);
+                                            geoMap.setImageResource(R.drawable.place);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+                            })
+                            .addOnFailureListener(activity, new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: my bad");
+                                }
+                            });
+                }
+                else{
+                    getPermission(Manifest.permission.ACCESS_FINE_LOCATION,permissions);
+                }
+
+            }
+        });
+
+
+
+
+
+        // Image Part:
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
+                String [] permissions = new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                };
+                if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                    photoPickerIntent.setType("image/*");
+                    startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
+                }
+                else{
+                    getPermission(Manifest.permission.READ_EXTERNAL_STORAGE,permissions);
+                }
             }
         });
 
@@ -129,6 +225,8 @@ public class addMoodInfo extends AppCompatActivity {
                         intent.putExtra("SocialSituation", situation);
                         intent.putExtra("Mood", emotion);
                         intent.putExtra("Path",imagePath);
+                        intent.putExtra("Longitude",longitude);
+                        intent.putExtra("Latitude",latitude);
                         setResult(RESULT_OK, intent);
                         finish();
                     }
@@ -145,6 +243,27 @@ public class addMoodInfo extends AppCompatActivity {
             }
         });
     }
+
+
+    //Check Permission
+    private boolean checkPermission(String permission) {
+        // PackageManager.PERMISSION_GRANTED ==> The permission is granted
+        return (ActivityCompat.checkSelfPermission(this, permission)
+                == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private void getPermission(String permission,String [] permissions) {
+
+        //Apply
+        ActivityCompat.requestPermissions(
+                this,
+                permissions,
+                REQUEST_EXTERNAL_STORAGE);
+        // If the user deny the permission
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission))
+            Toast.makeText(this, "The app cannot show picture normally，If we don't have the permission！", Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -176,7 +295,6 @@ public class addMoodInfo extends AppCompatActivity {
 
 
 
-
     private boolean testWords(String s){
         int count = 0;
         for(char letter:s.toCharArray())
@@ -184,7 +302,6 @@ public class addMoodInfo extends AppCompatActivity {
                 count+=1;
         return count>2;
     }
-
 
 
     @Override
@@ -223,4 +340,5 @@ public class addMoodInfo extends AppCompatActivity {
         super.onRestart();
         Log.d(TAG,"onRestart");
     }
+
 }

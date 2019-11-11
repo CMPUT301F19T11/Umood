@@ -106,14 +106,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 String socialSituation = data.getStringExtra("SocialSituation");
                 String reason = data.getStringExtra("Reason");
                 String path = data.getStringExtra("Path");
+                double longitude = data.getDoubleExtra("Longitude",53.5232+ 0.04*Math.random());
+                double latitude = data.getDoubleExtra("Latitude",-113.5263 + 0.04*Math.random());
 
                 if(reason==null || reason.isEmpty())
                     reason = "";
                 if(path ==null || path.isEmpty())
                     path = "";
 
-                double latitude = 53.5232+ 0.04*Math.random();
-                double longitude = -113.5263 + 0.04*Math.random();
                 LatLng edmonton = new LatLng(latitude, longitude);
                 BitmapDescriptor myIcon;
 
@@ -121,6 +121,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 if(emotion==null || emotion.isEmpty())
                     return;
+
                 switch (emotion){
                     case "Happy":
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
@@ -131,7 +132,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     case "Scared":
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
                         break;
-
                     default:
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
                         break;
