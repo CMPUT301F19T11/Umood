@@ -26,6 +26,9 @@
         android:background="@drawable/login_button"
         android:text="@string/action_sign_in"
         android:textColor="#000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="@+id/following_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
@@ -44,14 +47,10 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/enter_user_name"
         android:hint="@string/enter_username"
-        android:inputType="textEmailAddress"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:selectAllOnFocus="true"
-
-
         android:textCursorDrawable="@drawable/color_cursor"
-        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />

@@ -12,25 +12,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.umood.ChartActivity;
 import com.example.umood.FeedActivity;
 import com.example.umood.MainActivity;
 import com.example.umood.MoodHistory;
 import com.example.umood.MoodList;
 import com.example.umood.R;
+import com.example.umood.SettingActivity;
 import com.example.umood.User;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class NotificationsFragment extends Fragment {
-    User user;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference docref;
-    private CollectionReference collectionReference = db.collection("users");
+    private User user;
     private static final String TAG = "qian-profile";
-    MainActivity activity;
+    private MainActivity activity;
 
-    Intent intent;
+    private Intent intent;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,7 +37,6 @@ public class NotificationsFragment extends Fragment {
         activity = (MainActivity) getActivity();
         final MoodList moodEventList = activity.getMoodEventList();
         user = activity.getUser();
-        docref = collectionReference.document(user.getUsername());
 
         ImageView imageView = root.findViewById(R.id.avatar);
         imageView.setImageResource(R.drawable.zeldaflat);
@@ -78,6 +74,24 @@ public class NotificationsFragment extends Fragment {
                 intent.putExtra("User",user);
                 intent.putExtra("EventList",moodEventList);
                 startActivity(intent);
+            }
+        });
+
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, SettingActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        chart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, ChartActivity.class);
+                startActivity(intent);
+
             }
         });
 

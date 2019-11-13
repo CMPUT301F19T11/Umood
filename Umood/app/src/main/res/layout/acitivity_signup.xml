@@ -42,8 +42,6 @@
         android:selectAllOnFocus="true"
         android:textCursorDrawable="@drawable/color_cursor"
 
-
-        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.277"
@@ -88,10 +86,7 @@
         android:id="@+id/signup_cancel"
         android:layout_width="46dp"
         android:layout_height="43dp"
-        android:layout_marginStart="332dp"
-        android:layout_marginLeft="332dp"
         android:background="#00000000"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />

@@ -25,8 +25,6 @@
     <string name="cancel"> Cancel</string>
 
 
-
-
     <!--  String below are used in Login xml -->
     <string name="no_account"> Sign up</string>
     <string name="action_sign_in"> Sign in </string>
@@ -84,7 +82,6 @@
     <string name="apply">apply</string>
 
 
-
     <!--  String below are used in profile xml -->
     <string name="profile_setting">Settings</string>
     <string name="profile_feed">Activity</string>
@@ -96,6 +93,16 @@
     <string name="profile_avatar">The avatar of this user</string>
     <string name="profile_background">The background</string>
     <string name="profile_sample_username">sample</string>
+
+
+    <!--  String below are used in Information xml -->
+    <string name="information_date">Date</string>
+    <string name="information_time">Time</string>
+    <string name="information_reason">Reason</string>
+    <string name="information_delete">Save</string>
+    <string name="information_pic">An image which is uploaded by user</string>
+    <string name="information_background">A background</string>
+
 
 
 

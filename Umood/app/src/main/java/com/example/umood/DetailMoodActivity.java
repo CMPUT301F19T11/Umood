@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,9 +43,27 @@ public class DetailMoodActivity extends AppCompatActivity {
         TextView date = findViewById(R.id.reason_text);
         TextView time = findViewById(R.id.reason_text2);
         TextView reason = findViewById(R.id.reason_text3);
+        TextView emotion = findViewById(R.id.textView12);
         ImageView photo = findViewById(R.id.image_import);
 
+        String e = mood.getEmotion();
+        int color;
+        switch (e){
+            case "Happy":
+                color = Color.parseColor("#fdee87");
+                break;
+            case "Scared":
+                color = Color.parseColor("#88c8fa");
+                break;
+            case "Angry":
+                color = Color.parseColor("#ee737a");
+                break;
+            default:
+                color = Color.parseColor("#76dc93");
 
+        }
+        emotion.setText(e);
+        emotion.setTextColor(color);
         date.setText(mood.getDate());
         time.setText(mood.getTime());
         reason.setText(mood.getReason());
@@ -76,7 +95,7 @@ public class DetailMoodActivity extends AppCompatActivity {
 
         }
 
-        Button delete = findViewById(R.id.save_button);
+        Button delete = findViewById(R.id.save_button2);
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
