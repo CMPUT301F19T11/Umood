@@ -1,5 +1,8 @@
-package com.example.umood;
 
+
+
+
+package com.example.umood;
 import android.app.Activity;
 import android.widget.EditText;
 
@@ -18,6 +21,9 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
+
+/*
+
 public class LoginActivityTest {
     private Solo solo;
 
@@ -35,12 +41,10 @@ public class LoginActivityTest {
         Activity activity = rule.getActivity();
 
     }
-    /**
-     *check for login activity
-     * enter an exist username and click login
-     */
-    @Test
-    public void checkLogin(){
+
+
+@Test
+public void checkLogin(){
         //do not enter username
         solo.assertCurrentActivity("Wrong Activity",LoginActivity.class);
         solo.clickOnButton("Sign in");
@@ -53,10 +57,10 @@ public class LoginActivityTest {
         solo.clearEditText((EditText) solo.getView(R.id.username));
 
         solo.assertCurrentActivity("Wrong Activity",MainActivity.class);
-    }
+        }
 
-    @Test
-    public void checkHappy() {
+@Test
+public void checkHappy() {
         solo.enterText((EditText) solo.getView(R.id.username),"test");
         assertTrue(solo.waitForText("test",1,10000));
         solo.clickOnButton("Sign in");
@@ -82,9 +86,9 @@ public class LoginActivityTest {
         assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
         //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
-    }
-    @Test
-    public void checkCry() {
+        }
+@Test
+public void checkCry() {
         solo.enterText((EditText) solo.getView(R.id.username),"test");
         assertTrue(solo.waitForText("test",1,10000));
         solo.clickOnButton("Sign in");
@@ -110,9 +114,9 @@ public class LoginActivityTest {
         assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
         //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
-    }
-    @Test
-    public void checkAngry() {
+        }
+@Test
+public void checkAngry() {
         solo.enterText((EditText) solo.getView(R.id.username),"test");
         assertTrue(solo.waitForText("test",1,10000));
         solo.clickOnButton("Sign in");
@@ -138,9 +142,9 @@ public class LoginActivityTest {
         assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
         //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
-    }
-    @Test
-    public void checkSad() {
+        }
+@Test
+public void checkSad() {
         solo.enterText((EditText) solo.getView(R.id.username),"test");
         assertTrue(solo.waitForText("test",1,10000));
         solo.clickOnButton("Sign in");
@@ -166,10 +170,10 @@ public class LoginActivityTest {
         assertEquals(solo.getCurrentActivity().getClass(),MainActivity.class);
         //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
-    }
+        }
 
-    @Test
-    public void checkMoodHistory() {
+@Test
+public void checkMoodHistory() {
         solo.enterText((EditText) solo.getView(R.id.username),"test");
         assertTrue(solo.waitForText("test",1,10000));
         solo.clickOnButton("Sign in");
@@ -217,9 +221,11 @@ public class LoginActivityTest {
 
         //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
-    }
+        }
 
 
 
 
-}
+        }
+
+ */

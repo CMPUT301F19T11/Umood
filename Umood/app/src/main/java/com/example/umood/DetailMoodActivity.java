@@ -44,7 +44,7 @@ public class DetailMoodActivity extends AppCompatActivity {
         TextView time = findViewById(R.id.reason_text2);
         TextView reason = findViewById(R.id.reason_text3);
         TextView emotion = findViewById(R.id.textView12);
-        ImageView photo = findViewById(R.id.image_import);
+        ImageView photo = findViewById(R.id.image_import2);
 
         String e = mood.getEmotion();
         int color;

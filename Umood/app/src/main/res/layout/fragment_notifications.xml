@@ -37,6 +37,9 @@
         android:drawableEnd="@drawable/profilearrow"
         android:drawablePadding="15dp"
 
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -61,7 +64,9 @@
         android:drawableEnd="@drawable/profilearrow"
         android:drawablePadding="15dp"
 
-
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +88,9 @@
         android:drawableEnd="@drawable/profilearrow"
         android:drawablePadding="15dp"
 
-
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/profile_chart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -109,7 +116,9 @@
         android:drawableEnd="@drawable/profilearrow"
         android:drawablePadding="15dp"
 
-
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

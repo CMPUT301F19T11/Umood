@@ -18,15 +18,15 @@ import org.junit.Test;
  used
  */
 
+
+/*
+
 public class MainActivityTest {
     private Solo solo;
     @Rule
     public ActivityTestRule<LoginActivity> rule =
             new ActivityTestRule<>(LoginActivity.class, true, true);
-    /**
-     * Runs before all tests and creates solo instance.
-     * @throws Exception
-     */
+
     @Before
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
@@ -42,22 +42,16 @@ public class MainActivityTest {
     public void checkMainActivity(){
         solo.assertCurrentActivity("wrong activity", MainActivity.class);
     }
-    /**
-     * Gets the Activity
-     * @throws Exception
-     */
+
     @Test
     public void start() throws Exception{
         Activity activity = rule.getActivity();
     }
 
-    /**
-     * Closes the activity after each test
-     * @throws Exception
-     */
     @After
     public void tearDown() throws Exception {
         solo.finishOpenedActivities();
     }
 
 }
+ */
