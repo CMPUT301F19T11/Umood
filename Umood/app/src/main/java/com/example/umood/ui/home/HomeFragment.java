@@ -106,8 +106,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 String socialSituation = data.getStringExtra("SocialSituation");
                 String reason = data.getStringExtra("Reason");
                 String path = data.getStringExtra("Path");
-                double longitude = data.getDoubleExtra("Longitude",53.5232+ 0.04*Math.random());
-                double latitude = data.getDoubleExtra("Latitude",-113.5263 + 0.04*Math.random());
+                double longitude = data.getDoubleExtra("Longitude",0);
+                double latitude = data.getDoubleExtra("Latitude",0);
 
                 if(reason==null || reason.isEmpty())
                     reason = "";
@@ -150,13 +150,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                 String Description = "Today: " + currentDate + "    Time: " + currentTime + socialSituation;
 
-
-                // Add a new marker to aap
-                gMap.addMarker(new MarkerOptions()
-                        .position(edmonton)
-                        .title(emotion)
-                        .snippet(Description)
-                        .icon(myIcon));
+                if(latitude!=0) {
+                    // Add a new marker to aap
+                    gMap.addMarker(new MarkerOptions()
+                            .position(edmonton)
+                            .title(emotion)
+                            .snippet(Description)
+                            .icon(myIcon));
+                }
 
                 // Update the mood event to database
                 docref.update("moodHistory", FieldValue.arrayUnion(mood));
@@ -192,6 +193,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         for(Mood mood:moodHistory) {
             String emotion = mood.getEmotion();
             double latitudeMood = mood.getLatitude();
+            if(latitudeMood==0)
+                continue;
             double longitudeMood = mood.getLongitude();
             LatLng location = new LatLng(latitudeMood, longitudeMood);
 

@@ -28,7 +28,7 @@ public class FeedActivity extends AppCompatActivity {
     private User user;
 
     private ArrayList<String> followingList;
-    private MoodAdapter adapter;
+    private MoodAdapterFollowing adapter;
     private ListView listView;
     MainActivity activity;
 
@@ -53,7 +53,7 @@ public class FeedActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new MoodAdapter(moodEventList);
+        adapter = new MoodAdapterFollowing(moodEventList);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
 

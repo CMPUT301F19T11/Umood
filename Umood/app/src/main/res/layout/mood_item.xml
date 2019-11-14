@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        >
+        android:foreground="?attr/selectableItemBackground" >
 
         <ImageView
             android:layout_width="80dp"
@@ -27,23 +27,33 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
             android:layout_toRightOf="@+id/following_avatar"
             android:orientation="vertical">
+
             <TextView
-                android:id = "@+id/date_and_time"
-                android:paddingBottom="0dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:id="@+id/mood_date"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"/>
+                android:layout_height="20dp"
+                android:paddingBottom="0dp"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/mood_time"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:paddingBottom="0dp"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/social_situation"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"/>
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
     </RelativeLayout>

@@ -147,6 +147,7 @@ public class addMoodInfo extends AppCompatActivity {
                                             addressNameView.setText(address);
                                             Log.d(TAG, address);
                                             geoMap.setImageResource(R.drawable.place);
+                                            Log.d(TAG, "long: "+longitude+"lati: " +latitude);
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }

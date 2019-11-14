@@ -29,12 +29,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         CardView cardView;
         ImageView imageView;
         TextView username;
+        TextView last_mood;
 
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
-            imageView = (ImageView) view.findViewById(R.id.following_avatar);
-            username = (TextView) view.findViewById(R.id.following_name);
+            imageView =  view.findViewById(R.id.following_avatar);
+            username =  view.findViewById(R.id.following_name);
+            last_mood = view.findViewById(R.id.following_name2);
 
         }
     }
@@ -59,6 +61,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User user = myUserList.get(position);
         holder.username.setText(user.getUsername());
         holder.imageView.setImageResource(R.drawable.zeldaflat);
+        String text = "[Last Mood Event: ";
+        ArrayList<Mood> moodList = user.getMoodHistory();
+        if(moodList.size()==0){
+            text = "[No Mood Event So Far]";
+        }
+        else {
+            String text2 = moodList.get(moodList.size() - 1).getDate();
+            text = text + text2 + "]";
+        }
+        holder.last_mood.setText(text);
 
     }
     @Override

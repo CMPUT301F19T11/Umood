@@ -42,11 +42,12 @@
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/enter_user_name"
         android:hint="@string/enter_username"
+
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:selectAllOnFocus="true"
@@ -72,7 +73,6 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
 
-        android:layout_marginBottom="20dp"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
@@ -80,10 +80,8 @@
         android:textColor="#4d98e9"
         android:textSize="16sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/cancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"
-        app:layout_constraintVertical_bias="0.241" />
+        app:layout_constraintTop_toBottomOf="@+id/username" />
 
     <View
         android:id="@+id/view"
@@ -93,6 +91,17 @@
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/following_number"
         tools:layout_editor_absoluteX="16dp" />
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="310dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="396dp"
+        android:background="#2b2c35"
+        app:layout_constraintBottom_toTopOf="@+id/following_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/following_number"
