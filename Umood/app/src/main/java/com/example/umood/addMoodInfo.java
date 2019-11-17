@@ -142,10 +142,14 @@ public class addMoodInfo extends AppCompatActivity {
                                             latitude = location.getLatitude();
                                             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                                             String cityName = addresses.get(0).getLocality();
-                                            String address = addresses.get(0).getThoroughfare();
+                                            String address = addresses.get(0).getFeatureName();
+                                            String address2 = addresses.get(0).getLocality();
+                                            Log.d(TAG,  addresses.get(0).toString());
                                             cityNameView.setText(cityName);
-                                            addressNameView.setText(address);
-                                            Log.d(TAG, address);
+                                            if(address!=null)
+                                                addressNameView.setText(address);
+                                            else
+                                                addressNameView.setText(address2);
                                             geoMap.setImageResource(R.drawable.place);
                                             Log.d(TAG, "long: "+longitude+"lati: " +latitude);
                                         } catch (IOException e) {
