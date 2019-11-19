@@ -25,8 +25,6 @@
     <string name="cancel"> Cancel</string>
 
 
-
-
     <!--  String below are used in Login xml -->
     <string name="no_account"> Sign up</string>
     <string name="action_sign_in"> Sign in </string>
@@ -82,6 +80,28 @@
     <string name="do_you_want_to_receive_strangers_following_request">Do you want to receive strangers following request?</string>
     <string name="do_you_want_to_add_your_current_location_to_your_mood_event_automatically">Do you want to add your current location to your mood event automatically?</string>
     <string name="apply">apply</string>
+
+
+    <!--  String below are used in profile xml -->
+    <string name="profile_setting">Settings</string>
+    <string name="profile_feed">Activity</string>
+    <string name="profile_moodHistory">Mood History</string>
+    <string name="profile_chart">Mood Statistics</string>
+    <string name="profile_post">Posts</string>
+    <string name="profile_following">Following</string>
+    <string name="profile_follower">Follower</string>
+    <string name="profile_avatar">The avatar of this user</string>
+    <string name="profile_background">The background</string>
+    <string name="profile_sample_username">sample</string>
+
+
+    <!--  String below are used in Information xml -->
+    <string name="information_date">Date</string>
+    <string name="information_time">Time</string>
+    <string name="information_reason">Reason</string>
+    <string name="information_delete">Save</string>
+    <string name="information_pic">An image which is uploaded by user</string>
+    <string name="information_background">A background</string>
 
 
 </resources>

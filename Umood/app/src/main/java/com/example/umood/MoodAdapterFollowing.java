@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 
 
-public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
+public class MoodAdapterFollowing extends RecyclerView.Adapter<MoodAdapterFollowing.ViewHolder> {
     private int resourceId;
     private Context mycontext;
     private ArrayList<Mood> myMoodList;
@@ -45,7 +45,7 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
         }
     }
 
-    public MoodAdapter(ArrayList<Mood> objects) {
+    public MoodAdapterFollowing(ArrayList<Mood> objects) {
         myMoodList = objects;
     }
 
@@ -87,7 +87,7 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent detailIntent = new Intent(mycontext, DetailMoodActivity.class);
+                Intent detailIntent = new Intent(mycontext, DetailMoodFollowingActivity.class);
                 detailIntent.putExtra("myMood", mood);
                 mycontext.startActivity(detailIntent);
             }

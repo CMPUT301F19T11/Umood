@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -39,9 +40,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,6 +64,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private MainActivity activity;
     private User user;
+
+    private int swap = 0;
 
     @NonNull
     @Override
@@ -94,6 +99,17 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 startActivityForResult(intentAdd,PICK_MOOD_REQUEST);
             }
         });
+
+        FloatingActionButton swapButton = root.findViewById(R.id.swapButton);
+        swapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                swap+=1;
+                gMap.clear();
+                Log.d(TAG, ""+swap);
+                onMapReady(gMap);
+            }
+        });
         return root;
     }
 
@@ -106,14 +122,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 String socialSituation = data.getStringExtra("SocialSituation");
                 String reason = data.getStringExtra("Reason");
                 String path = data.getStringExtra("Path");
+                double longitude = data.getDoubleExtra("Longitude",0);
+                double latitude = data.getDoubleExtra("Latitude",0);
 
                 if(reason==null || reason.isEmpty())
                     reason = "";
                 if(path ==null || path.isEmpty())
                     path = "";
 
-                double latitude = 53.5232+ 0.04*Math.random();
-                double longitude = -113.5263 + 0.04*Math.random();
                 LatLng edmonton = new LatLng(latitude, longitude);
                 BitmapDescriptor myIcon;
 
@@ -121,6 +137,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 if(emotion==null || emotion.isEmpty())
                     return;
+
                 switch (emotion){
                     case "Happy":
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
@@ -131,7 +148,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     case "Scared":
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
                         break;
-
                     default:
                         myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
                         break;
@@ -150,13 +166,14 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                 String Description = "Today: " + currentDate + "    Time: " + currentTime + socialSituation;
 
-
-                // Add a new marker to aap
-                gMap.addMarker(new MarkerOptions()
-                        .position(edmonton)
-                        .title(emotion)
-                        .snippet(Description)
-                        .icon(myIcon));
+                if(latitude!=0) {
+                    // Add a new marker to aap
+                    gMap.addMarker(new MarkerOptions()
+                            .position(edmonton)
+                            .title(emotion)
+                            .snippet(Description)
+                            .icon(myIcon));
+                }
 
                 // Update the mood event to database
                 docref.update("moodHistory", FieldValue.arrayUnion(mood));
@@ -174,49 +191,130 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap){
-        // Need to call MapsInitializer before doing any CameraUpdateFactory calls
-        gMap = googleMap;
-        double latitude = 53.5232;
-        double longitude = -113.5263;
-        LatLng edmonton = new LatLng(latitude, longitude);
-        BitmapDescriptor myIcon;
+        if((swap%2) == 0) {
+            // Need to call MapsInitializer before doing any CameraUpdateFactory calls
+            gMap = googleMap;
+            double latitude = 53.5232;
+            double longitude = -113.5263;
+            LatLng edmonton = new LatLng(latitude, longitude);
+            BitmapDescriptor myIcon;
 
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(edmonton)           // Sets the center of the map to location user
-                .zoom(12)                   // Sets the zoom
-                .bearing(0)                 // Sets the orientation of the camera to east
-                .build();                   // Creates a CameraPosition from the builder
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(edmonton)           // Sets the center of the map to location user
+                    .zoom(12)                   // Sets the zoom
+                    .bearing(0)                 // Sets the orientation of the camera to east
+                    .build();                   // Creates a CameraPosition from the builder
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        ArrayList<Mood> moodHistory = user.getMoodHistory();
-        for(Mood mood:moodHistory) {
-            String emotion = mood.getEmotion();
-            double latitudeMood = mood.getLatitude();
-            double longitudeMood = mood.getLongitude();
-            LatLng location = new LatLng(latitudeMood, longitudeMood);
+            ArrayList<Mood> moodHistory = user.getMoodHistory();
+            for (Mood mood : moodHistory) {
+                String emotion = mood.getEmotion();
+                double latitudeMood = mood.getLatitude();
+                if (latitudeMood == 0)
+                    continue;
+                double longitudeMood = mood.getLongitude();
+                LatLng location = new LatLng(latitudeMood, longitudeMood);
 
 
-            switch (emotion){
-                case "Happy":
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
-                    break;
-                case "Sick":
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sick);
-                    break;
-                case "Scared":
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
-                    break;
-                default:
-                    myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
-                    break;
+                switch (emotion) {
+                    case "Happy":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
+                        break;
+                    case "Sick":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sick);
+                        break;
+                    case "Scared":
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
+                        break;
+                    default:
+                        myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
+                        break;
+                }
+
+                String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
+                googleMap.addMarker(new MarkerOptions()
+                        .position(location)
+                        .title(emotion)
+                        .snippet(Description)
+                        .icon(myIcon));
             }
+        }
+        else {
+            // Need to call MapsInitializer before doing any CameraUpdateFactory calls
+            gMap = googleMap;
+            double latitude = 53.5232;
+            double longitude = -113.5263;
+            LatLng edmonton = new LatLng(latitude, longitude);
 
-            String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
-            googleMap.addMarker(new MarkerOptions()
-                    .position(location)
-                    .title(emotion)
-                    .snippet(Description)
-                    .icon(myIcon));
+
+
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(edmonton)           // Sets the center of the map to location user
+                    .zoom(12)                   // Sets the zoom
+                    .bearing(0)                 // Sets the orientation of the camera to east
+                    .build();                   // Creates a CameraPosition from the builder
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+            ArrayList<String> following = user.getFollowing();
+            for (String followingUser : following) {
+                collectionReference.document(followingUser)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                User user = document.toObject(User.class);
+                                int size = user.getMoodHistory().size();
+                                if(size>=1) {
+                                    int index = size-1;
+                                    Mood mood = user.getMoodHistory().get(size - 1);
+                                    while(mood.getLatitude() == 0 && index>=0) {
+                                        mood = user.getMoodHistory().get(index);
+                                        index--;
+                                    }
+                                    if(mood.getLatitude() != 0) {
+                                        String emotion = mood.getEmotion();
+                                        BitmapDescriptor myIcon;
+
+                                        double latitudeMood = mood.getLatitude();
+
+                                        double longitudeMood = mood.getLongitude();
+                                        LatLng location = new LatLng(latitudeMood, longitudeMood);
+
+
+                                        switch (emotion) {
+                                            case "Happy":
+                                                myIcon = BitmapDescriptorFactory.fromResource(R.drawable.happy);
+                                                break;
+                                            case "Sick":
+                                                myIcon = BitmapDescriptorFactory.fromResource(R.drawable.sick);
+                                                break;
+                                            case "Scared":
+                                                myIcon = BitmapDescriptorFactory.fromResource(R.drawable.scared);
+                                                break;
+                                            default:
+                                                myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
+                                                break;
+                                        }
+                                        String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
+                                        gMap.addMarker(new MarkerOptions()
+                                                .position(location)
+                                                .title(emotion)
+                                                .snippet(Description)
+                                                .icon(myIcon));
+                                    }
+                                }
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+
+                    }
+                });
+            }
         }
 
         // CameraPosition cameraPosition = new CameraPosition.Builder().target(edmonton).zoom(12).build();

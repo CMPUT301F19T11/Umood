@@ -36,7 +36,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_vertical"
         android:text="@string/location2"
         android:textSize="18sp"
@@ -65,7 +65,7 @@
         android:layout_height="78dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
 
         android:background="#00000000"
         android:contentDescription="@string/moodLove"
@@ -81,7 +81,7 @@
         android:layout_height="78dp"
         android:layout_marginStart="92dp"
         android:layout_marginLeft="92dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:background="#00000000"
         android:contentDescription="@string/moodSad"
         android:foreground="?android:attr/selectableItemBackground"
@@ -96,7 +96,7 @@
 
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:background="#00000000"
         android:contentDescription="@string/moodCry"
         android:foreground="?android:attr/selectableItemBackground"
@@ -110,7 +110,7 @@
         android:layout_height="78dp"
         android:layout_marginStart="92dp"
         android:layout_marginLeft="92dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:background="#00000000"
         android:contentDescription="@string/moodHappy"
         android:foreground="?android:attr/selectableItemBackground"
@@ -152,7 +152,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_vertical"
         android:text="@string/location"
         android:textSize="18sp"
@@ -162,13 +162,40 @@
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center_vertical"
+        android:textSize="13sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/view7"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4" />
+
     <EditText
         android:id="@+id/reason_text"
         android:layout_width="237dp"
         android:layout_height="50dp"
 
 
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:background="@drawable/enter_user_name"
@@ -188,20 +215,19 @@
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:text="@string/reason"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="serif"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/reason_text"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -211,12 +237,12 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/reason_text" />
 
     <View
         android:id="@+id/view3"
@@ -246,12 +272,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:background="#00000000"
         android:contentDescription="@string/map"
         app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/view3"
-        app:srcCompat="@drawable/place" />
+        app:srcCompat="@drawable/placeholder" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -259,7 +285,7 @@
         android:layout_height="73dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:background="#00000000"
         android:contentDescription="@string/map"
         app:layout_constraintStart_toEndOf="@+id/textView9"

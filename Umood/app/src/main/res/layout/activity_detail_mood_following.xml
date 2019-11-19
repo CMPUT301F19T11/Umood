@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     >
 
+
+    <TextView
+        android:id="@+id/reason_text4"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/enter_user_name"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:selectAllOnFocus="true"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+    <TextView
+        android:id="@+id/reason_text5"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/enter_user_name"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:selectAllOnFocus="true"
+        android:textCursorDrawable="@drawable/color_cursor"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -17,49 +54,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@color/colorAccent" />
 
-    <Button
-        android:id="@+id/save_button"
-        android:layout_width="118dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/signup_button"
-        android:text="@string/information_delete"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
-    <Button
-        android:id="@+id/save_button2"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/garbagecan"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
-    <EditText
-        android:id="@+id/reason_text3"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:importantForAutofill="no"
-        android:layout_marginRight="16dp"
-        android:inputType="text"
-        android:background="@drawable/white_corner"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:selectAllOnFocus="true"
-        android:textCursorDrawable="@drawable/color_cursor"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="@+id/view4"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -67,8 +61,8 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="185dp"
-        android:layout_marginRight="185dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginRight="188dp"
         android:background="#00000000"
         android:contentDescription="@string/map"
         app:layout_constraintEnd_toEndOf="@+id/view4"
@@ -79,13 +73,12 @@
     <ImageView
         android:id="@+id/image_import"
         android:layout_width="180dp"
-        android:layout_height="170dp"
+        android:layout_height="180dp"
         android:layout_marginStart="110dp"
         android:layout_marginLeft="110dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="110dp"
         android:layout_marginRight="110dp"
-        android:background="#fafafa"
+        android:background="#ffffff"
         android:contentDescription="@string/information_pic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
@@ -109,19 +102,6 @@
         app:layout_constraintStart_toStartOf="@+id/image_import"
         app:layout_constraintTop_toBottomOf="@+id/view9"
         app:srcCompat="@drawable/photo" />
-
-    <Spinner
-        android:id="@+id/spinner2"
-        android:gravity="center"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:entries="@array/spingarr"
-        android:scrollbarSize="30sp"
-        app:layout_constraintEnd_toEndOf="@+id/view5"
-        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
 
     <TextView
@@ -157,15 +137,13 @@
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="serif"
-        app:layout_constraintEnd_toStartOf="@+id/view11"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toEndOf="@+id/view10"
+        app:layout_constraintStart_toStartOf="@+id/add_cancel"
         app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
     <TextView
@@ -292,7 +270,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reason_text3" />
+        app:layout_constraintTop_toBottomOf="@+id/reason_text5" />
 
     <View
         android:id="@+id/view6"
@@ -303,7 +281,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/reason_text4" />
 
     <View
         android:id="@+id/view10"
@@ -312,17 +290,6 @@
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="@+id/add_cancel"
         app:layout_constraintEnd_toEndOf="@+id/add_cancel"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view11"
-        android:layout_width="0.5dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/add_cancel"
-        app:layout_constraintEnd_toStartOf="@+id/save_button2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -335,7 +302,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
-
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
@@ -344,7 +310,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:gravity="center_vertical"
-        android:textSize="14sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintStart_toEndOf="@+id/imageButton4"
