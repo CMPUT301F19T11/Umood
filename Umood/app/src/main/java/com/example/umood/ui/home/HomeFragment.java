@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -41,6 +42,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -274,6 +276,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                                     */
 
                                     // If this user's most recent event has no location, we skip it.
+
                                     if(mood.getLatitude() != 0) {
                                         String emotion = mood.getEmotion();
                                         BitmapDescriptor myIcon;
