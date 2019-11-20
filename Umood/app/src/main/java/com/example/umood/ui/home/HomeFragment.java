@@ -276,6 +276,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                                     */
 
                                     // If this user's most recent event has no location, we skip it.
+
                                     if(mood.getLatitude() != 0) {
                                         String emotion = mood.getEmotion();
                                         BitmapDescriptor myIcon;
