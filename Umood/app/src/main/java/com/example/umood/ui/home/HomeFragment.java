@@ -1,7 +1,6 @@
 package com.example.umood.ui.home;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,7 +32,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
@@ -44,7 +41,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -269,10 +265,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                                 if(size>=1) {
                                     int index = size-1;
                                     Mood mood = user.getMoodHistory().get(size - 1);
+
+                                    /*
                                     while(mood.getLatitude() == 0 && index>=0) {
                                         mood = user.getMoodHistory().get(index);
                                         index--;
                                     }
+                                    */
+
+                                    // If this user's most recent event has no location, we skip it.
                                     if(mood.getLatitude() != 0) {
                                         String emotion = mood.getEmotion();
                                         BitmapDescriptor myIcon;

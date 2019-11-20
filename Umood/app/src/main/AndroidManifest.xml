@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailMoodFollowingActivity"></activity>
+        <activity android:name=".DetailMoodFollowingActivity"/>
         <activity android:name=".ChartActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".DisplayFollowerActivity" />
