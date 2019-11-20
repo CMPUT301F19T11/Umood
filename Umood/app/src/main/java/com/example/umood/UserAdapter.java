@@ -15,6 +15,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -60,7 +63,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = myUserList.get(position);
         holder.username.setText(user.getUsername());
-        holder.imageView.setImageResource(R.drawable.zeldaflat);
+        Glide.with(mycontext)
+            .load(R.drawable.zeldaflat)
+            .transform(new CircleCrop())
+            .into(holder.imageView);
         String text = "[Last Mood Event: ";
         ArrayList<Mood> moodList = user.getMoodHistory();
         if(moodList.size()==0){

@@ -1,6 +1,9 @@
 package com.example.umood.ui.following;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 import androidx.annotation.NonNull;
@@ -67,6 +71,28 @@ public class DashboardFragment extends Fragment{
         Button request = root.findViewById(R.id.request);
         Button follower = root.findViewById(R.id.follower);
         Button addFollowing = root.findViewById(R.id.addFollowing);
+
+
+        if(!UnverifiedUser.getList().isEmpty()){
+            Log.d(TAG, "haha");
+            ImageView imageDot = root.findViewById(R.id.red_dot);
+            GradientDrawable gd = new GradientDrawable();
+            gd.setShape(GradientDrawable.OVAL);
+            gd.setColor(Color.rgb(134, 135, 255));
+            gd.setCornerRadius(5);
+            gd.setStroke(4, Color.rgb(255, 255, 255));
+
+
+
+            int h = gd.getIntrinsicHeight();
+            int w = gd.getIntrinsicWidth();
+            gd.setBounds( 0, 0, w, h );
+
+            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.followingrequest),
+                    null,
+                    getResources().getDrawable(R.drawable.newstate),
+                    null);
+        }
 
         Log.d(TAG, "size+"+userView.size());
         // RecycleView Components:

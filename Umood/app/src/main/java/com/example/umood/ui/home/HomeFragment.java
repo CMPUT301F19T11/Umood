@@ -1,7 +1,6 @@
 package com.example.umood.ui.home;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -34,7 +33,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
@@ -269,10 +267,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                                 if(size>=1) {
                                     int index = size-1;
                                     Mood mood = user.getMoodHistory().get(size - 1);
+
+                                    /*
                                     while(mood.getLatitude() == 0 && index>=0) {
                                         mood = user.getMoodHistory().get(index);
                                         index--;
                                     }
+                                    */
+
+                                    // If this user's most recent event has no location, we skip it.
+
                                     if(mood.getLatitude() != 0) {
                                         String emotion = mood.getEmotion();
                                         BitmapDescriptor myIcon;

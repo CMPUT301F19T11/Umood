@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:listitem="@layout/user_item"
-
-    android:layout_width="match_parent"
     android:background="@drawable/background_vague"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
         android:id="@+id/request"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#FBFCFC"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+        android:background="#ffffff"
+
 
         android:drawableStart="@drawable/followingrequest"
         android:drawableLeft="@drawable/followingrequest"
@@ -25,15 +25,17 @@
 
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/follower"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
 
         android:layout_marginTop="1dp"
-        android:background="#FBFCFC"
+        android:background="#ffffff"
+
         android:drawableStart="@drawable/followingfollowers"
         android:drawableLeft="@drawable/followingfollowers"
         android:drawablePadding="17dp"
@@ -43,35 +45,38 @@
         android:paddingRight="18dp"
 
         android:text="@string/follower"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recycle_view_following"
+        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/request" />
 
     <Button
         android:id="@+id/addFollowing"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="375dp"
+        android:layout_height="40dp"
+
 
         android:layout_marginTop="1dp"
-
-        android:background="#FBFCFC"
+        android:background="#ffffff"
         android:drawableStart="@drawable/followingadduser"
-        android:drawableLeft="@drawable/followingadduser"
 
+        android:drawableLeft="@drawable/followingadduser"
         android:drawablePadding="15dp"
         android:gravity="center_vertical"
+
         android:paddingLeft="20dp"
+
         android:paddingRight="20dp"
-
-
         android:text="@string/add_fllow"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/follower" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view_following"
         android:layout_width="match_parent"
-        android:layout_height="466dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="0dp"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,18 +87,32 @@
 
     <View
         android:id="@+id/view"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/follower"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/view8"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/addFollowing"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/red_dot"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+
+        app:layout_constraintEnd_toEndOf="@+id/request"
+        app:layout_constraintTop_toTopOf="@+id/request" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
