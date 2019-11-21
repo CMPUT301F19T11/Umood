@@ -63,6 +63,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = myUserList.get(position);
         holder.username.setText(user.getUsername());
+
         Glide.with(mycontext)
             .load(R.drawable.zeldaflat)
             .transform(new CircleCrop())

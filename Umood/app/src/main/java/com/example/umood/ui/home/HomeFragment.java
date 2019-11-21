@@ -17,8 +17,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.umood.DetailMoodActivity;
+import com.example.umood.DetailMoodFollowingActivity;
 import com.example.umood.MainActivity;
 import com.example.umood.Mood;
+import com.example.umood.MoodList;
 import com.example.umood.R;
 
 import com.example.umood.User;
@@ -31,6 +34,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -62,6 +66,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private MainActivity activity;
     private User user;
+    User fUser;
+    Marker gmarker;
 
     private int swap = 0;
 
@@ -83,7 +89,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         if(mapView==null)
             Log.d(TAG, "map view is null");
-
         mapView.getMapAsync(this);
 
         intentAdd = new Intent(getActivity(), addMoodInfo.class);
@@ -108,6 +113,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 onMapReady(gMap);
             }
         });
+
+
+
         return root;
     }
 
@@ -236,6 +244,25 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                         .snippet(Description)
                         .icon(myIcon));
             }
+            gMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    int position = 0;
+                    ArrayList<Mood> moodHistory = user.getMoodHistory();
+                    for (Mood mood : moodHistory) {
+                        String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
+                        if(Description.equals(marker.getSnippet())){
+                            Intent detailIntent = new Intent(activity, DetailMoodActivity.class);
+                            MoodList moodList = new MoodList(moodHistory);
+                            detailIntent.putExtra("myMood", mood);
+                            detailIntent.putExtra("moodList", moodList);
+                            detailIntent.putExtra("position",position);
+                            startActivity(detailIntent);
+                        }
+                        position++;
+                    }
+                }
+            });
         }
         else {
             // Need to call MapsInitializer before doing any CameraUpdateFactory calls
@@ -254,7 +281,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
             ArrayList<String> following = user.getFollowing();
-            for (String followingUser : following) {
+            for (final String followingUser : following) {
                 collectionReference.document(followingUser)
                         .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -301,12 +328,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                                                 myIcon = BitmapDescriptorFactory.fromResource(R.drawable.angry);
                                                 break;
                                         }
+                                        String myTitle = followingUser+" feels " + emotion;
                                         String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
                                         gMap.addMarker(new MarkerOptions()
                                                 .position(location)
-                                                .title(emotion)
+                                                .title(myTitle)
                                                 .snippet(Description)
-                                                .icon(myIcon));
+                                                .icon(myIcon))
+                                                .setTag(followingUser);
+
                                     }
                                 }
                             } else {
@@ -319,6 +349,41 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     }
                 });
             }
+            gMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    gmarker = marker;
+
+                    String followingUser = (String) marker.getTag();
+                    collectionReference.document(followingUser)
+                            .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                             @Override
+                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                 if (task.isSuccessful()) {
+                                     DocumentSnapshot document = task.getResult();
+                                     if (document.exists()) {
+                                         fUser = document.toObject(User.class);
+                                         ArrayList<Mood> moodHistory = fUser.getMoodHistory();
+                                         for (Mood mood : moodHistory) {
+                                             String Description = "Today: " + mood.getDate() + "    Time: " + mood.getTime();
+                                             if(Description.equals(gmarker.getSnippet())){
+                                                 Intent detailIntent = new Intent(activity, DetailMoodFollowingActivity.class);
+                                                 detailIntent.putExtra("myMood", mood);
+                                                 startActivity(detailIntent);
+                                             }
+                                         }
+                                         Log.d(TAG, "onComplete: user exist");
+                                     } else {
+                                         Log.d(TAG, "No such document");
+                                     }
+                                 }
+                                 else{
+                                         Log.d(TAG, "get failed with ", task.getException());
+                                     }
+                             }});
+
+                }
+            });
         }
 
         // CameraPosition cameraPosition = new CameraPosition.Builder().target(edmonton).zoom(12).build();
@@ -331,6 +396,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         super.onResume();
         activity.update();
         mapView.onResume();
+        Log.d(TAG, "onResume: ");
 
     }
 
@@ -348,19 +414,30 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         super.onPause();
         activity.update();
         mapView.onPause();
+        Log.d(TAG, "onPause: ");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
+        Log.d(TAG, "onDestroy: ");
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+        Log.d(TAG, "onLowMemory: ");
     }
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d(TAG, "onStart: ");
+
+    }
+
+
 
 
 }

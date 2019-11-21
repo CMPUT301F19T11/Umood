@@ -61,8 +61,9 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final Mood mood = myMoodList.get(position);
+        final MoodList moodList = new MoodList(myMoodList);
         holder.date.setText(mood.getDate());
         holder.time.setText(mood.getTime());
         String text = mood.getSocialSituation();
@@ -89,6 +90,8 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
             public void onClick(View v) {
                 Intent detailIntent = new Intent(mycontext, DetailMoodActivity.class);
                 detailIntent.putExtra("myMood", mood);
+                detailIntent.putExtra("moodList", moodList);
+                detailIntent.putExtra("position",position);
                 mycontext.startActivity(detailIntent);
             }
         });

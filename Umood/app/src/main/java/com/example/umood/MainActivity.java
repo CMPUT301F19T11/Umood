@@ -122,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         Intent intent = getIntent();
-        Log.d(TAG, "debug1");
         user = (User) intent.getSerializableExtra("User");
     }
 
@@ -202,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Obtain Data from database
         ArrayList<String> followingList = user.getFollowing();
-        Log.d(TAG, "followingListSize:"+user.getFollowing().size());
         if(followingList!=null) {
             for (String username:followingList) {
                 collectionReference.document(username)
@@ -214,7 +212,6 @@ public class MainActivity extends AppCompatActivity {
                             if (document.exists()) {
                                 User user2 = document.toObject(User.class);
                                 boolean a = followingUserList.getList().contains(user2);
-                                Log.d(TAG, "true/false: "+a);
                                 if(!followingUserList.is_contain(user2.getUsername()))
                                     followingUserList.addUser(user2);
                             } else {
@@ -233,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> unverifyList = user.getUnverifiedList();
         if(unverifyList!=null) {
             for (String username : unverifyList) {
-                Log.d(TAG, "loop");
                 collectionReference.document(username)
                         .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -243,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
                             if (document.exists()) {
                                 User user2 = document.toObject(User.class);
                                 boolean a = user2==null;
-                                Log.d(TAG, ""+a);
                                 if(!UnverifiedUser.is_contain(user2.getUsername()))
                                     UnverifiedUser.addUser(user2);
                             } else {
@@ -262,7 +257,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> followerList = user.getFollower();
         if(followerList!=null) {
             for (String username:followerList) {
-                Log.d(TAG, "loop");
                 collectionReference.document(username)
                         .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -272,11 +266,10 @@ public class MainActivity extends AppCompatActivity {
                             if (document.exists()) {
                                 User user2 = document.toObject(User.class);
                                 boolean a = user==null;
-                                Log.d(TAG, ""+a);
                                 if(!followerUserList.is_contain(user2.getUsername()))
                                     followerUserList.addUser(user2);
                             } else {
-                                Log.d(TAG, "not exist");
+                                Log.d(TAG, "follower not exist");
                             }
                         } else {
                             Log.d(TAG, "get failed with ", task.getException());
@@ -297,7 +290,6 @@ public class MainActivity extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             User following = document.toObject(User.class);
-                            Log.d(TAG, "Following obtained");
                             if (following.getMoodHistory()!=null && !following.getMoodHistory().isEmpty()) {
                                 ArrayList<Mood> moodhis = following.getMoodHistory();
                                 Collections.sort(moodhis);
@@ -313,7 +305,6 @@ public class MainActivity extends AppCompatActivity {
                                 if(cond){
                                     moodEventList.addUser(madd);
                                 }
-                                Log.d(TAG, "Following Added");
                             }
 
                         } else {

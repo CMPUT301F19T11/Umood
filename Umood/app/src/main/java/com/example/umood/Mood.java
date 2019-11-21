@@ -50,6 +50,7 @@ public class Mood implements Serializable,Comparable<Mood>{
      * @param latitude: a google map data type to indicate where the user is when he/she upload  a new mood event.
      * @param longitude : a google map data type to indicate where the user is when he/she upload  a new mood event.
      */
+
     public Mood(String date, String time, String emotion, String reason, String socialSituation, double latitude,double longitude,String username,String imagePath){
         this.date = date;
         this.time = time;

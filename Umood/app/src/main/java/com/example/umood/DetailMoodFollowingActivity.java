@@ -15,8 +15,6 @@ import android.widget.ImageView;
 
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -34,10 +32,9 @@ public class DetailMoodFollowingActivity extends AppCompatActivity {
 
         geocoder = new Geocoder(this, Locale.getDefault());
 
-        Mood mood;
-
         Intent intent = getIntent();
-        mood = (Mood)intent.getSerializableExtra("myMood");
+        Mood mood = (Mood)intent.getSerializableExtra("myMood");
+
 
         TextView date = findViewById(R.id.reason_text);
         TextView time = findViewById(R.id.reason_text2);
