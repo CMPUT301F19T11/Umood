@@ -9,6 +9,9 @@ public class MoodList implements Serializable {
     public MoodList() {
         list = new ArrayList<>();
     }
+    public MoodList(ArrayList<Mood> list) {
+        this.list = list;
+    }
 
 
     public ArrayList<Mood>  getList() {

@@ -55,6 +55,7 @@
         android:background="@drawable/white_corner"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:gravity="center"
         android:selectAllOnFocus="true"
         android:textCursorDrawable="@drawable/color_cursor"
         android:textStyle="italic"
@@ -120,6 +121,7 @@
         android:layout_marginRight="16dp"
         android:entries="@array/spingarr"
         android:scrollbarSize="30sp"
+        android:background="@drawable/white_corner"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintTop_toBottomOf="@+id/view5" />
 

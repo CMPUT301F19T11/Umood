@@ -1,6 +1,5 @@
 package com.example.umood;
 
-import android.Manifest;
 import android.content.Intent;
 
 import android.graphics.BitmapFactory;
@@ -10,6 +9,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import android.widget.ImageButton;
@@ -17,13 +17,17 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,29 +37,47 @@ public class DetailMoodActivity extends AppCompatActivity {
     private Mood mood;
     Intent intent2;
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Geocoder geocoder ;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private CollectionReference collectionReference = db.collection("users");
 
+    TextView reason;
+    Spinner spinner;
+    String newSocialSituation;
+    Mood newMood;
+    MoodList moodList;
+    ArrayList<Mood> moods;
+    int position;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.information);
         Intent intent = getIntent();
-        geocoder = new Geocoder(this, Locale.getDefault());
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         mood = (Mood)intent.getSerializableExtra("myMood");
+        moodList     = (MoodList) intent.getSerializableExtra("moodList");
+        moods = moodList.getList();
+        position          = intent.getIntExtra("position",0);
 
         TextView date = findViewById(R.id.reason_text);
         TextView time = findViewById(R.id.reason_text2);
-        TextView reason = findViewById(R.id.reason_text3);
+        reason = findViewById(R.id.reason_text3);
+        spinner = findViewById(R.id.spinner2);
         TextView emotion = findViewById(R.id.textView12);
         ImageView photo = findViewById(R.id.image_import2);
 
         ImageView geoMap = findViewById(R.id.imageButton4);
         TextView cityNameView = findViewById(R.id.textView10);
         TextView addressNameView = findViewById(R.id.textView11);
+
+
+
+        Button saveButton = findViewById(R.id.save_button);
 
         String e = mood.getEmotion();
         int color;
@@ -78,8 +100,6 @@ public class DetailMoodActivity extends AppCompatActivity {
         date.setText(mood.getDate());
         time.setText(mood.getTime());
         reason.setText(mood.getReason());
-        Spinner spinner = findViewById(R.id.spinner2);
-
 
         if(mood.getImagePath()!=null && !mood.getImagePath().isEmpty()){
             photo.setImageBitmap(BitmapFactory.decodeFile(mood.getImagePath()));
@@ -88,6 +108,7 @@ public class DetailMoodActivity extends AppCompatActivity {
 
 
         String social = mood.getSocialSituation();
+        newSocialSituation = social;
         switch(social){
             case "Alone":
                 spinner.setSelection(1);
@@ -102,9 +123,7 @@ public class DetailMoodActivity extends AppCompatActivity {
                 spinner.setSelection(4);
                 break;
             default:
-
                 spinner.setSelection(0);
-
         }
 
         double longitude = mood.getLongitude();
@@ -124,7 +143,58 @@ public class DetailMoodActivity extends AppCompatActivity {
             }
         }
 
+
+
         Button delete = findViewById(R.id.save_button2);
+
+
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                newSocialSituation = ((TextView)view).getText().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String newReason = reason.getText().toString();
+                newMood = new Mood(mood.getDate(),
+                        mood.getTime(),
+                        mood.getEmotion(),
+                        newReason,
+                        newSocialSituation,
+                        mood.getLatitude(),
+                        mood.getLongitude(),
+                        mood.getUsername(),
+                        mood.getImagePath());
+                moods.set(position,newMood);
+                collectionReference.document(mood.getUsername()).update("moodHistory", moods)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "DocumentSnapshot successfully updated!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error updating document", e);
+                            }
+                        });
+                intent2.putExtra("User",new User(mood.getUsername()));
+                startActivity(intent2);
+            }
+        });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,8 +206,6 @@ public class DetailMoodActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
-
 
         ImageButton buttonCancel = findViewById(R.id.add_cancel);
         buttonCancel.setOnClickListener(new View.OnClickListener() {

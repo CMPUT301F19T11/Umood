@@ -3,39 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:listitem="@layout/user_item"
-<<<<<<< HEAD
-<<<<<<< HEAD
     android:background="@drawable/background_vague"
     android:layout_width="match_parent"
-=======
-
-    android:layout_width="match_parent"
-    android:background="@drawable/background_vague"
->>>>>>> 8e50ec6dab014be005c192cbaa185b88cba2c3c5
-=======
-    android:background="@drawable/background_vague"
-    android:layout_width="match_parent"
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
     android:layout_height="match_parent">
 
     <Button
         android:id="@+id/request"
-<<<<<<< HEAD
-<<<<<<< HEAD
-        android:layout_width="375dp"
-        android:layout_height="40dp"
-        android:background="#ffffff"
-=======
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#FBFCFC"
->>>>>>> 8e50ec6dab014be005c192cbaa185b88cba2c3c5
-=======
         android:layout_width="375dp"
         android:layout_height="40dp"
         android:background="#ffffff"
 
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
 
         android:drawableStart="@drawable/followingrequest"
         android:drawableLeft="@drawable/followingrequest"
@@ -46,40 +23,19 @@
         android:paddingRight="20dp"
         android:text="@string/request"
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 8e50ec6dab014be005c192cbaa185b88cba2c3c5
-=======
-
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/follower"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
         android:layout_width="375dp"
         android:layout_height="40dp"
 
         android:layout_marginTop="1dp"
         android:background="#ffffff"
-<<<<<<< HEAD
-=======
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
 
-        android:layout_marginTop="1dp"
-        android:background="#FBFCFC"
->>>>>>> 8e50ec6dab014be005c192cbaa185b88cba2c3c5
-=======
-
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
         android:drawableStart="@drawable/followingfollowers"
         android:drawableLeft="@drawable/followingfollowers"
         android:drawablePadding="17dp"
@@ -89,24 +45,13 @@
         android:paddingRight="18dp"
 
         android:text="@string/follower"
-<<<<<<< HEAD
-<<<<<<< HEAD
-        app:layout_constraintEnd_toEndOf="@+id/recycle_view_following"
-        app:layout_constraintStart_toStartOf="parent"
-=======
-        app:layout_constraintEnd_toEndOf="parent"
->>>>>>> 8e50ec6dab014be005c192cbaa185b88cba2c3c5
-=======
         app:layout_constraintEnd_toEndOf="@+id/recycle_view_following"
         app:layout_constraintStart_toStartOf="parent"
 
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
         app:layout_constraintTop_toBottomOf="@+id/request" />
 
     <Button
         android:id="@+id/addFollowing"
-<<<<<<< HEAD
-<<<<<<< HEAD
         android:layout_width="375dp"
         android:layout_height="40dp"
 
@@ -125,35 +70,7 @@
         android:text="@string/add_fllow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-=======
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-=======
-        android:layout_width="375dp"
-        android:layout_height="40dp"
 
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
-
-        android:layout_marginTop="1dp"
-
-        android:background="#FBFCFC"
-        android:drawableStart="@drawable/followingadduser"
-        android:drawableLeft="@drawable/followingadduser"
-
-        android:drawablePadding="15dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-
-
-        android:text="@string/add_fllow"
-        app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
->>>>>>> 8e50ec6dab014be005c192cbaa185b88cba2c3c5
-=======
-        app:layout_constraintStart_toStartOf="parent"
-
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
         app:layout_constraintTop_toBottomOf="@+id/follower" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -170,10 +87,6 @@
 
     <View
         android:id="@+id/view"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
         android:layout_width="350dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
@@ -200,24 +113,6 @@
 
         app:layout_constraintEnd_toEndOf="@+id/request"
         app:layout_constraintTop_toTopOf="@+id/request" />
-<<<<<<< HEAD
-=======
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/follower"
-        tools:layout_editor_absoluteX="16dp" />
 
-    <View
-        android:id="@+id/view8"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/addFollowing"
-        tools:layout_editor_absoluteX="16dp" />
->>>>>>> 8e50ec6dab014be005c192cbaa185b88cba2c3c5
-=======
-
->>>>>>> c18039d6289bc09d50e68bcc592f0a0d8c9672f5
 
 </androidx.constraintlayout.widget.ConstraintLayout>

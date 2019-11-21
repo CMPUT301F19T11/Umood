@@ -69,10 +69,12 @@ public class MoodHistory extends AppCompatActivity {
         });
 
     }
+
+
 }
 
 /*
-Code Created by PY(Swipe List View):
+Code below is wrote by PY(Swipe List View):
         adapter = new MoodAdapter(this, R.layout.content, moodList);
 
         listView = (SwipeMenuListView) findViewById(R.id.moodListView);
