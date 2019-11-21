@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="50sp"
     android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
     >
 
     <TextView
@@ -24,13 +26,15 @@
         android:layout_gravity="center_vertical"
         android:textStyle="italic"
         />
+
     <Button
+        android:id="@+id/acceptButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/signup_button"
-        android:layout_marginLeft="40dp"
         android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
 
+        android:background="@drawable/signup_button"
         android:text="@string/f_request_button_ok" />
 
 
