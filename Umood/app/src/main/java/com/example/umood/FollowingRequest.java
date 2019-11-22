@@ -35,7 +35,6 @@ public class FollowingRequest extends AppCompatActivity {
 
     private UserList UnverifiedUser;
 
-    User me;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -31,6 +31,22 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is MoodHistoryActivity
+ *      This activity is to display your mood Event history.
+ *      You can also view more detailed information about your mood event by click this event card.
+ *
+ * Corresponding Backlog:
+ *      - US 04.01.01: As a participant, I want to view as a list my mood history, sorted by date and time,
+ *      in reverse chronological order (most recent coming first).
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
+
 public class MoodHistory extends AppCompatActivity {
     private MoodAdapter adapter;
     private ArrayList<Mood> moodList;

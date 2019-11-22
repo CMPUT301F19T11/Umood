@@ -40,6 +40,35 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is addMoodInfoActivity
+ *      This fragment can display your username and other basic information
+ *      Also, It provides many buttons.
+ *      You can go to check your mood history and your friend's mood event from here.
+ *
+ * Corresponding Backlog:
+ *      - US 02.01.01: As a participant, I want to express the reason why for a mood event using a
+ *      brief textual explanation (no more than 20 characters or 3 words).
+ *
+ *      - US 02.02.01: As a participant, I want to express the reason why for a mood event using a photograph.
+ *
+ *      - US 02.03.01: As a participant, I want to specify the social situation for a mood event to be one of:
+ *      alone, with one other person, with two to several people, or with a crowd.
+ *
+ *      - US 01.01.01: As a participant, I want to add a mood event to my mood history, each event with
+ *      the current date and time, a required emotional state, optional reason, and optional social situation.
+ *
+ *      - US 01.02.01: As a participant, I want consistent emoticons and colors to depict and distinguish
+ *      the emotional states in any view.
+ *
+ *      - US 06.01.01: As a participant, I want to optionally attach my current location to a mood event.
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
+
 public class addMoodInfo extends AppCompatActivity {
     private static final String TAG = "qian-addMood";
 

@@ -18,7 +18,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is LogInActivity
+ *      This activity is to help user log in.
+ *
+ * Corresponding Backlog:
+ *      - None
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "qian";
     FirebaseFirestore db = FirebaseFirestore.getInstance();

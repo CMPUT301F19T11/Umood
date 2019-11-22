@@ -23,6 +23,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is SignUpActivity.
+ *      This activity is to help user sign up.
+ *
+ * Corresponding Backlog:
+ *      - None
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
+
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "qian-Signup";
     FirebaseFirestore db = FirebaseFirestore.getInstance();

@@ -22,6 +22,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Collections;
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is DisplayFollowerActivity
+ *      This activity can display list of most recent events of your following users
+ *
+ * Corresponding Backlog:
+ *      - 05.03.01:As a participant, I want to view as a list the most recent mood events of the other participants
+ *      I am granted to follow, sorted by date and time, in reverse chronological order (most recent coming first).
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 
 public class FeedActivity extends AppCompatActivity {
     private static final String TAG = "qian-Feed";

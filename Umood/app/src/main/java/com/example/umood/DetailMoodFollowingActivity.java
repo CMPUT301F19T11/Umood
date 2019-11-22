@@ -20,6 +20,18 @@ import java.util.List;
 import java.util.Locale;
 
 
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is DetailMoodActivity
+ *      This activity can check the detail for the mood event of your following user
+ *
+ * Corresponding Backlog:
+ *      - US 01.03.01: As a participant, I want to view a given mood event and all its available details.
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 public class DetailMoodFollowingActivity extends AppCompatActivity {
     private static final String TAG = "qian-follower";
     Geocoder geocoder;
