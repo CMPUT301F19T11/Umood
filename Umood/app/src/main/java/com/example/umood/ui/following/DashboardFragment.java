@@ -31,6 +31,22 @@ import com.example.umood.UserList;
 
 import java.util.ArrayList;
 
+
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is FriendFragment
+ *      In this page, you can see your following list
+ *      Also, it provides many buttons. basically, it is the entrance to see your follower, request
+ *      and to add following user
+ *
+ * Corresponding Backlog:
+ *      - None
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
+
 public class DashboardFragment extends Fragment{
     // Data from database
     private User user;

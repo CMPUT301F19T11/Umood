@@ -25,10 +25,24 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is AddFollowingActivity
+ *      You can enter a username,
+ *      and the server will automatically send a following request to that user
+ *      once that user accept your following request
+ *      He/She will show in your following list
+ *
+ * Corresponding Backlog:
+ *      - US 05.01.01: As a participant, I want to ask another participant to follow their most recent mood event.
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 
 public class AddFollowingActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private DocumentReference docref;
     private CollectionReference collectionReference = db.collection("users");
     private static final String TAG = "qian-addFollow";
     EditText addFollowing;

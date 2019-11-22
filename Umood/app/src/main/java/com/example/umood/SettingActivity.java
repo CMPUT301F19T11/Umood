@@ -5,7 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is an Extra Feature!!!
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 public class SettingActivity extends AppCompatActivity {
 
     @Override

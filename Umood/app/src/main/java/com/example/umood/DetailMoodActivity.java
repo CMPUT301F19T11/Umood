@@ -31,7 +31,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is DetailMoodActivity
+ *      This activity can check the detail for my own mood event
+ *      It can also edit and/or delete this specific mood event
+ *
+ * Corresponding Backlog:
+ *      - US 01.03.01: As a participant, I want to view a given mood event and all its available details.
+ *
+ *      - US 01.04.01: As a participant, I want to edit the details of a given mood event of mine.
+ *
+ *      - US 01.05.01: As a participant, I want to delete a given mood event of mine.
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 public class DetailMoodActivity extends AppCompatActivity {
     private static final String TAG = "qian-follower";
     private Mood mood;

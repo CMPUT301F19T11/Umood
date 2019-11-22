@@ -46,12 +46,32 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is MapFragment
+ *      This fragment can display real map by using google map api.
+ *      There are 2 types of map.
+ *      First one can display your mood event from your mood history( that has location).
+ *      Second one can display your mood event from the most recent mood event of your following list.
+ *      You can swap them by clicking swap button
+ *      Also, the window info of marker is clickable, it can display more detailed info about this mood event
+ *
+ * Corresponding Backlog:
+ *      - US 06.02.01: As a participant, I want to see a map of the mood events (showing their emotional states)
+ *      from my mood history list (that have locations).
+ *      - US 06.03.01: As a participant, I want to see a map of the mood events (showing their emotional states
+ *      and the username) from my mood following list (that have locations).
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private MapView mapView;

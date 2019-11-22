@@ -16,6 +16,20 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import java.util.ArrayList;
 
+
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is DisplayFollowerActivity
+ *      This activity can check the detail for the mood event of your following user
+ *
+ * Corresponding Backlog:
+ *      - None
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
+
 public class DisplayFollowerActivity extends AppCompatActivity {
     private static final String TAG = "qian-follower";
 

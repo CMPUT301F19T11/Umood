@@ -20,7 +20,20 @@ import com.example.umood.MoodList;
 import com.example.umood.R;
 import com.example.umood.SettingActivity;
 import com.example.umood.User;
-
+/** * ------------------------------------------------------------------------------------------------------------
+ * Description for this file:
+ *      This is ProfileFragment
+ *      This fragment can display your username and other basic information
+ *      Also, It provides many buttons.
+ *      You can go to check your mood history and your friend's mood event from here.
+ *
+ * Corresponding Backlog:
+ *      - US 03.01.01
+ *
+ * Last Modified:
+ *      Nov 21 by Qian Yu
+ * ------------------------------------------------------------------------------------------------------------
+ */
 
 public class NotificationsFragment extends Fragment {
     private User user;
