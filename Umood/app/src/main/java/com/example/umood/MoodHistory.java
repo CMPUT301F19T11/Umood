@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,7 +68,7 @@ public class MoodHistory extends AppCompatActivity {
         moodList = user.getMoodHistory();
         Collections.sort(moodList);
 
-        RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
+        final RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MoodAdapter(moodList);
@@ -84,6 +85,35 @@ public class MoodHistory extends AppCompatActivity {
             }
         });
 
+        Spinner socialSituation = findViewById(R.id.spinner2);
+
+        socialSituation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String emotion = ((TextView)view).getText().toString();
+
+                if(!emotion.equals("All")){
+                    ArrayList<Mood> moodList_Filtered = new ArrayList<Mood>();
+                    for(Mood mood : moodList){
+                        if(mood.getEmotion().equals(emotion)){
+                            moodList_Filtered.add(mood);
+                        }
+                    }
+
+                    adapter = new MoodAdapter(moodList_Filtered);
+                }else{
+                    adapter = new MoodAdapter(moodList);
+                }
+
+                recyclerView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
 

@@ -118,7 +118,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/happy" />
 
-
+test
     <Spinner
         android:id="@+id/spinner2"
 
