@@ -37,7 +37,6 @@ import com.example.umood.User;
 
 public class NotificationsFragment extends Fragment {
     private User user;
-    private static final String TAG = "qian-profile";
     private MainActivity activity;
 
     private Intent intent;
@@ -103,11 +102,11 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 intent = new Intent(activity, ChartActivity.class);
+                intent.putExtra("User",user);
                 startActivity(intent);
 
             }
         });
-
         return root;
     }
     @Override
