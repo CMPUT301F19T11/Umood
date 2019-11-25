@@ -44,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button btnLogin= findViewById(R.id.cancel);
-        Button btnRegister = findViewById(R.id.next);
         intentSignIn = new Intent(this, MainActivity.class);
         intentSignUp = new Intent(this, SignUpActivity.class);
         TextView tv = (TextView) findViewById(R.id.signup);
@@ -133,6 +132,3 @@ public class LoginActivity extends AppCompatActivity {
 
 
 }
-/*
-
- */

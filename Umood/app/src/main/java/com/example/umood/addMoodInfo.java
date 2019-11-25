@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -29,7 +30,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,6 +37,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -91,6 +93,8 @@ public class addMoodInfo extends AppCompatActivity {
     private String imagePath = "";
     private ImageButton geoMap;
     private addMoodInfo activity = this;
+    String currentDate;
+    String currentTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,51 +102,85 @@ public class addMoodInfo extends AppCompatActivity {
         getSupportActionBar().hide();
         Log.d(TAG,"in 1");
         setContentView(R.layout.emotional_state);
+        Intent intent = getIntent();
+        emotion = intent.getStringExtra("Emotion");
+        int color;
+        switch (emotion){
+            case "Happy":
+                color = Color.parseColor("#fdee87");
+                break;
+            case "Scared":
+                color = Color.parseColor("#88c8fa");
+                break;
+            case "Angry":
+                color = Color.parseColor("#ee737a");
+                break;
+            default:
+                color = Color.parseColor("#76dc93");
 
-        ImageButton happy = findViewById(R.id.happyButton);
-        ImageButton sick = findViewById(R.id.sickButton);
-        ImageButton angry = findViewById(R.id.angryButton);
-        ImageButton scared = findViewById(R.id.scaredButton);
+        }
+
+        TextView etext = findViewById(R.id.textView12);
+        etext.setText(emotion);
+        etext.setTextColor(color);
+
+        image = findViewById(R.id.image_import2);
+
+        // Image Part:
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String [] permissions = new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                };
+                if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                    photoPickerIntent.setType("image/*");
+                    startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
+                }
+                else{
+                    getPermission(Manifest.permission.READ_EXTERNAL_STORAGE,permissions);
+                }
+            }
+        });
+
+
+
+        TextView time = findViewById(R.id.reason_text2);
+        TextView date = findViewById(R.id.reason_text);
+        currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        time.setText(currentTime);
+        date.setText(currentDate);
+
+
+        Spinner socialSituation = findViewById(R.id.spinner2);
+
+        socialSituation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                situation = ((TextView)view).getText().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
 
         addressNameView = findViewById(R.id.textView11);
-        image = findViewById(R.id.imageButton2);
         cityNameView = findViewById(R.id.textView10);
         geocoder = new Geocoder(this, Locale.getDefault());
         geoMap = findViewById(R.id.imageButton4);
 
 
-        Button next = findViewById(R.id.next);
+        Button next = findViewById(R.id.save_button);
         ImageButton cancel = findViewById(R.id.add_cancel);
 
 
-        // 4 emotions:
-        happy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emotion = "Happy";
-            }
-        });
-        sick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emotion = "Sick";
 
-            }
-        });
-        angry.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emotion = "Angry";
-            }
-        });
-        scared.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                emotion = "Scared";
-
-            }
-        });
-        Spinner socialSituation = findViewById(R.id.spinner2);
 
         // Location Part:
         geoMap.setOnClickListener(new View.OnClickListener() {
@@ -172,15 +210,17 @@ public class addMoodInfo extends AppCompatActivity {
                                             List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                                             String cityName = addresses.get(0).getLocality();
                                             String address = addresses.get(0).getFeatureName();
-                                            String address2 = addresses.get(0).getLocality();
+                                            String address2 = addresses.get(0).getThoroughfare();
                                             Log.d(TAG,  addresses.get(0).toString());
                                             cityNameView.setText(cityName);
-                                            if(address!=null)
-                                                addressNameView.setText(address);
-                                            else
+                                            if(address2!=null)
                                                 addressNameView.setText(address2);
+                                            else
+                                                addressNameView.setText(address);
                                             geoMap.setImageResource(R.drawable.place);
                                             Log.d(TAG, "long: "+longitude+"lati: " +latitude);
+                                            if(cityName.isEmpty())
+                                                Toast.makeText(getBaseContext(),"Network or GPS is not stable",Toast.LENGTH_LONG).show();
                                         } catch (IOException e) {
                                             e.printStackTrace();
                                         }
@@ -205,37 +245,6 @@ public class addMoodInfo extends AppCompatActivity {
 
 
 
-        // Image Part:
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String [] permissions = new String[]{
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                };
-                if (checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                    photoPickerIntent.setType("image/*");
-                    startActivityForResult(photoPickerIntent, RESULT_LOAD_IMAGE);
-                }
-                else{
-                    getPermission(Manifest.permission.READ_EXTERNAL_STORAGE,permissions);
-                }
-            }
-        });
-
-
-        socialSituation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                situation = ((TextView)view).getText().toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,7 +256,7 @@ public class addMoodInfo extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Choose an Social Situation!", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    EditText reasonText = findViewById(R.id.reason_text);
+                    EditText reasonText = findViewById(R.id.reason_text3);
                     String reason = reasonText.getText().toString();
                     if(reason.length()>20)
                         Toast.makeText(getBaseContext(), "Reason has to be less than 20 characters or 3 words!", Toast.LENGTH_LONG).show();
@@ -261,6 +270,8 @@ public class addMoodInfo extends AppCompatActivity {
                         intent.putExtra("Path",imagePath);
                         intent.putExtra("Longitude",longitude);
                         intent.putExtra("Latitude",latitude);
+                        intent.putExtra("Time",currentTime);
+                        intent.putExtra("Date",currentDate);
                         setResult(RESULT_OK, intent);
                         finish();
                     }
@@ -309,7 +320,6 @@ public class addMoodInfo extends AppCompatActivity {
                 selectedImage = BitmapFactory.decodeStream(imageStream);
                 image.setImageBitmap(selectedImage);
                 imagePath = getPath(imageUri);
-
             } catch (IOException e) {
                 Log.i("TAG", "Some exception " + e);
             }

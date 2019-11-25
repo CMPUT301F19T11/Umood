@@ -68,17 +68,15 @@ public class DetailMoodActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.information);
         Intent intent = getIntent();
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        mood = (Mood)intent.getSerializableExtra("myMood");
+        mood = (Mood) intent.getSerializableExtra("myMood");
         moodList     = (MoodList) intent.getSerializableExtra("moodList");
-        moods = moodList.getList();
-        position          = intent.getIntExtra("position",0);
+        moods        = moodList.getList();
+        position      = intent.getIntExtra("position",0);
 
         TextView date = findViewById(R.id.reason_text);
         TextView time = findViewById(R.id.reason_text2);
