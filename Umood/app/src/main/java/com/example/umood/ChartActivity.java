@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.RadioButton;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -15,6 +16,8 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 
 import java.util.ArrayList;
+
+import info.hoang8f.android.segmented.SegmentedGroup;
 
 
 /** * ------------------------------------------------------------------------------------------------------------
@@ -41,20 +44,25 @@ public class ChartActivity extends AppCompatActivity {
         int sick = 0;
         int happy = 0;
         int angry = 0;
-        for(Mood mood:history){
-            String e = mood.getEmotion();
-            switch (e){
-                case "Happy":
-                    happy+=1;
-                    break;
-                case "Scared":
-                    scared+=1;
-                    break;
-                case "Angry":
-                    angry+=1;
-                    break;
-                default:
-                    sick+=1;
+
+        RadioButton segmented2 = (RadioButton) findViewById(R.id.button21);
+
+        if(!history.isEmpty()) {
+            for (Mood mood : history) {
+                String e = mood.getEmotion();
+                switch (e) {
+                    case "Happy":
+                        happy += 1;
+                        break;
+                    case "Scared":
+                        scared += 1;
+                        break;
+                    case "Angry":
+                        angry += 1;
+                        break;
+                    default:
+                        sick += 1;
+                }
             }
         }
 
