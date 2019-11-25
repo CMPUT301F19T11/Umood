@@ -28,7 +28,7 @@
     <!--  String below are used in Login xml -->
     <string name="no_account"> Sign up</string>
     <string name="action_sign_in"> Sign in </string>
-    <string name="action_sign_up"> Sign up</string>
+    <string name="action_sign_up"> Sign up </string>
     <string name="adv"> Share your mood with friends </string>
     <string name="enter_username"> Username </string>
     <string name="title"> Title</string>
@@ -48,6 +48,9 @@
     <string name="moodConfused">Confused</string>
     <string name="moodBack">Cancel</string>
     <string name="moodForward">Next</string>
+    <string name="moodFinish">Finish&#160;&#160;>></string>
+
+
 
 
     <!--  String below are used in filter xml -->

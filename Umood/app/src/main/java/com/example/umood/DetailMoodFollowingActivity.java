@@ -72,7 +72,6 @@ public class DetailMoodFollowingActivity extends AppCompatActivity {
                 break;
             default:
                 color = Color.parseColor("#76dc93");
-
         }
 
 

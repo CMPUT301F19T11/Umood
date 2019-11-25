@@ -12,11 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.umood.AddMoodFirstActivity;
 import com.example.umood.DetailMoodActivity;
 import com.example.umood.DetailMoodFollowingActivity;
 import com.example.umood.MainActivity;
@@ -111,7 +111,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             Log.d(TAG, "map view is null");
         mapView.getMapAsync(this);
 
-        intentAdd = new Intent(getActivity(), addMoodInfo.class);
+        intentAdd = new Intent(getActivity(), AddMoodFirstActivity.class);
 
         FloatingActionButton floatingActionButton = root.findViewById(R.id.floatingActionButton);
 
@@ -145,22 +145,23 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         if(requestCode == PICK_MOOD_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
                 String emotion = data.getStringExtra("Mood");
-                String socialSituation = data.getStringExtra("SocialSituation");
+                String situation = data.getStringExtra("SocialSituation");
                 String reason = data.getStringExtra("Reason");
-                String path = data.getStringExtra("Path");
+                String imagePath = data.getStringExtra("Path");
                 double longitude = data.getDoubleExtra("Longitude",0);
                 double latitude = data.getDoubleExtra("Latitude",0);
+                String currentDate = data.getStringExtra("Date");
+                String currentTime =  data.getStringExtra("Time");
+
 
                 if(reason==null || reason.isEmpty())
                     reason = "";
-                if(path ==null || path.isEmpty())
-                    path = "";
+                if(imagePath ==null || imagePath.isEmpty())
+                    imagePath = "";
 
                 LatLng edmonton = new LatLng(latitude, longitude);
                 BitmapDescriptor myIcon;
 
-                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
                 if(emotion==null || emotion.isEmpty())
                     return;
 
@@ -180,17 +181,18 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 }
 
                 // New a mood event
-                Mood mood = new Mood(currentDate,
+                Mood mood = new Mood(
+                            currentDate,
                             currentTime,
                             emotion,
                             reason,
-                            socialSituation,
+                            situation,
                             latitude,
                             longitude,
                             user.getUsername(),
-                            path);
+                            imagePath);
 
-                String Description = "Today: " + currentDate + "    Time: " + currentTime + socialSituation;
+                String Description = "Today: " + currentDate + "    Time: " + currentTime;
 
                 if(latitude!=0) {
                     // Add a new marker to aap
