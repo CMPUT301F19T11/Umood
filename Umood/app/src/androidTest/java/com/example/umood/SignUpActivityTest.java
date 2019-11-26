@@ -87,7 +87,7 @@ public class SignUpActivityTest {
     public void testAddNewUser(){
         //Asserts that the current activity is the SignUpActivity. Otherwise, show "Wrong Activity".
         solo.assertCurrentActivity("Wrong Activity", SignUpActivity.class);
-        solo.enterText((EditText) solo.getView(R.id.username), "yifan3");
+        solo.enterText((EditText) solo.getView(R.id.username), "yifan4");
         solo.clickOnView(solo.getView(R.id.signup1));
         solo.sleep(6000);
         assertTrue(solo.waitForActivity(MainActivity.class, 2000));
