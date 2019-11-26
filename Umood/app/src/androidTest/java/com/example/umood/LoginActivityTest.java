@@ -41,7 +41,7 @@ public class LoginActivityTest {
         //Get view for EditText and enter a username.
         solo.enterText((EditText)solo.getView(R.id.username),"yifan");
         solo.clickOnView(solo.getView(R.id.cancel));
-        //solo.clickOnButton("SIGN IN");//Click SIGN IN button.
+        solo.sleep(6000);
         assertTrue(solo.waitForActivity(MainActivity.class, 2000));
         //Asserts that the current activity is the MainActivity. Otherwise, show "Wrong Activity".
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
@@ -56,6 +56,7 @@ public class LoginActivityTest {
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
         solo.clickOnView(solo.getView(R.id.signup));
         //solo.clickOnButton("Not Registered?Sign Up here");
+        solo.sleep(2000);
         assertTrue(solo.waitForActivity(SignUpActivity.class, 2000));
         //Asserts that the current activity is the SignUpActivity. Otherwise, show "Wrong Activity".
         solo.assertCurrentActivity("Wrong Activity", SignUpActivity.class);
