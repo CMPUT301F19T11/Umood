@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.RadioButton;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -40,12 +41,15 @@ public class ChartActivity extends AppCompatActivity {
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra("User");
         ArrayList<Mood> history = user.getMoodHistory();
+
+        SegmentedGroup segmented2 = (SegmentedGroup) findViewById(R.id.segmented2);
+        Button buttonPieChart = findViewById(R.id.button21);
+
+
         int scared = 0;
         int sick = 0;
         int happy = 0;
         int angry = 0;
-
-        RadioButton segmented2 = (RadioButton) findViewById(R.id.button21);
 
         if(!history.isEmpty()) {
             for (Mood mood : history) {
@@ -95,7 +99,6 @@ public class ChartActivity extends AppCompatActivity {
 
         Legend l = pieChart.getLegend();
         l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
-//        l.setForm(Legend.LegendForm.LINE);
         l.setXEntrySpace(0f);
         l.setYEntrySpace(0f);
         l.setYOffset(0f);
@@ -108,10 +111,19 @@ public class ChartActivity extends AppCompatActivity {
 
         pieChart.animateY(3400, Easing.EasingOption.EaseInQuad);
         ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
-        pieEntries.add( new PieEntry(angry,"Angry"));
-        pieEntries.add( new PieEntry(happy,"Happy"));
-        pieEntries.add( new PieEntry(scared,"Scared"));
-        pieEntries.add( new PieEntry(sick,"Sick"));
+        if(angry>0) {
+            pieEntries.add(new PieEntry(angry, "Angry"));
+        }
+        if(happy>0) {
+            pieEntries.add(new PieEntry(happy, "Happy"));
+        }
+        if(scared>0) {
+            pieEntries.add(new PieEntry(scared, "Scared"));
+        }
+        if(sick>0) {
+            pieEntries.add(new PieEntry(sick, "Sick"));
+        }
+
 
         String centerText = "Mood Statistic";
         pieChart.setCenterText(centerText);
@@ -119,10 +131,18 @@ public class ChartActivity extends AppCompatActivity {
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
         // PieChart Color
-        colors.add(Color.rgb(0xee, 73, 0x7a));
-        colors.add(Color.rgb(0xfd, 0xee, 87));
-        colors.add(Color.rgb(88, 0xc8, 0xfa));
-        colors.add(Color.rgb(76, 0xdc, 93));
+        if(angry>0) {
+            colors.add(Color.rgb(0xee, 73, 0x7a));
+        }
+        if(happy>0) {
+            colors.add(Color.rgb(0xfd, 0xee, 87));
+        }
+        if(scared>0) {
+            colors.add(Color.rgb(88, 0xc8, 0xfa));
+        }
+        if(sick>0) {
+            colors.add(Color.rgb(76, 0xdc, 93));
+        }
 
         pieDataSet.setColors(colors);
 
@@ -141,7 +161,6 @@ public class ChartActivity extends AppCompatActivity {
         pieChart.highlightValues(null);
         pieChart.invalidate();
     }
-
 
 
 }

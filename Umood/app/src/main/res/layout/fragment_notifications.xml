@@ -3,48 +3,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/background_vague"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_vague">
 
 
-    <View
-        android:id="@+id/view"
+    <Button
+        android:id="@+id/addFollowing2"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:background="#00B8D4"
-        app:layout_constraintBottom_toBottomOf="@+id/button_history"
+        android:layout_height="52dp"
+
+
+        android:layout_marginTop="4dp"
+        android:background="#ffffff"
+        android:drawableStart="@drawable/follow"
+        android:drawableLeft="@drawable/follow"
+        android:drawableEnd="@drawable/profilearrow"
+        android:drawableRight="@drawable/profilearrow"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+
+        android:paddingLeft="10dp"
+
+        android:paddingRight="10dp"
+        android:text="@string/add_fllow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/request2" />
+
+    <Button
+        android:id="@+id/request2"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
 
 
+        android:layout_marginTop="4dp"
+        android:background="#ffffff"
+        android:drawableStart="@drawable/profileaddfriend"
+        android:drawableLeft="@drawable/profileaddfriend"
+        android:drawableEnd="@drawable/profilearrow"
+        android:drawableRight="@drawable/profilearrow"
+        android:drawablePadding="15dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+
+
+        android:paddingRight="10dp"
+        android:text="@string/request"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_feed" />
 
 
     <Button
         android:id="@+id/button_setting"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="32dp"
         android:background="#FBFCFC"
-        android:gravity="center_vertical"
-        android:text="@string/profile_setting"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textAlignment="gravity"
-
-        android:drawableLeft="@drawable/profilesetting"
-        android:drawableStart="@drawable/profilesetting"
-        android:drawableRight="@drawable/profilearrow"
-        android:drawableEnd="@drawable/profilearrow"
-        android:drawablePadding="15dp"
-
         android:clickable="true"
+        android:drawableStart="@drawable/profilesetting"
+        android:drawableLeft="@drawable/profilesetting"
+        android:drawableEnd="@drawable/profilearrow"
+
+        android:drawableRight="@drawable/profilearrow"
+        android:drawablePadding="15dp"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
 
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/profile_setting"
+
+        android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_feed" />
+        app:layout_constraintTop_toBottomOf="@+id/button_chart" />
 
     <Button
         android:id="@+id/button_feed"
@@ -52,25 +89,23 @@
         android:layout_height="52dp"
         android:layout_marginTop="4dp"
         android:background="#FBFCFC"
-        android:gravity="center_vertical"
-        android:text="@string/feed"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:textAlignment="gravity"
-
-        android:drawableLeft="@drawable/profilerss"
-        android:drawableStart="@drawable/profilerss"
-        android:drawableRight="@drawable/profilearrow"
-        android:drawableEnd="@drawable/profilearrow"
-        android:drawablePadding="15dp"
-
         android:clickable="true"
+        android:drawableStart="@drawable/profilerss"
+        android:drawableLeft="@drawable/profilerss"
+        android:drawableEnd="@drawable/profilearrow"
+
+        android:drawableRight="@drawable/profilearrow"
+        android:drawablePadding="15dp"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_chart" />
+        android:gravity="center_vertical"
+
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/feed"
+        android:textAlignment="gravity"
+        app:layout_constraintTop_toBottomOf="@+id/button_history"
+        tools:layout_editor_absoluteX="2dp" />
 
     <Button
         android:id="@+id/button_chart"
@@ -78,52 +113,52 @@
         android:layout_height="55dp"
         android:layout_marginTop="4dp"
         android:background="#FBFCFC"
+        android:clickable="true"
+        android:drawableStart="@drawable/profilechart"
+
+        android:drawableLeft="@drawable/profilechart"
+        android:drawableEnd="@drawable/profilearrow"
+        android:drawableRight="@drawable/profilearrow"
+        android:drawablePadding="15dp"
+        android:focusable="true"
+
+        android:foreground="?attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-
-        android:drawableLeft="@drawable/profilechart"
-        android:drawableStart="@drawable/profilechart"
-        android:drawableRight="@drawable/profilearrow"
-        android:drawableEnd="@drawable/profilearrow"
-        android:drawablePadding="15dp"
-
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
         android:text="@string/profile_chart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_history" />
-
+        app:layout_constraintTop_toBottomOf="@+id/addFollowing2" />
 
     <Button
         android:id="@+id/button_history"
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="32dp"
         android:background="#FBFCFC"
-        android:gravity="center_vertical"
-        android:text="@string/profile_moodHistory"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-
-
-        android:drawableLeft="@drawable/profilehistory"
-        android:drawableStart="@drawable/profilehistory"
-        android:drawableRight="@drawable/profilearrow"
-        android:drawableEnd="@drawable/profilearrow"
-        android:drawablePadding="15dp"
-
         android:clickable="true"
+        android:drawableStart="@drawable/profilehistory"
+        android:drawableLeft="@drawable/profilehistory"
+        android:drawableEnd="@drawable/profilearrow"
+
+
+        android:drawableRight="@drawable/profilearrow"
+        android:drawablePadding="15dp"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/profile_moodHistory"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -139,12 +174,12 @@
 
     <ImageView
         android:id="@+id/avatar"
-        android:contentDescription="@string/profile_avatar"
         android:layout_width="85dp"
         android:layout_height="69dp"
         android:layout_marginStart="42dp"
         android:layout_marginLeft="42dp"
         android:layout_marginTop="16dp"
+        android:contentDescription="@string/profile_avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/avatar0" />
@@ -242,11 +277,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-
-
-
-
-
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#00B8D4"
+        app:layout_constraintBottom_toBottomOf="@+id/button_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

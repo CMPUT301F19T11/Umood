@@ -74,6 +74,69 @@ public class NotificationsFragment extends Fragment {
         Button feed =  root.findViewById(R.id.button_feed);
         Button setting =  root.findViewById(R.id.button_setting);
 
+
+        /*
+
+        // Buttons and views in XML
+        Button request = root.findViewById(R.id.request);
+        Button follower = root.findViewById(R.id.follower);
+        Button addFollowing = root.findViewById(R.id.addFollowing);
+
+
+        if(!UnverifiedUser.getList().isEmpty()){
+            Log.d(TAG, "haha");
+            ImageView imageDot = root.findViewById(R.id.red_dot);
+            GradientDrawable gd = new GradientDrawable();
+            gd.setShape(GradientDrawable.OVAL);
+            gd.setColor(Color.rgb(134, 135, 255));
+            gd.setCornerRadius(5);
+            gd.setStroke(4, Color.rgb(255, 255, 255));
+
+
+
+            int h = gd.getIntrinsicHeight();
+            int w = gd.getIntrinsicWidth();
+            gd.setBounds( 0, 0, w, h );
+
+            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.followingrequest),
+                    null,
+                    getResources().getDrawable(R.drawable.newstate),
+                    null);
+        }
+
+
+        addFollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity,AddFollowingActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, FollowingRequest.class);
+                intent.putExtra("user",user);
+                intent.putExtra("user_list",UnverifiedUser);
+                startActivity(intent);
+            }
+        });
+
+        follower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, DisplayFollowerActivity.class);
+                intent.putExtra("user",user);
+                intent.putExtra("follower_list",followerUserList);
+                startActivity(intent);
+            }
+        });
+
+
+         */
+
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

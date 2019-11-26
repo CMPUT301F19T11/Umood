@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -84,6 +85,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private User user;
     private User fUser;
     private Marker gmarker;
+    private View root;
 
     private int swap = 0;
 
@@ -92,7 +94,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        root = inflater.inflate(R.layout.fragment_home, container, false);
 
         activity = (MainActivity) getActivity();
         user = activity.getUser();
@@ -129,8 +131,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 onMapReady(gMap);
             }
         });
-
-
 
         return root;
     }
@@ -281,6 +281,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     }
                 }
             });
+            Toast.makeText(root.getContext(), "Displaying the mood events from your mood history list", Toast.LENGTH_LONG).show();
         }
         else {
             // Need to call MapsInitializer before doing any CameraUpdateFactory calls
@@ -366,6 +367,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                     }
                 });
+                Toast.makeText(root.getContext(), "Displaying the mood events from your mood following list", Toast.LENGTH_LONG).show();
+
             }
             gMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                 @Override
