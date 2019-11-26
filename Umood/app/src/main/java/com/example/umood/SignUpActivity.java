@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.acitivity_signup);
 
-        Button btnRegister = findViewById(R.id.signup);
+        Button btnRegister = findViewById(R.id.signup1);
         avatar = findViewById(R.id.imageButton2);
 
 
