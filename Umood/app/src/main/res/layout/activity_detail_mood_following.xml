@@ -61,14 +61,13 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
+        android:layout_marginEnd="184dp"
+        android:layout_marginRight="184dp"
         android:background="#00000000"
         android:contentDescription="@string/map"
         app:layout_constraintEnd_toEndOf="@+id/view4"
         app:layout_constraintTop_toBottomOf="@+id/view6"
-        app:srcCompat="@drawable/placeholder" />
-
+        app:srcCompat="@drawable/ic_placeholder" />
 
     <ImageView
         android:id="@+id/image_import"
