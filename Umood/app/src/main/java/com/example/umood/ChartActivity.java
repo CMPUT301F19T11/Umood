@@ -2,8 +2,10 @@ package com.example.umood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.RadioButton;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -14,6 +16,8 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 
 import java.util.ArrayList;
+
+import info.hoang8f.android.segmented.SegmentedGroup;
 
 
 /** * ------------------------------------------------------------------------------------------------------------
@@ -31,11 +35,39 @@ public class ChartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getSupportActionBar().hide();
-
+        getSupportActionBar().hide();
         setContentView(R.layout.pie_chart);
+        Intent intent = getIntent();
+        User user = (User) intent.getSerializableExtra("User");
+        ArrayList<Mood> history = user.getMoodHistory();
+        int scared = 0;
+        int sick = 0;
+        int happy = 0;
+        int angry = 0;
+
+        RadioButton segmented2 = (RadioButton) findViewById(R.id.button21);
+
+        if(!history.isEmpty()) {
+            for (Mood mood : history) {
+                String e = mood.getEmotion();
+                switch (e) {
+                    case "Happy":
+                        happy += 1;
+                        break;
+                    case "Scared":
+                        scared += 1;
+                        break;
+                    case "Angry":
+                        angry += 1;
+                        break;
+                    default:
+                        sick += 1;
+                }
+            }
+        }
 
         pieChart= (PieChart) findViewById(R.id.consume_pie_chart);
+
         pieChart.setUsePercentValues(true);
         pieChart.setDescription("PieChart");
         pieChart.setDescriptionTextSize(10);
@@ -74,13 +106,12 @@ public class ChartActivity extends AppCompatActivity {
         pieChart.setEntryLabelColor(Color.BLACK);
         pieChart.setEntryLabelTextSize(10f);
 
-//        pieChart.setOnChartValueSelectedListener(this);
         pieChart.animateY(3400, Easing.EasingOption.EaseInQuad);
         ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
-        pieEntries.add( new PieEntry(24,"Angry"));
-        pieEntries.add( new PieEntry(25,"Happy"));
-        pieEntries.add( new PieEntry(28,"Sad"));
-        pieEntries.add( new PieEntry(22,"Sick"));
+        pieEntries.add( new PieEntry(angry,"Angry"));
+        pieEntries.add( new PieEntry(happy,"Happy"));
+        pieEntries.add( new PieEntry(scared,"Scared"));
+        pieEntries.add( new PieEntry(sick,"Sick"));
 
         String centerText = "Mood Statistic";
         pieChart.setCenterText(centerText);
@@ -88,10 +119,10 @@ public class ChartActivity extends AppCompatActivity {
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
         // PieChart Color
-        colors.add(Color.rgb(227, 23, 13));
-        colors.add(Color.rgb(255, 227, 132));
-        colors.add(Color.rgb(135, 206, 235));
-        colors.add(Color.rgb(0, 201, 87));
+        colors.add(Color.rgb(0xee, 73, 0x7a));
+        colors.add(Color.rgb(0xfd, 0xee, 87));
+        colors.add(Color.rgb(88, 0xc8, 0xfa));
+        colors.add(Color.rgb(76, 0xdc, 93));
 
         pieDataSet.setColors(colors);
 

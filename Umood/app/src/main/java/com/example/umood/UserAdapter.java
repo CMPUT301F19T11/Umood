@@ -64,8 +64,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User user = myUserList.get(position);
         holder.username.setText(user.getUsername());
 
+        Context context = holder.imageView.getContext();
+        int picID =  context.getResources().getIdentifier(user.getAvatar(), "drawable", context.getPackageName());
+
         Glide.with(mycontext)
-            .load(R.drawable.zeldaflat)
+            .load(picID)
             .transform(new CircleCrop())
             .into(holder.imageView);
         String text = "[Last Mood Event: ";

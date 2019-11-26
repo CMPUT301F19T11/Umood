@@ -25,7 +25,6 @@ import com.example.umood.MoodList;
 import com.example.umood.R;
 
 import com.example.umood.User;
-import com.example.umood.addMoodInfo;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -45,11 +44,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+
 
 
 /** * ------------------------------------------------------------------------------------------------------------
@@ -76,7 +72,7 @@ import java.util.Locale;
 public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private MapView mapView;
     private static final String TAG = "qian-map";
-    private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
+    // private static final String MAP_VIEW_BUNDLE_KEY = "MapViewBundleKey";
     private static final int PICK_MOOD_REQUEST = 1;
     private GoogleMap gMap;
     private Intent intentAdd;
@@ -86,8 +82,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private MainActivity activity;
     private User user;
-    User fUser;
-    Marker gmarker;
+    private User fUser;
+    private Marker gmarker;
 
     private int swap = 0;
 
@@ -418,6 +414,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
         super.onResume();
         activity.update();
         mapView.onResume();
+        user = activity.getUser();
         Log.d(TAG, "onResume: ");
 
     }

@@ -1,8 +1,17 @@
 package com.example.umood;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -20,6 +30,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +53,14 @@ public class SignUpActivity extends AppCompatActivity {
     Map<String, Object> user = new HashMap<>();
     Intent intent;
     User newUser;
+    Intent intent2;
+    private int result = 0;
+    private ImageButton avatar;
+    private int picID;
+    Context context;
+    String imagePath;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +69,50 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.acitivity_signup);
 
         Button btnRegister = findViewById(R.id.signup);
-        intent = new Intent(this, MainActivity.class);
+        avatar = findViewById(R.id.imageButton2);
+
+
+        context = avatar.getContext();
+        imagePath = "avatar0";
+        picID = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+        avatar.setImageResource(picID);
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                result = (result+1)%5;
+                switch (result){
+                    case 0:
+                        imagePath = "avatar0";
+                        picID = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+                        break;
+                    case 1:
+                        imagePath = "avatar1";
+                        picID = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+                        break;
+                    case 2:
+                        imagePath = "avatar2";
+                        picID = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+                        break;
+                    case 3:
+                        imagePath = "avatar3";
+                        picID = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+                        break;
+                    default:
+                        imagePath = "avatar4";
+                        picID = context.getResources().getIdentifier(imagePath, "drawable", context.getPackageName());
+                }
+                avatar.setImageResource(picID);
+            }
+        });
+
+        intent  = new Intent(this, MainActivity.class);
+        intent2 = new Intent(this, LoginActivity.class);
         ImageButton cancelButton = findViewById(R.id.signup_cancel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
             }
         });
 
@@ -67,7 +125,11 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Username Cannot be empty!", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    newUser = new User(username);
+                    if(imagePath.isEmpty()) {
+                        newUser = new User(username);
+                    } else{
+                        newUser = new User(username, imagePath);
+                    }
                     db.collection("users").document(username)
                             .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
