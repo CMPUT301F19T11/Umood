@@ -2,7 +2,10 @@ package com.example.umood.ui.notifications;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +16,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.umood.AddFollowingActivity;
 import com.example.umood.ChartActivity;
 import com.example.umood.FeedActivity;
+import com.example.umood.FollowingRequest;
 import com.example.umood.MainActivity;
 import com.example.umood.MoodHistory;
 import com.example.umood.MoodList;
 import com.example.umood.R;
 import com.example.umood.SettingActivity;
 import com.example.umood.User;
+import com.example.umood.UserList;
+
 /** * ------------------------------------------------------------------------------------------------------------
  * Description for this file:
  *      This is ProfileFragment
@@ -39,8 +46,12 @@ import com.example.umood.User;
 public class NotificationsFragment extends Fragment {
     private User user;
     private MainActivity activity;
+    private static final String TAG = "qian-profile";
+
 
     private Intent intent;
+
+    private UserList UnverifiedUser;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -75,40 +86,36 @@ public class NotificationsFragment extends Fragment {
         Button setting =  root.findViewById(R.id.button_setting);
 
 
-        /*
 
         // Buttons and views in XML
         Button request = root.findViewById(R.id.request);
-        Button follower = root.findViewById(R.id.follower);
         Button addFollowing = root.findViewById(R.id.addFollowing);
 
-
+        UnverifiedUser = activity.getUnverifiedUser();
         if(!UnverifiedUser.getList().isEmpty()){
             Log.d(TAG, "haha");
-            ImageView imageDot = root.findViewById(R.id.red_dot);
             GradientDrawable gd = new GradientDrawable();
             gd.setShape(GradientDrawable.OVAL);
             gd.setColor(Color.rgb(134, 135, 255));
             gd.setCornerRadius(5);
             gd.setStroke(4, Color.rgb(255, 255, 255));
-
-
-
             int h = gd.getIntrinsicHeight();
             int w = gd.getIntrinsicWidth();
             gd.setBounds( 0, 0, w, h );
 
-            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.followingrequest),
+            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_followers),
                     null,
-                    getResources().getDrawable(R.drawable.newstate),
+                    getResources().getDrawable(R.drawable.profilearrow),
                     null);
+
+
         }
 
 
         addFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(activity,AddFollowingActivity.class);
+                intent = new Intent(activity, AddFollowingActivity.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
             }
@@ -123,19 +130,6 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        follower.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent = new Intent(activity, DisplayFollowerActivity.class);
-                intent.putExtra("user",user);
-                intent.putExtra("follower_list",followerUserList);
-                startActivity(intent);
-            }
-        });
-
-
-         */
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
