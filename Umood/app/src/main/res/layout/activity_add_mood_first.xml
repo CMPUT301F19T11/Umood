@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddMoodFirstActivity">
+    tools:context=".AddMoodFirstActivity"
+    android:background="@drawable/background_vague">
 
     <Button
         android:id="@+id/save_button3"
@@ -22,13 +23,13 @@
 
     <ImageButton
         android:id="@+id/scaredButton2"
-        android:layout_width="94dp"
-        android:layout_height="78dp"
+        android:layout_width="176dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#AEEEEE"
 
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="200dp"
-        android:background="#00000000"
         android:contentDescription="@string/moodLove"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,12 +38,13 @@
 
     <ImageButton
         android:id="@+id/happyButton2"
-        android:layout_width="94dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:background="#00000000"
+        android:layout_width="176dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#FFF68F"
+
         android:contentDescription="@string/moodHappy"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toEndOf="@+id/angryButton2"
@@ -51,12 +53,13 @@
 
     <ImageButton
         android:id="@+id/sickButton2"
-        android:layout_width="94dp"
-        android:layout_height="78dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="200dp"
-        android:background="#00000000"
+        android:layout_width="176dp"
+        android:layout_height="265dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#adff2f"
+
         android:contentDescription="@string/moodSad"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toEndOf="@+id/scaredButton2"
@@ -65,17 +68,61 @@
 
     <ImageButton
         android:id="@+id/angryButton2"
-        android:layout_width="94dp"
-        android:layout_height="78dp"
+        android:layout_width="176dp"
+        android:layout_height="265dp"
 
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="32dp"
-        android:background="#00000000"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#EEB4B4"
         android:contentDescription="@string/moodCry"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scaredButton2"
         app:srcCompat="@drawable/angry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Scared"
+        app:layout_constraintBottom_toBottomOf="@+id/scaredButton2"
+        app:layout_constraintEnd_toEndOf="@+id/scaredButton2"
+        app:layout_constraintStart_toStartOf="@+id/scaredButton2"
+        app:layout_constraintTop_toTopOf="@+id/scaredButton2"
+        app:layout_constraintVertical_bias="0.78" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sick"
+        app:layout_constraintBottom_toBottomOf="@+id/sickButton2"
+        app:layout_constraintEnd_toEndOf="@+id/sickButton2"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="@+id/sickButton2"
+        app:layout_constraintTop_toTopOf="@+id/sickButton2"
+        app:layout_constraintVertical_bias="0.781" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Angry"
+        app:layout_constraintBottom_toBottomOf="@+id/angryButton2"
+        app:layout_constraintEnd_toEndOf="@+id/angryButton2"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="@+id/angryButton2"
+        app:layout_constraintTop_toTopOf="@+id/angryButton2"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Happy"
+        app:layout_constraintBottom_toBottomOf="@+id/happyButton2"
+        app:layout_constraintEnd_toEndOf="@+id/happyButton2"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="@+id/happyButton2"
+        app:layout_constraintTop_toTopOf="@+id/happyButton2"
+        app:layout_constraintVertical_bias="0.8" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
