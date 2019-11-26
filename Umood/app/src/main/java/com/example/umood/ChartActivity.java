@@ -57,7 +57,37 @@ public class ChartActivity extends AppCompatActivity {
         Button buttonPieChart = findViewById(R.id.button21);
         Button buttonBarChart = findViewById(R.id.button22);
 
+        buttonPieChart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
+                pieChart.setVisibility(View.VISIBLE);
+                barChart.setVisibility(View.GONE);
+//                switch (pieChart.getVisibility()) {
+//
+//                    case 0:
+//                        pieChart.setVisibility(View.GONE);
+//                        break;
+//
+//                    case 8:
+//                        pieChart.setVisibility(View.VISIBLE);
+//                        break;
+//
+//                    default:
+//                        break;
+
+
+            }
+        });
+
+        buttonBarChart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                barChart.setVisibility(View.VISIBLE);
+                pieChart.setVisibility(View.GONE);
+
+
+            }
+        });
 
 
 
@@ -190,44 +220,44 @@ public class ChartActivity extends AppCompatActivity {
 
     private void initBarChart1() {
 
-        barChart.setDrawValueAboveBar(true);  //设置所有的数值在图形的上面,而不是图形上
-        barChart.setTouchEnabled(false);  //进制触控
-        barChart.setScaleEnabled(false); //设置能否缩放
-        barChart.setPinchZoom(false);  //设置true支持两个指头向X、Y轴的缩放，如果为false，只能支持X或者Y轴的当方向缩放
-        barChart.setDrawBarShadow(false);  //设置阴影
-        barChart.setDrawGridBackground(false);  //设置背景是否网格显示
-        barChart.setDescription(""); //不描述
+        barChart.setDrawValueAboveBar(true);
+        barChart.setTouchEnabled(false);
+        barChart.setScaleEnabled(false);
+        barChart.setPinchZoom(false);
+        barChart.setDrawBarShadow(false);
+        barChart.setDrawGridBackground(false);
+        barChart.setDescription("");
 
-        //X轴的数据格式
+        //X
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(new MyFormatter());
-        //设置位置
+
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        //设置是否绘制网格线
+
         xAxis.setDrawGridLines(false);
         barChart.getAxisLeft().setDrawGridLines(false);
-        // barChart.animateY(2500);
-        //设置X轴文字剧中对齐
+
+
         xAxis.setCenterAxisLabels(false);
-        //X轴最小间距
+
         xAxis.setGranularity(1f);
 
 
-        //Y轴的数据格式
+        //Y
         YAxis axisLeft = barChart.getAxisLeft();
         //axisLeft.setValueFormatter(new MyFormatter2());
         barChart.animateY(2500);
-        //设置Y轴刻度的最大值
+
         axisLeft.setAxisMinValue(0);
         axisLeft.setAxisMaxValue(100);
         barChart.getAxisRight().setEnabled(false);
 
-        //设置数据
+        //set data
         setData01();
 
     }
 
-    //日对比的数据
+
     private void setData01() {
         ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
@@ -243,7 +273,7 @@ public class ChartActivity extends AppCompatActivity {
 
         BarDataSet set1;
         set1 = new BarDataSet(yVals1, "");
-        //设置多彩 也可以单一颜色
+        //set color
         //set1.setColor(Color.parseColor("#4169E1"));
         set1.setColor(Color.rgb(0xee, 73, 0x7a));
         set1.addColor(Color.rgb(0xfd, 0xee, 87));
@@ -258,9 +288,9 @@ public class ChartActivity extends AppCompatActivity {
         BarData data = new BarData(dataSets);
         barChart.setData(data);
         barChart.setFitBars(true);
-        //设置文字的大小
+        //set text size
         set1.setValueTextSize(12f);
-        //设置每条柱子的宽度
+        //set width
         data.setBarWidth(0.7f);
         barChart.invalidate();
 
