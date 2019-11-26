@@ -4,17 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -26,8 +25,6 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import java.util.ArrayList;
-
-import info.hoang8f.android.segmented.SegmentedGroup;
 
 
 /** * ------------------------------------------------------------------------------------------------------------
@@ -42,6 +39,10 @@ import info.hoang8f.android.segmented.SegmentedGroup;
 public class ChartActivity extends AppCompatActivity {
     private PieChart pieChart;
     private BarChart barChart;
+    int scared = 0;
+    int sick = 0;
+    int happy = 0;
+    int angry = 0;
 
 
     @Override
@@ -52,49 +53,6 @@ public class ChartActivity extends AppCompatActivity {
         Intent intent = getIntent();
         User user = (User) intent.getSerializableExtra("User");
         ArrayList<Mood> history = user.getMoodHistory();
-
-        SegmentedGroup segmented2 = (SegmentedGroup) findViewById(R.id.segmented2);
-        Button buttonPieChart = findViewById(R.id.button21);
-        Button buttonBarChart = findViewById(R.id.button22);
-
-        buttonPieChart.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                pieChart.setVisibility(View.VISIBLE);
-                barChart.setVisibility(View.GONE);
-//                switch (pieChart.getVisibility()) {
-//
-//                    case 0:
-//                        pieChart.setVisibility(View.GONE);
-//                        break;
-//
-//                    case 8:
-//                        pieChart.setVisibility(View.VISIBLE);
-//                        break;
-//
-//                    default:
-//                        break;
-
-
-            }
-        });
-
-        buttonBarChart.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                barChart.setVisibility(View.VISIBLE);
-                pieChart.setVisibility(View.GONE);
-
-
-            }
-        });
-
-
-
-        int scared = 0;
-        int sick = 0;
-        int happy = 0;
-        int angry = 0;
 
         if(!history.isEmpty()) {
             for (Mood mood : history) {
@@ -115,44 +73,75 @@ public class ChartActivity extends AppCompatActivity {
             }
         }
 
-        pieChart= (PieChart) findViewById(R.id.consume_pie_chart);
+        barChart = (BarChart)findViewById(R.id.consume_bar_chart);
+        initPieChart();
+        initBarChart();
+        pieChart.setVisibility(View.VISIBLE);
 
+        Button buttonPieChart = findViewById(R.id.button21);
+        Button buttonBarChart = findViewById(R.id.button22);
+
+        buttonPieChart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pieChart.setVisibility(View.VISIBLE);
+                barChart.setVisibility(View.GONE);
+            }
+        });
+
+        buttonBarChart.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                barChart.setVisibility(View.VISIBLE);
+                pieChart.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    private void initPieChart() {
+        pieChart = findViewById(R.id.consume_pie_chart);
         pieChart.setUsePercentValues(true);
-        pieChart.setDescription("PieChart");
-        pieChart.setDescriptionTextSize(10);
+        pieChart.setExtraOffsets(5, 10, 5, 5);
 
-        pieChart.setExtraOffsets(5,5,5,5);
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
 
-        pieChart.setDrawCenterText(true);
-        pieChart.setCenterTextColor(Color.BLACK);
-        pieChart.setCenterTextSize(15);
+        pieChart.setCenterTextTypeface(Typeface.MONOSPACE);
+        pieChart.setCenterText("Statistics");
+
+        pieChart.setExtraOffsets(20.f, 0.f, 20.f, 0.f);
 
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleColor(Color.WHITE);
-        pieChart.setHoleRadius(30f);
 
-        pieChart.setTransparentCircleColor(Color.BLACK);
-        pieChart.setTransparentCircleAlpha(100);
-        pieChart.setTransparentCircleRadius(30f);
+        pieChart.setTransparentCircleColor(Color.WHITE);
+        pieChart.setTransparentCircleAlpha(110);
 
+        pieChart.setHoleRadius(58f);
+        pieChart.setTransparentCircleRadius(61f);
+
+        pieChart.setDrawCenterText(true);
+
+        pieChart.setRotationAngle(0);
         // enable rotation of the chart by touch
         pieChart.setRotationEnabled(true);
-        pieChart.setRotationAngle(10);
-
         pieChart.setHighlightPerTapEnabled(true);
 
+        // chart.setUnit(" €");
+        // chart.setDrawUnitsInChart(true);
+
+        // chart.spin(2000, 0, 360);
 
         Legend l = pieChart.getLegend();
-        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART_CENTER);
-        l.setXEntrySpace(0f);
-        l.setYEntrySpace(0f);
-        l.setYOffset(0f);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(false);
+        l.setEnabled(false);
+        setDataPieChart();
+
+    }
 
 
-        // entry label styling
-        pieChart.setDrawEntryLabels(true);
-        pieChart.setEntryLabelColor(Color.BLACK);
-        pieChart.setEntryLabelTextSize(10f);
+    private void setDataPieChart(){
 
         pieChart.animateY(3400, Easing.EasingOption.EaseInQuad);
         ArrayList<PieEntry> pieEntries = new ArrayList<PieEntry>();
@@ -170,6 +159,7 @@ public class ChartActivity extends AppCompatActivity {
         }
 
 
+
         String centerText = "Mood Statistic";
         pieChart.setCenterText(centerText);
         PieDataSet pieDataSet = new PieDataSet(pieEntries, "");
@@ -177,19 +167,26 @@ public class ChartActivity extends AppCompatActivity {
 
         // PieChart Color
         if(angry>0) {
-            colors.add(Color.rgb(0xee, 73, 0x7a));
+            colors.add(Color.rgb(0xf1, 94, 0x9a));
         }
         if(happy>0) {
-            colors.add(Color.rgb(0xfd, 0xee, 87));
+            colors.add(Color.rgb(0xff, 0xf7, 0x9a));
         }
         if(scared>0) {
-            colors.add(Color.rgb(88, 0xc8, 0xfa));
+            colors.add(Color.rgb(0xa1, 0xe9, 0xfc));
         }
         if(sick>0) {
-            colors.add(Color.rgb(76, 0xdc, 93));
+            colors.add(Color.rgb(0xd2, 0xfc, 0x9a));
         }
-
         pieDataSet.setColors(colors);
+        pieDataSet.setValueLinePart1OffsetPercentage(80.f);
+        pieDataSet.setValueLinePart1Length(0.2f);
+        pieDataSet.setValueLinePart2Length(0.4f);
+        //dataSet.setUsingSliceColorAsValueLineColor(true);
+
+        //dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+
 
         pieDataSet.setSliceSpace(0f);
         pieDataSet.setSelectionShift(5f);
@@ -206,50 +203,56 @@ public class ChartActivity extends AppCompatActivity {
         pieChart.highlightValues(null);
         pieChart.invalidate();
 
-
-
-
-
-        barChart = (BarChart)findViewById(R.id.consume_bar_chart);
-
-        initBarChart1();
-
     }
 
 
 
-    private void initBarChart1() {
+    private void initBarChart() {
 
-        barChart.setDrawValueAboveBar(true);
-        barChart.setTouchEnabled(false);
-        barChart.setScaleEnabled(false);
+        barChart = findViewById(R.id.consume_bar_chart);
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        barChart.setMaxVisibleValueCount(60);
+
+        // scaling can now only be done on x- and y-axis separately
         barChart.setPinchZoom(false);
+
         barChart.setDrawBarShadow(false);
         barChart.setDrawGridBackground(false);
-        barChart.setDescription("");
 
-        //X
         XAxis xAxis = barChart.getXAxis();
-        xAxis.setValueFormatter(new MyFormatter());
-
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-
         xAxis.setDrawGridLines(false);
+        xAxis.setTypeface(Typeface.MONOSPACE);
+
         barChart.getAxisLeft().setDrawGridLines(false);
 
+        // add a nice and smooth animation
+        barChart.animateY(1500);
 
-        xAxis.setCenterAxisLabels(false);
+        barChart.getLegend().setEnabled(false);
 
-        xAxis.setGranularity(1f);
-
-
-        //Y
-        YAxis axisLeft = barChart.getAxisLeft();
         //axisLeft.setValueFormatter(new MyFormatter2());
-        barChart.animateY(2500);
+        barChart.animateY(1500);
+        barChart.setDescription("");
 
-        axisLeft.setAxisMinValue(0);
-        axisLeft.setAxisMaxValue(100);
+
+
+        int max = angry;
+        if(max < scared){
+            max = scared;
+        }
+        if(max < sick){
+            max = sick;
+        }
+        if(max < happy){
+            max = happy;
+        }
+        int total = angry + scared + sick + happy;
+        if(total > 2*max) {
+            total = 2 * max;
+        }
         barChart.getAxisRight().setEnabled(false);
 
         //set data
@@ -261,24 +264,19 @@ public class ChartActivity extends AppCompatActivity {
     private void setData01() {
         ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
-
-        yVals1.add(new BarEntry(1, 36));
-        yVals1.add(new BarEntry(2, 85));
-        yVals1.add(new BarEntry(3, 20));
-        yVals1.add(new BarEntry(4, 66));
-
-
-
-
+        yVals1.add(new BarEntry(1, angry));
+        yVals1.add(new BarEntry(2, happy));
+        yVals1.add(new BarEntry(3, scared));
+        yVals1.add(new BarEntry(4, sick));
 
         BarDataSet set1;
         set1 = new BarDataSet(yVals1, "");
         //set color
         //set1.setColor(Color.parseColor("#4169E1"));
-        set1.setColor(Color.rgb(0xee, 73, 0x7a));
-        set1.addColor(Color.rgb(0xfd, 0xee, 87));
-        set1.addColor(Color.rgb(88, 0xc8, 0xfa));
-        set1.addColor(Color.rgb(76, 0xdc, 93));
+        set1.setColor(Color.rgb(0xf1, 94, 0x9a));
+        set1.addColor(Color.rgb(0xff, 0xf7, 0x9a));
+        set1.addColor(Color.rgb(0xa1, 0xe9, 0xfc));
+        set1.addColor(Color.rgb(0xd2, 0xfc, 0x9a));
 
 
 
@@ -300,8 +298,6 @@ public class ChartActivity extends AppCompatActivity {
         barChart.setAutoScaleMinMaxEnabled(!barChart.isAutoScaleMinMaxEnabled());
         barChart.notifyDataSetChanged();
         barChart.invalidate();
-
-
     }
 
 
