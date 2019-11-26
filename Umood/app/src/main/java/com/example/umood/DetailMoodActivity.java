@@ -147,7 +147,7 @@ public class DetailMoodActivity extends AppCompatActivity {
                 String address = addresses.get(0).getThoroughfare();
                 cityNameView.setText(cityName);
                 addressNameView.setText(address);
-                geoMap.setImageResource(R.drawable.place);
+                geoMap.setImageResource(R.drawable.ic_placeholder_red);
 
             } catch(IOException exception){
                 exception.printStackTrace();

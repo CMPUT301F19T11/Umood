@@ -10,8 +10,8 @@
         android:id="@+id/save_button3"
         android:layout_width="118dp"
         android:layout_height="38dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/signup_button"
         android:text="Next  >>"
@@ -33,7 +33,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/scared" />
+        app:srcCompat="@drawable/ic_scared2" />
 
     <ImageButton
         android:id="@+id/happyButton2"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/angryButton2"
         app:layout_constraintTop_toBottomOf="@+id/sickButton2"
-        app:srcCompat="@drawable/happy" />
+        app:srcCompat="@drawable/ic_happy2" />
 
     <ImageButton
         android:id="@+id/sickButton2"
@@ -69,7 +69,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/scaredButton2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sick" />
+
+        app:srcCompat="@drawable/ic_sick2" />
 
     <ImageButton
         android:id="@+id/angryButton2"
@@ -78,13 +79,13 @@
 
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="#EEB4B4"
         android:contentDescription="@string/moodCry"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scaredButton2"
-        app:srcCompat="@drawable/angry" />
+        app:srcCompat="@drawable/ic_angry2" />
 
     <TextView
         android:layout_width="wrap_content"
