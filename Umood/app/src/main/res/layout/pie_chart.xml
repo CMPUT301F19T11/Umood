@@ -16,10 +16,28 @@
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
 
     </com.github.mikephil.charting.charts.PieChart>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/consume_bar_chart"
+        android:layout_width="0dp"
+        android:layout_height="406dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+    </com.github.mikephil.charting.charts.BarChart>
 
     <info.hoang8f.android.segmented.SegmentedGroup
         android:id="@+id/segmented2"
@@ -51,9 +69,11 @@
             style="@style/RadioButton"
 
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="22dp"
+            android:checked="false"
             android:text="Histogram" />
     </info.hoang8f.android.segmented.SegmentedGroup>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
