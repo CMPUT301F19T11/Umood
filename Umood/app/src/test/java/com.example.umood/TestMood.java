@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestMood {
     public TestMood(){
+        super();
 
     }
 
@@ -32,6 +33,34 @@ public class TestMood {
         mood.setDate("2019-11-07");
         assertEquals("2019-11-07", mood.getDate());
 
+    }
+
+    @Test
+    public void testGetTime(){
+        Mood mood = new Mood();
+        mood.setTime("12:12");
+        assertEquals("12:12", mood.getTime());
+    }
+
+    @Test
+    public void testSetTime(){
+        Mood mood = new Mood();
+        mood.setTime("12:12");
+        assertEquals("12:12", mood.getTime());
+    }
+
+    @Test
+    public void testGetEmotion(){
+        Mood mood = new Mood();
+        mood.setEmotion("Happy");
+        assertEquals("Happy", mood.getEmotion());
+    }
+
+    @Test
+    public void testSetEmotion(){
+        Mood mood = new Mood();
+        mood.setEmotion("Happy");
+        assertEquals("Happy", mood.getEmotion());
     }
 
 
