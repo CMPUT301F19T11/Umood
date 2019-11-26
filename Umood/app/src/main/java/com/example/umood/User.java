@@ -18,6 +18,14 @@ public class User implements Serializable {
     private ArrayList<String> unverifiedList;
 
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     /**
      *
      * @param username: An unique ID

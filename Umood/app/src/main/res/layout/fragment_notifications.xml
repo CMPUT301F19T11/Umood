@@ -147,7 +147,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/zeldaflat" />
+        app:srcCompat="@drawable/avatar0" />
 
     <TextView
         android:id="@+id/follower_number"

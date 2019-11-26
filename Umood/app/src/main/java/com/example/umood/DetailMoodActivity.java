@@ -73,9 +73,9 @@ public class DetailMoodActivity extends AppCompatActivity {
         setContentView(R.layout.information);
         Intent intent = getIntent();
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        mood = (Mood) intent.getSerializableExtra("myMood");
-        moodList     = (MoodList) intent.getSerializableExtra("moodList");
-        moods        = moodList.getList();
+        mood          = (Mood) intent.getSerializableExtra("myMood");
+        moodList      = (MoodList) intent.getSerializableExtra("moodList");
+        moods         = moodList.getList();
         position      = intent.getIntExtra("position",0);
 
         TextView date = findViewById(R.id.reason_text);
@@ -88,8 +88,6 @@ public class DetailMoodActivity extends AppCompatActivity {
         ImageView geoMap = findViewById(R.id.imageButton4);
         TextView cityNameView = findViewById(R.id.textView10);
         TextView addressNameView = findViewById(R.id.textView11);
-
-
 
         Button saveButton = findViewById(R.id.save_button);
 
@@ -118,7 +116,7 @@ public class DetailMoodActivity extends AppCompatActivity {
         if(mood.getImagePath()!=null && !mood.getImagePath().isEmpty()){
             photo.setImageBitmap(BitmapFactory.decodeFile(mood.getImagePath()));
         }
-        intent2 = new Intent(this,MainActivity.class);
+        // intent2 = new Intent(this,MainActivity.class);
 
 
         String social = mood.getSocialSituation();
@@ -205,8 +203,8 @@ public class DetailMoodActivity extends AppCompatActivity {
                                 Log.w(TAG, "Error updating document", e);
                             }
                         });
-                intent2.putExtra("User",new User(mood.getUsername()));
-                startActivity(intent2);
+                //intent2.putExtra("User",new User(mood.getUsername()));
+                finish();
             }
         });
 
@@ -215,9 +213,10 @@ public class DetailMoodActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, mood.getUsername());
                 collectionReference.document(mood.getUsername()).update("moodHistory", FieldValue.arrayRemove(mood));
-                intent2.putExtra("User",new User(mood.getUsername()));
-                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent2);
+                // intent2.putExtra("User",new User(mood.getUsername()));
+                // intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                // startActivity(intent2);
+                finish();
             }
         });
 

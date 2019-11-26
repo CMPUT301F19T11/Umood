@@ -1,5 +1,6 @@
 package com.example.umood.ui.notifications;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -37,7 +38,6 @@ import com.example.umood.User;
 
 public class NotificationsFragment extends Fragment {
     private User user;
-    private static final String TAG = "qian-profile";
     private MainActivity activity;
 
     private Intent intent;
@@ -51,9 +51,12 @@ public class NotificationsFragment extends Fragment {
         final MoodList moodEventList = activity.getMoodEventList();
         user = activity.getUser();
 
-        ImageView imageView = root.findViewById(R.id.avatar);
-        imageView.setImageResource(R.drawable.zeldaflat);
 
+
+        ImageView imageView = root.findViewById(R.id.avatar);
+        Context context = imageView.getContext();
+        int picID =  context.getResources().getIdentifier(user.getAvatar(), "drawable", context.getPackageName());
+        imageView.setImageResource(picID);
 
         // Text view Setting
         TextView usernameView = root.findViewById(R.id.username);
@@ -103,11 +106,11 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 intent = new Intent(activity, ChartActivity.class);
+                intent.putExtra("User",user);
                 startActivity(intent);
 
             }
         });
-
         return root;
     }
     @Override
