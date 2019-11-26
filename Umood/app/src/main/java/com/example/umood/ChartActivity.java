@@ -5,16 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
 import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import java.util.ArrayList;
 
@@ -32,6 +41,8 @@ import info.hoang8f.android.segmented.SegmentedGroup;
 
 public class ChartActivity extends AppCompatActivity {
     private PieChart pieChart;
+    private BarChart barChart;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +55,10 @@ public class ChartActivity extends AppCompatActivity {
 
         SegmentedGroup segmented2 = (SegmentedGroup) findViewById(R.id.segmented2);
         Button buttonPieChart = findViewById(R.id.button21);
+        Button buttonBarChart = findViewById(R.id.button22);
+
+
+
 
 
         int scared = 0;
@@ -160,6 +175,103 @@ public class ChartActivity extends AppCompatActivity {
         // undo all highlights
         pieChart.highlightValues(null);
         pieChart.invalidate();
+
+
+
+
+
+        barChart = (BarChart)findViewById(R.id.consume_bar_chart);
+
+        initBarChart1();
+
+    }
+
+
+
+    private void initBarChart1() {
+
+        barChart.setDrawValueAboveBar(true);  //设置所有的数值在图形的上面,而不是图形上
+        barChart.setTouchEnabled(false);  //进制触控
+        barChart.setScaleEnabled(false); //设置能否缩放
+        barChart.setPinchZoom(false);  //设置true支持两个指头向X、Y轴的缩放，如果为false，只能支持X或者Y轴的当方向缩放
+        barChart.setDrawBarShadow(false);  //设置阴影
+        barChart.setDrawGridBackground(false);  //设置背景是否网格显示
+        barChart.setDescription(""); //不描述
+
+        //X轴的数据格式
+        XAxis xAxis = barChart.getXAxis();
+        xAxis.setValueFormatter(new MyFormatter());
+        //设置位置
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        //设置是否绘制网格线
+        xAxis.setDrawGridLines(false);
+        barChart.getAxisLeft().setDrawGridLines(false);
+        // barChart.animateY(2500);
+        //设置X轴文字剧中对齐
+        xAxis.setCenterAxisLabels(false);
+        //X轴最小间距
+        xAxis.setGranularity(1f);
+
+
+        //Y轴的数据格式
+        YAxis axisLeft = barChart.getAxisLeft();
+        //axisLeft.setValueFormatter(new MyFormatter2());
+        barChart.animateY(2500);
+        //设置Y轴刻度的最大值
+        axisLeft.setAxisMinValue(0);
+        axisLeft.setAxisMaxValue(100);
+        barChart.getAxisRight().setEnabled(false);
+
+        //设置数据
+        setData01();
+
+    }
+
+    //日对比的数据
+    private void setData01() {
+        ArrayList<BarEntry> yVals1 = new ArrayList<>();
+
+
+        yVals1.add(new BarEntry(1, 36));
+        yVals1.add(new BarEntry(2, 85));
+        yVals1.add(new BarEntry(3, 20));
+        yVals1.add(new BarEntry(4, 66));
+
+
+
+
+
+        BarDataSet set1;
+        set1 = new BarDataSet(yVals1, "");
+        //设置多彩 也可以单一颜色
+        //set1.setColor(Color.parseColor("#4169E1"));
+        set1.setColor(Color.rgb(0xee, 73, 0x7a));
+        set1.addColor(Color.rgb(0xfd, 0xee, 87));
+        set1.addColor(Color.rgb(88, 0xc8, 0xfa));
+        set1.addColor(Color.rgb(76, 0xdc, 93));
+
+
+
+        set1.setDrawValues(false);
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(set1);
+        BarData data = new BarData(dataSets);
+        barChart.setData(data);
+        barChart.setFitBars(true);
+        //设置文字的大小
+        set1.setValueTextSize(12f);
+        //设置每条柱子的宽度
+        data.setBarWidth(0.7f);
+        barChart.invalidate();
+
+        for (IDataSet set : barChart.getData().getDataSets())
+            set.setDrawValues(!set.isDrawValuesEnabled());
+        barChart.invalidate();
+        barChart.setAutoScaleMinMaxEnabled(!barChart.isAutoScaleMinMaxEnabled());
+        barChart.notifyDataSetChanged();
+        barChart.invalidate();
+
+
     }
 
 
