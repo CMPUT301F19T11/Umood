@@ -43,7 +43,7 @@ public class addMoodInfoTest {
         Activity activity = rule.getActivity();
     }
 
-
+/**
     @Test
     public void checkcancelButton(){
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
@@ -53,8 +53,8 @@ public class addMoodInfoTest {
         solo.waitForActivity(MainActivity.class,2000);
         //solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
     }
-
-
+*/
+/**
     @Test
     public void checkAddMood(){
         /*
@@ -70,12 +70,12 @@ public class addMoodInfoTest {
         solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
          */
-
+/**
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
         //solo.clickOnView(solo.getView(R.id.spinner2));
         solo.pressSpinnerItem(0,1);
         assertTrue(solo.isSpinnerTextSelected(0, "Alone"));
-        /**
+        
         solo.pressSpinnerItem(0,2);
         assertTrue(solo.isSpinnerTextSelected(1, "Along with one person"));
         solo.pressSpinnerItem(0,3);
@@ -83,6 +83,7 @@ public class addMoodInfoTest {
         solo.pressSpinnerItem(0,-1);
         assertTrue(solo.isSpinnerTextSelected(3, "With a Crowd"));
 */
+    /**
     }
     @Test
     public void NotSelectedEmotion(){
@@ -92,7 +93,7 @@ public class addMoodInfoTest {
     }
 
 
-
+*/
 
 
 
