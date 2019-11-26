@@ -47,7 +47,7 @@
         android:contentDescription="@string/moodHappy"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toEndOf="@+id/angryButton2"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        
         app:srcCompat="@drawable/happy" />
 
     <ImageButton
@@ -78,7 +78,7 @@
         android:contentDescription="@string/moodCry"
         android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
+       
         app:srcCompat="@drawable/angry" />
 
     <TextView
