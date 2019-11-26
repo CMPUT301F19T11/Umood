@@ -20,7 +20,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        android:visibility="gone">
 
     </com.github.mikephil.charting.charts.PieChart>
 
@@ -35,7 +35,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone">
+        android:visibility="gone">
 
     </com.github.mikephil.charting.charts.BarChart>
 
