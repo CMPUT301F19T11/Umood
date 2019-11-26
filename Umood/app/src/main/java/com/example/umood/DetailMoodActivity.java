@@ -105,7 +105,6 @@ public class DetailMoodActivity extends AppCompatActivity {
                 break;
             default:
                 color = Color.parseColor("#76dc93");
-
         }
         emotion.setText(e);
         emotion.setTextColor(color);
