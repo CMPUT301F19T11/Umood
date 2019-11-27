@@ -36,8 +36,6 @@ public class MyFormatter implements AxisValueFormatter {
         if (value == 4) {
             return "Sick";
         }
-
-
         return "";
     }
 

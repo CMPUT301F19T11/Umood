@@ -68,7 +68,20 @@ public class SignUpActivityTest {
         solo.clickOnView(solo.getView(R.id.signup1));
         assertTrue(solo.waitForText("The Username has been taken!", 1, 2000));
     }
-    
+
+    @Test
+    public void  checkSignupActivity(){
+        //Asserts that the current activity is the SignUpActivity. Otherwise, show "Wrong Activity".
+        solo.assertCurrentActivity("Wrong Activity", SignUpActivity.class);
+        solo.clickOnView(solo.getView(R.id.signup_cancel));
+        solo.sleep(2000);
+        assertTrue(solo.waitForActivity(LoginActivity.class, 2000));
+        //Asserts that the current activity is the LoginActivity. Otherwise, show "Wrong Activity".
+        solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
+    }
+
+
+
     /**
      * Closes the activity after each test
      * @throws Exception
