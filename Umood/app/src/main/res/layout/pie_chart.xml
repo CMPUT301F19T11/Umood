@@ -9,35 +9,69 @@
     segmentedgroup:sc_border_width="2dp"
     segmentedgroup:sc_corner_radius="10dp">
 
-    <RadioButton
-        android:id="@+id/button21"
-        style="@style/RadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Pie Chart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.422"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioButton
-        android:id="@+id/button22"
-        style="@style/RadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Histogram"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button21"
-        app:layout_constraintStart_toEndOf="@+id/button21" />
-
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/consume_pie_chart"
-        android:layout_width="0dp"
-        android:layout_height="406dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/segmented2">
+
+    </com.github.mikephil.charting.charts.PieChart>
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/consume_bar_chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+
+        android:layout_marginBottom="150dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button21"></com.github.mikephil.charting.charts.PieChart>
+        app:layout_constraintTop_toBottomOf="@+id/segmented2">
+
+    </com.github.mikephil.charting.charts.BarChart>
+
+    <info.hoang8f.android.segmented.SegmentedGroup
+        android:id="@+id/segmented2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        segmentedgroup:sc_border_width="2dp"
+        segmentedgroup:sc_corner_radius="10dp">
+
+        <RadioButton
+            android:id="@+id/button21"
+            style="@style/RadioButton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Pie Chart" />
+
+        <RadioButton
+            android:id="@+id/button22"
+            style="@style/RadioButton"
+
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Histogram" />
+    </info.hoang8f.android.segmented.SegmentedGroup>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

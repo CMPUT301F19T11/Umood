@@ -217,7 +217,7 @@ public class addMoodInfo extends AppCompatActivity {
                                                 addressNameView.setText(address2);
                                             else
                                                 addressNameView.setText(address);
-                                            geoMap.setImageResource(R.drawable.place);
+                                            geoMap.setImageResource(R.drawable.ic_placeholder_red);
                                             Log.d(TAG, "long: "+longitude+"lati: " +latitude);
                                             if(cityName.isEmpty())
                                                 Toast.makeText(getBaseContext(),"Network or GPS is not stable",Toast.LENGTH_LONG).show();

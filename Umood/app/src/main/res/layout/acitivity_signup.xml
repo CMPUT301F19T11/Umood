@@ -31,27 +31,26 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="64dp"
         android:background="@drawable/enter_user_name"
-        android:hint="@string/enter_username"
 
 
-        android:scaleType="fitXY"
-        android:drawableLeft="@drawable/loginusername"
         android:drawableStart="@drawable/loginusername"
+        android:drawableLeft="@drawable/loginusername"
         android:drawablePadding="15dp"
-
+        android:hint="@string/enter_username"
 
 
         android:inputType="textEmailAddress"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:scaleType="fitXY"
         android:selectAllOnFocus="true"
-        android:textCursorDrawable="@drawable/color_cursor"
 
-        app:layout_constraintBottom_toTopOf="@+id/signup"
+        android:textCursorDrawable="@drawable/color_cursor"
+        app:layout_constraintBottom_toTopOf="@+id/signup1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -89,15 +88,13 @@
         android:id="@+id/imageButton2"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:layout_marginTop="50dp"
         android:layout_marginBottom="48dp"
         android:background="#00000000"
         app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

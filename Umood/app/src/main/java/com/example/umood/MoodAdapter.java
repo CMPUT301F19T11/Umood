@@ -73,16 +73,16 @@ public class MoodAdapter extends RecyclerView.Adapter<MoodAdapter.ViewHolder> {
         String emo = mood.getEmotion();
         switch(emo){
             case"Happy":
-                holder.imageView.setImageResource(R.drawable.happy);
+                holder.imageView.setImageResource(R.drawable.ic_happy);
                 break;
             case "Sick":
-                holder.imageView.setImageResource(R.drawable.sick);
+                holder.imageView.setImageResource(R.drawable.ic_sick);
                 break;
             case "Scared":
-                holder.imageView.setImageResource(R.drawable.scared);
+                holder.imageView.setImageResource(R.drawable.ic_scared);
                 break;
             default:
-                holder.imageView.setImageResource(R.drawable.angry);
+                holder.imageView.setImageResource(R.drawable.ic_angry);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

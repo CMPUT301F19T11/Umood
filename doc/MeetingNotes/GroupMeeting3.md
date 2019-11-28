@@ -3,7 +3,7 @@
 ## Goal:
 Everyone has almost done their individual work. However, our work has not been integrated yet and 
 there are many details we want to discuss and improve.
-Today's meeting is giving us a chance to work together insted of discussing. 
+Today's meeting is giving us a chance to work together instead of discussing.
 
 ## The thing we want to improve:
 

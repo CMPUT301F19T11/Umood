@@ -63,7 +63,7 @@
         android:contentDescription="@string/map"
         app:layout_constraintEnd_toEndOf="@+id/view4"
         app:layout_constraintTop_toBottomOf="@+id/view6"
-        app:srcCompat="@drawable/placeholder" />
+        app:srcCompat="@drawable/ic_placeholder" />
 
 
     <ImageView
@@ -150,8 +150,6 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:gravity="center_vertical"
         android:textSize="18sp"
         android:textStyle="bold"

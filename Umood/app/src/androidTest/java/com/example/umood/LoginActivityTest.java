@@ -83,7 +83,7 @@ public class LoginActivityTest {
     @Test
     public void NotExistUserLogin(){
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
-        solo.enterText((EditText)solo.getView(R.id.username),"yifan3");
+        solo.enterText((EditText)solo.getView(R.id.username),"NotExistedUsername");
         solo.clickOnView(solo.getView(R.id.cancel));
         //solo.clickOnButton("SIGN IN");
         assertTrue(solo.waitForText("The username does not exist", 1,2000));

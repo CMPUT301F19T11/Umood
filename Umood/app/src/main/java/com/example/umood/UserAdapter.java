@@ -40,7 +40,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             imageView =  view.findViewById(R.id.following_avatar);
             username =  view.findViewById(R.id.following_name);
             last_mood = view.findViewById(R.id.following_name2);
-
         }
     }
 

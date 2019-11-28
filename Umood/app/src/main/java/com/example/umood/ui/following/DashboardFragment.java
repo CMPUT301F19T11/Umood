@@ -56,6 +56,8 @@ public class DashboardFragment extends Fragment{
 
     // ListView Component:
     private UserAdapter adapter;
+    private UserAdapter adapter2;
+    RecyclerView recyclerView;
     private ArrayList<String> followingList;
 
     //Debug:
@@ -76,6 +78,7 @@ public class DashboardFragment extends Fragment{
 
 
         ArrayList<User> userView = followingUserList.getList();
+        ArrayList<User> userFollowerView = followerUserList.getList();
         Log.d(TAG, ""+userView.size());
         if(userView.size()>0) {
             for (User u : userView) {
@@ -83,70 +86,31 @@ public class DashboardFragment extends Fragment{
             }
         }
 
-        // Buttons and views in XML
-        Button request = root.findViewById(R.id.request);
-        Button follower = root.findViewById(R.id.follower);
-        Button addFollowing = root.findViewById(R.id.addFollowing);
-
-
-        if(!UnverifiedUser.getList().isEmpty()){
-            Log.d(TAG, "haha");
-            ImageView imageDot = root.findViewById(R.id.red_dot);
-            GradientDrawable gd = new GradientDrawable();
-            gd.setShape(GradientDrawable.OVAL);
-            gd.setColor(Color.rgb(134, 135, 255));
-            gd.setCornerRadius(5);
-            gd.setStroke(4, Color.rgb(255, 255, 255));
-
-
-
-            int h = gd.getIntrinsicHeight();
-            int w = gd.getIntrinsicWidth();
-            gd.setBounds( 0, 0, w, h );
-
-            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.followingrequest),
-                    null,
-                    getResources().getDrawable(R.drawable.newstate),
-                    null);
-        }
-
-        Log.d(TAG, "size+"+userView.size());
+        Button followingButton = root.findViewById(R.id.button21);
+        Button followerButton = root.findViewById(R.id.button22);
         // RecycleView Components:
-        RecyclerView recyclerView = root.findViewById(R.id.recycle_view_following);
+        recyclerView = root.findViewById(R.id.recycle_view_following);
         GridLayoutManager layoutManager = new GridLayoutManager(root.getContext(),1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new UserAdapter(userView);
+        adapter2 = new UserAdapter(userFollowerView);
         recyclerView.setAdapter(adapter);
 
-
-        addFollowing.setOnClickListener(new View.OnClickListener() {
+        followingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(activity,AddFollowingActivity.class);
-                intent.putExtra("user",user);
-                startActivity(intent);
+                recyclerView.setAdapter(adapter);
             }
         });
 
-        request.setOnClickListener(new View.OnClickListener() {
+
+        followerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(activity, FollowingRequest.class);
-                intent.putExtra("user",user);
-                intent.putExtra("user_list",UnverifiedUser);
-                startActivity(intent);
+                recyclerView.setAdapter(adapter2);
             }
         });
 
-        follower.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                intent = new Intent(activity, DisplayFollowerActivity.class);
-                intent.putExtra("user",user);
-                intent.putExtra("follower_list",followerUserList);
-                startActivity(intent);
-            }
-        });
 
         return root;
     }

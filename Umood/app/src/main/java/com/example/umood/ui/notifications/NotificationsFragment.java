@@ -2,7 +2,10 @@ package com.example.umood.ui.notifications;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +16,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.umood.AddFollowingActivity;
 import com.example.umood.ChartActivity;
 import com.example.umood.FeedActivity;
+import com.example.umood.FollowingRequest;
 import com.example.umood.MainActivity;
 import com.example.umood.MoodHistory;
 import com.example.umood.MoodList;
 import com.example.umood.R;
 import com.example.umood.SettingActivity;
 import com.example.umood.User;
+import com.example.umood.UserList;
+
 /** * ------------------------------------------------------------------------------------------------------------
  * Description for this file:
  *      This is ProfileFragment
@@ -39,14 +46,20 @@ import com.example.umood.User;
 public class NotificationsFragment extends Fragment {
     private User user;
     private MainActivity activity;
+    private static final String TAG = "qian-profile";
+
 
     private Intent intent;
+
+    private UserList UnverifiedUser;
+    Button request;
+    View root;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        root = inflater.inflate(R.layout.fragment_notifications, container, false);
         activity = (MainActivity) getActivity();
         final MoodList moodEventList = activity.getMoodEventList();
         user = activity.getUser();
@@ -58,21 +71,36 @@ public class NotificationsFragment extends Fragment {
         int picID =  context.getResources().getIdentifier(user.getAvatar(), "drawable", context.getPackageName());
         imageView.setImageResource(picID);
 
-        // Text view Setting
-        TextView usernameView = root.findViewById(R.id.username);
-        TextView followingNumber = root.findViewById(R.id.following_number);
-        TextView followerNumber = root.findViewById(R.id.follower_number);
-        TextView postNumber =  root.findViewById(R.id.postNumber);
-
-        usernameView.setText(user.getUsername());
-        followerNumber.setText(String.valueOf(activity.getFollowerUserList().size()) );
-        followingNumber.setText(String.valueOf(activity.getFollowingUserList().size()));
-        postNumber.setText(String.valueOf(user.getMoodHistory().size()));
-
         Button history =  root.findViewById(R.id.button_history);
         Button chart =  root.findViewById(R.id.button_chart);
         Button feed =  root.findViewById(R.id.button_feed);
         Button setting =  root.findViewById(R.id.button_setting);
+
+
+
+        // Buttons and views in XML
+        request = root.findViewById(R.id.request);
+        Button addFollowing = root.findViewById(R.id.addFollowing);
+        change();
+
+        addFollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, AddFollowingActivity.class);
+                intent.putExtra("user",user);
+                startActivity(intent);
+            }
+        });
+
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(activity, FollowingRequest.class);
+                intent.putExtra("user",user);
+                intent.putExtra("user_list",UnverifiedUser);
+                startActivity(intent);
+            }
+        });
 
         history.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,12 +145,52 @@ public class NotificationsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         activity.update();
+        change();
+        Log.d(TAG, "onResume: ");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        activity.update();
+        change();
+        Log.d(TAG, "onPause: ");
+    }
+
+    private void change(){
+        UnverifiedUser = activity.getUnverifiedUser();
+        GradientDrawable gd = new GradientDrawable();
+        gd.setShape(GradientDrawable.OVAL);
+        gd.setColor(Color.rgb(134, 135, 255));
+        gd.setCornerRadius(5);
+        gd.setStroke(4, Color.rgb(255, 255, 255));
+        int h = gd.getIntrinsicHeight();
+        int w = gd.getIntrinsicWidth();
+        gd.setBounds( 0, 0, w, h );
+        if(!UnverifiedUser.getList().isEmpty()){
+            Log.d(TAG, "haha");
+            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_phone_book),
+                    null,
+                    getResources().getDrawable(R.drawable.profilearrow),
+                    null);
+        } else {
+            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_phone_book),
+                    null,
+                    getResources().getDrawable(R.drawable.ic_right_arrow),
+                    null);
+
+        }
+
+        // Text view Setting
+        TextView usernameView = root.findViewById(R.id.username);
+        TextView followingNumber = root.findViewById(R.id.following_number);
+        TextView followerNumber = root.findViewById(R.id.follower_number);
+        TextView postNumber =  root.findViewById(R.id.postNumber);
+
+        usernameView.setText(user.getUsername());
+        followerNumber.setText(String.valueOf(activity.getFollowerUserList().size()) );
+        followingNumber.setText(String.valueOf(activity.getFollowingUserList().size()));
+        postNumber.setText(String.valueOf(user.getMoodHistory().size()));
+
     }
 
 

@@ -63,14 +63,11 @@ public class SignUpActivityTest {
     public void ExistUserSignUp(){
         //Asserts that the current activity is the SignUpActivity. Otherwise, show "Wrong Activity".
         solo.assertCurrentActivity("Wrong Activity", SignUpActivity.class);
-        solo.enterText((EditText)solo.getView(R.id.username),"yifan");
+        // The user test should always be exist.
+        solo.enterText((EditText)solo.getView(R.id.username),"test");
         solo.clickOnView(solo.getView(R.id.signup1));
         assertTrue(solo.waitForText("The Username has been taken!", 1, 2000));
-
-
     }
-
-
 
     @Test
     public void  checkSignupActivity(){
@@ -83,18 +80,7 @@ public class SignUpActivityTest {
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
     }
 
-    @Test
-    public void testAddNewUser(){
-        //Asserts that the current activity is the SignUpActivity. Otherwise, show "Wrong Activity".
-        solo.assertCurrentActivity("Wrong Activity", SignUpActivity.class);
-        solo.enterText((EditText) solo.getView(R.id.username), "yifan6");
-        solo.clickOnView(solo.getView(R.id.signup1));
-        solo.sleep(6000);
-        assertTrue(solo.waitForActivity(MainActivity.class, 2000));
-        //Asserts that the current activity is the SignUpActivity. Otherwise, show "Wrong Activity".
-        solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
 
-    }
 
 
     /**
