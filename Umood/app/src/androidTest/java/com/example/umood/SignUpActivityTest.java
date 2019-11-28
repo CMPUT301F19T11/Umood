@@ -81,6 +81,7 @@ public class SignUpActivityTest {
 
 
 
+
     /**
      * Closes the activity after each test
      * @throws Exception
