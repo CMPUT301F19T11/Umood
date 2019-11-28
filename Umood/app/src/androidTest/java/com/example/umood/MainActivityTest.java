@@ -57,6 +57,14 @@ public class MainActivityTest {
 
     /**
      * This function test if switching Maps works.
+     *
+     * US 06.02.01
+     * As a participant, I want to see a map of the mood events (showing their emotional states)
+     * from my mood history list (that have locations).
+     *
+     * US 06.03.01
+     * As a participant, I want to see a map of the mood events (showing their emotional states
+     * and the username) from my mood following list (that have locations).
      */
 
     @Test
@@ -78,7 +86,6 @@ public class MainActivityTest {
         solo.waitForActivity(MainActivity.class, 2000);
         solo.clickOnView(solo.getView(R.id.mapView));
         solo.clickOnView(solo.getView(R.id.swapButton));
-        //solo.clickOnView(solo.getView(R.id.mapView));
         solo.sleep(4000);
     }
 

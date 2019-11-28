@@ -35,6 +35,11 @@ public class MoodHistoryTest {
 
     /**
      * This function tests that if the filter spinner works.
+     * US 04.01.01
+     * As a participant, I want to view as a list my mood history, sorted by date and time, in reverse chronological order (most recent coming first).
+     *
+     * US 04.02.01
+     * As a participant, I want to filter my mood history list to show only mood events with a particular emotional state.
      */
 
     @Test

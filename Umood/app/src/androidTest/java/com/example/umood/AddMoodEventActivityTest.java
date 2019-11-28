@@ -35,6 +35,30 @@ public class AddMoodEventActivityTest {
 
     /**
      * This function tests add new mood event works.
+     *
+     * US 01.01.01
+     * As a participant, I want to add a mood event to my mood history,
+     * each event with the current date and time, a required emotional state, optional reason,
+     * and optional social situation.
+     *
+     * US 01.02.01
+     * As a participant, I want consistent emoticons and colors to depict and distinguish
+     * the emotional states in any view.
+     *
+     *
+     * US 02.01.01
+     * As a participant, I want to express the reason why for a mood event using a brief textual
+     * explanation (no more than 20 characters or 3 words).
+     *
+     * US 02.02.01
+     * As a participant, I want to express the reason why for a mood event using a photograph.
+     *
+     * US 02.03.01
+     * As a participant, I want to specify the social situation for a mood event to be one of: alone,
+     * with one other person, with two to several people, or with a crowd.
+     *
+     * US 06.01.01
+     * As a participant, I want to optionally attach my current location to a mood event.
      */
     @Test
     public void AddNewMood1(){

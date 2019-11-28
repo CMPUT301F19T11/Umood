@@ -44,6 +44,11 @@ public class EditAndViewMoodEventActivityTest {
     }
 
 
+    /**
+     * US 01.03.01
+     * As a participant, I want to view a given mood event and all its available details.
+     */
+
     @Test
     public void ViewMoodDetail(){
         solo.clickOnView(solo.getView(R.id.nav_view).findViewById(R.id.navigation_notifications));
@@ -55,6 +60,11 @@ public class EditAndViewMoodEventActivityTest {
         solo.clickOnView(recyclerView.getChildAt(0));
         solo.sleep(2000);
     }
+
+    /**
+     * US 01.04.01
+     * As a participant, I want to edit the details of a given mood event of mine.
+     */
 
     @Test
     public void EditMoodDetail(){
@@ -93,6 +103,11 @@ public class EditAndViewMoodEventActivityTest {
         solo.waitForActivity(MoodHistory.class, 2000);
     }
 
+    /**
+     * US 01.05.01
+     * As a participant, I want to delete a given mood event of mine.
+     */
+
 
     @Test
     public void ClickDeleteButton(){
@@ -102,10 +117,9 @@ public class EditAndViewMoodEventActivityTest {
         solo.sleep(5000);
         solo.waitForActivity(MoodHistory.class, 2000);
         final RecyclerView recyclerView = (RecyclerView) solo.getView(R.id.history_recycle_view);
-        solo.clickOnView(recyclerView.getChildAt(2));
+        solo.clickOnView(recyclerView.getChildAt(1));
         solo.sleep(2000);
         solo.clickOnView(solo.getView(R.id.save_button2));
-        //solo.clickOnView(recyclerView.getChildAt(1));
         solo.sleep(4000);
         solo.waitForActivity(MoodHistory.class, 2000);
     }
