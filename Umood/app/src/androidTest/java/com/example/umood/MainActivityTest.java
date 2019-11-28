@@ -29,7 +29,7 @@ public class MainActivityTest {
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
         solo.enterText((EditText) solo.getView(R.id.username), "yifan");
         solo.clickOnView(solo.getView(R.id.cancel));
-        solo.sleep(5000);
+        solo.sleep(3000);
 
     }
 
@@ -69,25 +69,18 @@ public class MainActivityTest {
 
     @Test
     public void checkSwitchMapButton(){
-        solo.clickOnView(solo.getView(R.id.floatingActionButton));
-        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
-        solo.clickOnView(solo.getView(R.id.sickButton2));
-        solo.clickOnView(solo.getView(R.id.save_button3));
-        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
-        solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
-        solo.sleep(6000);
-        solo.enterText((EditText) solo.getView(R.id.reason_text3), "test2");
-        solo.pressSpinnerItem(0,4);
-        boolean actual = solo.isSpinnerTextSelected(0, "With a Crowd");
-        assertTrue("spinner item With a Crowd is not selected", actual);
-        solo.clickOnView(solo.getView(R.id.imageButton4));
-        solo.clickOnView(solo.getView(R.id.save_button));
-        solo.sleep(6000);
-        solo.waitForActivity(MainActivity.class, 2000);
-        solo.clickOnView(solo.getView(R.id.mapView));
+        solo.waitForText("Displaying the mood events from your mood history list",1,2000);
         solo.clickOnView(solo.getView(R.id.swapButton));
-        solo.sleep(4000);
+        assertTrue(solo.waitForText("Displaying the mood events from your mood following list",1,2000));
+        solo.clickOnView(solo.getView(R.id.mapView));
+        solo.sleep(2000);
+        solo.clickOnView(solo.getView(R.id.swapButton));
+        solo.clickOnView(solo.getView(R.id.mapView));
+        solo.sleep(2000);
+
     }
+
+
 
     /**
      * Closes the activity after each test

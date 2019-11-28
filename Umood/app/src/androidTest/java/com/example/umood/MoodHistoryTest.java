@@ -2,7 +2,9 @@ package com.example.umood;
 
 import android.app.Activity;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
@@ -13,7 +15,15 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.SimpleTimeZone;
+
+import static junit.framework.TestCase.assertSame;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class MoodHistoryTest {
     private Solo solo;
@@ -33,35 +43,140 @@ public class MoodHistoryTest {
     }
 
 
+
     /**
-     * This function tests that if the filter spinner works.
+     *
      * US 04.01.01
      * As a participant, I want to view as a list my mood history, sorted by date and time, in reverse chronological order (most recent coming first).
-     *
+     */
+    @Test
+    public void TestMoodHistoryList(){
+        //Add new mood event1.
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
+        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
+        solo.clickOnView(solo.getView(R.id.happyButton2));
+        solo.clickOnView(solo.getView(R.id.save_button3));
+        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
+        //solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
+        //solo.sleep(6000);
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test");
+        solo.pressSpinnerItem(0,4);
+        boolean actual = solo.isSpinnerTextSelected(0, "With a Crowd");
+        assertTrue("spinner item With a Crowd is not selected", actual);
+        solo.clickOnView(solo.getView(R.id.imageButton4));
+        solo.clickOnView(solo.getView(R.id.save_button));
+        solo.sleep(6000);
+        solo.waitForActivity(MainActivity.class, 2000);
+
+
+
+        //Add new mood event3.
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
+        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
+        solo.clickOnView(solo.getView(R.id.sickButton2));
+        solo.clickOnView(solo.getView(R.id.save_button3));
+        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
+        //solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
+        //solo.sleep(6000);
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test2");
+        solo.pressSpinnerItem(0,4);
+        boolean actual3 = solo.isSpinnerTextSelected(0, "With a Crowd");
+        assertTrue("spinner item With a Crowd is not selected", actual3);
+        solo.clickOnView(solo.getView(R.id.imageButton4));
+        solo.clickOnView(solo.getView(R.id.save_button));
+        solo.sleep(6000);
+        solo.waitForActivity(MainActivity.class, 2000);
+
+        solo.clickOnView(solo.getView(R.id.nav_view).findViewById(R.id.navigation_notifications));
+        solo.waitForFragmentById(R.id.navigation_notifications);
+        solo.clickOnView(solo.getView(R.id.button_history));
+        solo.sleep(3000);
+        solo.waitForActivity(MoodHistory.class, 2000);
+
+        final RecyclerView recyclerView = (RecyclerView) solo.getView(R.id.history_recycle_view);
+        assertTrue(recyclerView.getChildCount()> 0);
+
+
+    }
+
+    /**
+     * This function tests that if the filter spinner works.
      * US 04.02.01
      * As a participant, I want to filter my mood history list to show only mood events with a particular emotional state.
      */
 
     @Test
-    public void checkFilter(){
+    public void TestFilter(){
+        //Add new mood event1.
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
+        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
+        solo.clickOnView(solo.getView(R.id.happyButton2));
+        solo.clickOnView(solo.getView(R.id.save_button3));
+        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
+        //solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
+        //solo.sleep(6000);
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test");
+        solo.pressSpinnerItem(0,4);
+        boolean actual = solo.isSpinnerTextSelected(0, "With a Crowd");
+        assertTrue("spinner item With a Crowd is not selected", actual);
+        solo.clickOnView(solo.getView(R.id.imageButton4));
+        solo.clickOnView(solo.getView(R.id.save_button));
+        solo.sleep(6000);
+        solo.waitForActivity(MainActivity.class, 2000);
+
+
+        //Add new mood event2.
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
+        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
+        solo.clickOnView(solo.getView(R.id.happyButton2));
+        solo.clickOnView(solo.getView(R.id.save_button3));
+        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
+        //solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
+        //solo.sleep(6000);
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test1");
+        solo.pressSpinnerItem(0,1);
+        boolean actual2 = solo.isSpinnerTextSelected(0, "Alone");
+        assertTrue("spinner item Alone is not selected", actual2);
+        solo.clickOnView(solo.getView(R.id.imageButton4));
+        solo.clickOnView(solo.getView(R.id.save_button));
+        solo.sleep(6000);
+        solo.waitForActivity(MainActivity.class, 2000);
+
+
+        //Add new mood event3.
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
+        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
+        solo.clickOnView(solo.getView(R.id.sickButton2));
+        solo.clickOnView(solo.getView(R.id.save_button3));
+        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
+        //solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
+        //solo.sleep(6000);
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test2");
+        solo.pressSpinnerItem(0,4);
+        boolean actual3 = solo.isSpinnerTextSelected(0, "With a Crowd");
+        assertTrue("spinner item With a Crowd is not selected", actual3);
+        solo.clickOnView(solo.getView(R.id.imageButton4));
+        solo.clickOnView(solo.getView(R.id.save_button));
+        solo.sleep(6000);
+        solo.waitForActivity(MainActivity.class, 2000);
+
+
+        // Filter the Mood events.
         solo.clickOnView(solo.getView(R.id.nav_view).findViewById(R.id.navigation_notifications));
         solo.waitForFragmentById(R.id.navigation_notifications);
         solo.clickOnView(solo.getView(R.id.button_history));
         solo.sleep(5000);
         solo.waitForActivity(MoodHistory.class, 2000);
-
-
         solo.pressSpinnerItem(0,1);
         boolean actual1 = solo.isSpinnerTextSelected(0, "Happy");
         assertTrue("spinner item Happy is not selected", actual1);
         solo.sleep(4000);
         solo.pressSpinnerItem(0,2);
-        boolean actual2 = solo.isSpinnerTextSelected(0, "Scared");
-        assertTrue("spinner item Scared is not selected", actual2);
+        assertTrue("spinner item Scared is not selected", solo.isSpinnerTextSelected(0, "Scared"));
         solo.sleep(4000);
-        //solo.pressSpinnerItem(0,0);
-        //assertTrue("spinner item All is not selected", solo.isSpinnerTextSelected(0, "All"));
-        //solo.sleep(4000);
+        solo.pressSpinnerItem(0,-4);
+        assertTrue("spinner item All is not selected", solo.isSpinnerTextSelected(0, "All"));
+        solo.sleep(4000);
 
 
     }
@@ -71,7 +186,7 @@ public class MoodHistoryTest {
      */
 
     @Test
-    public void CancelButton(){
+    public void TestCancelButton(){
         solo.clickOnView(solo.getView(R.id.nav_view).findViewById(R.id.navigation_notifications));
         solo.waitForFragmentById(R.id.navigation_notifications);
         solo.clickOnView(solo.getView(R.id.button_history));
