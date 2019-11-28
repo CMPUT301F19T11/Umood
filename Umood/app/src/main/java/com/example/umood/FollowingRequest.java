@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,7 +45,15 @@ public class FollowingRequest extends AppCompatActivity {
         Intent intent = getIntent();
         UnverifiedUser = (UserList)intent.getSerializableExtra("user_list");
         user = (User)intent.getSerializableExtra("user");
-        Log.d(TAG, user.getUsername());
+
+
+        ImageButton cancel = findViewById(R.id.signup_cancel2);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         Log.d(TAG, "second: "+UnverifiedUser.size());

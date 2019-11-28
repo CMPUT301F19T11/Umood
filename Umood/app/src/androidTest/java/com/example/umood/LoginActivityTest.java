@@ -60,7 +60,7 @@ public class LoginActivityTest {
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
         //Get view for EditText and enter a username.
         solo.enterText((EditText)solo.getView(R.id.username),"yifan");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.sleep(6000);
         assertTrue(solo.waitForActivity(MainActivity.class, 2000));
         //Asserts that the current activity is the MainActivity. Otherwise, show "Wrong Activity".
@@ -89,7 +89,7 @@ public class LoginActivityTest {
     @Test
     public void emptyUsernameLogin(){
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         //solo.clickOnButton("SIGN IN");
         assertTrue(solo.waitForText("The username cannot be empty", 1,2000));
     }
@@ -104,7 +104,7 @@ public class LoginActivityTest {
     public void NotExistUserLogin(){
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
         solo.enterText((EditText)solo.getView(R.id.username),"NotExistedUsername");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         //solo.clickOnButton("SIGN IN");
         assertTrue(solo.waitForText("The username does not exist", 1,2000));
 

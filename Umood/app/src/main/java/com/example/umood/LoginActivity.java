@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_login);
 
-        Button btnLogin= findViewById(R.id.cancel);
+        Button btnLogin= findViewById(R.id.cancel2);
         intentSignIn = new Intent(this, MainActivity.class);
         intentSignUp = new Intent(this, SignUpActivity.class);
         TextView tv = (TextView) findViewById(R.id.signup);

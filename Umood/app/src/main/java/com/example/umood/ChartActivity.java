@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -54,6 +55,16 @@ public class ChartActivity extends AppCompatActivity {
         User user = (User) intent.getSerializableExtra("User");
         ArrayList<Mood> history = user.getMoodHistory();
 
+
+        ImageButton cancel = findViewById(R.id.cancel2);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         if(!history.isEmpty()) {
             for (Mood mood : history) {
                 String e = mood.getEmotion();
@@ -72,6 +83,7 @@ public class ChartActivity extends AppCompatActivity {
                 }
             }
         }
+
 
         barChart = (BarChart)findViewById(R.id.consume_bar_chart);
         initPieChart();
@@ -94,6 +106,8 @@ public class ChartActivity extends AppCompatActivity {
                 pieChart.setVisibility(View.GONE);
             }
         });
+
+
 
     }
 
@@ -202,6 +216,7 @@ public class ChartActivity extends AppCompatActivity {
         // undo all highlights
         pieChart.highlightValues(null);
         pieChart.invalidate();
+
 
     }
 
