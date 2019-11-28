@@ -46,7 +46,6 @@ public class FeedTest{
                 solo.sleep(6000);
                 assertTrue(solo.waitForActivity(MainActivity.class, 2000));
 
-
                 solo.clickOnView(solo.getView(R.id.floatingActionButton));
                 solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
                 solo.clickOnView(solo.getView(R.id.happyButton2));
@@ -58,7 +57,7 @@ public class FeedTest{
                 //solo.clickOnView(solo.getView(R.id.spinner2));
                 solo.pressSpinnerItem(0,4);
 
-                solo.clickOnView(solo.getView(R.id.imageButton4));
+                // solo.clickOnView(solo.getView(R.id.imageButton4));
 
                 TextView a = (TextView) solo.getCurrentActivity().findViewById(R.id.reason_text2);
                 date = a.getText().toString();
@@ -71,17 +70,14 @@ public class FeedTest{
                 solo.waitForActivity(MainActivity.class, 2000);
                 //Asserts that the current activity is the MainActivity. Otherwise, show "Wrong Activity".
                 solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
-
-
-
-
-        }
-        @Test
-        public void checkFeed() {
+                solo.goBackToActivity("LoginActivity");
+                solo.sleep(2000);
+                // Check your Feed Status
                 try {
                         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
 
                         //Get view for EditText and enter a username.
+                        solo.clearEditText((EditText) solo.getView(R.id.username));
                         solo.enterText((EditText) solo.getView(R.id.username), "test");
                         solo.clickOnView(solo.getView(R.id.cancel2));
                         solo.sleep(1000);
@@ -96,6 +92,6 @@ public class FeedTest{
                 } catch (Throwable e){
                         e.printStackTrace();
                 }
-
         }
+
 }

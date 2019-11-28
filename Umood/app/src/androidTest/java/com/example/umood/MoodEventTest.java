@@ -162,7 +162,7 @@ public class MoodEventTest {
         currentTime =
                 Time.getText().toString();
 
-        solo.clickOnView(solo.getView(R.id.imageButton4));
+        //solo.clickOnView(solo.getView(R.id.imageButton4));
         solo.clickOnView(solo.getView(R.id.save_button));
         solo.sleep(1000);
         solo.waitForActivity(MainActivity.class, 2000);
