@@ -19,8 +19,8 @@ import static junit.framework.TestCase.assertTrue;
 public class AddMoodEventActivityTest {
     private Solo solo;
     @Rule
-    public ActivityTestRule<AddMoodFirstActivity> rule =
-            new ActivityTestRule<>(AddMoodFirstActivity.class, true, true);
+    public ActivityTestRule<LoginActivity> rule =
+            new ActivityTestRule<>(LoginActivity.class, true, true);
     /**
      * Runs before all tests and creates solo instance.
      * @throws Exception
@@ -28,13 +28,17 @@ public class AddMoodEventActivityTest {
     @Before
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
+        solo.enterText((EditText) solo.getView(R.id.username), "yifan");
+        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.sleep(5000);
     }
 
     /**
      * This function tests add new mood event works.
      */
     @Test
-    public void AddNewMood(){
+    public void AddNewMood1(){
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
         solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
         solo.clickOnView(solo.getView(R.id.happyButton2));
         solo.clickOnView(solo.getView(R.id.save_button3));
@@ -43,8 +47,31 @@ public class AddMoodEventActivityTest {
         //solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
         solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
         solo.sleep(6000);
-        solo.enterText((EditText) solo.getView(R.id.reason_text3), "test");
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "test2");
         //solo.clickOnView(solo.getView(R.id.spinner2));
+        solo.pressSpinnerItem(0,4);
+        boolean actual = solo.isSpinnerTextSelected(0, "With a Crowd");
+        assertTrue("spinner item With a Crowd is not selected", actual);
+        solo.clickOnView(solo.getView(R.id.imageButton4));
+        solo.clickOnView(solo.getView(R.id.save_button));
+        solo.sleep(6000);
+        solo.waitForActivity(MainActivity.class, 2000);
+
+    }
+
+    /**
+     * This function tests add new mood event works.
+     */
+    @Test
+    public void AddNewMood2(){
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
+        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
+        solo.clickOnView(solo.getView(R.id.angryButton2));
+        solo.clickOnView(solo.getView(R.id.save_button3));
+        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
+        solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
+        solo.sleep(6000);
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "test");
         solo.pressSpinnerItem(0,1);
         boolean actual = solo.isSpinnerTextSelected(0, "Alone");
         assertTrue("spinner item Alone is not selected", actual);
@@ -52,10 +79,34 @@ public class AddMoodEventActivityTest {
         solo.clickOnView(solo.getView(R.id.save_button));
         solo.sleep(6000);
         solo.waitForActivity(MainActivity.class, 2000);
-        //Asserts that the current activity is the MainActivity. Otherwise, show "Wrong Activity".
-        // solo.assertCurrentActivity("Wrong Activity", MainActivity.class);
+
 
     }
+
+    /**
+     * This function tests add new mood event works.
+     */
+    @Test
+    public void AddNewMood3(){
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
+        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
+        solo.clickOnView(solo.getView(R.id.scaredButton2));
+        solo.clickOnView(solo.getView(R.id.save_button3));
+        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
+        solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
+        solo.sleep(6000);
+        solo.enterText((EditText) solo.getView(R.id.reason_text3), "test3");
+        solo.pressSpinnerItem(0,2);
+        boolean actual2 = solo.isSpinnerTextSelected(0, "Along with one person");
+        assertTrue("spinner item Along with one person is not selected", actual2);
+        solo.clickOnView(solo.getView(R.id.save_button));
+        solo.sleep(6000);
+        solo.waitForActivity(MainActivity.class, 2000);
+
+
+    }
+
+
 
     /**
      * This function test if the warning message appears when the user press Next button without
@@ -64,15 +115,21 @@ public class AddMoodEventActivityTest {
 
     @Test
     public void NotSelectedEmotion(){
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
         solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
         solo.clickOnView(solo.getView(R.id.save_button3));
         assertTrue(solo.waitForText("Choose an emotion!", 1,2000));
     }
 
+
+    /**
+     * This function test if the user arrives Emotion page when pressing Cancel button.
+     */
     @Test
     public void CancelButton(){
+        solo.clickOnView(solo.getView(R.id.floatingActionButton));
         solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
-        solo.clickOnView(solo.getView(R.id.happyButton2));
+        solo.clickOnView(solo.getView(R.id.sickButton2));
         solo.clickOnView(solo.getView(R.id.save_button3));
         assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
         solo.assertCurrentActivity("Wrong Activity", addMoodInfo.class);
@@ -82,14 +139,7 @@ public class AddMoodEventActivityTest {
         solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
 
     }
-    /**
-     * Gets the Activity
-     * @throws Exception
-     */
-    @Test
-    public void start() throws Exception{
-        Activity activity = rule.getActivity();
-    }
+
 
     /**
      * Closes the activity after each test
