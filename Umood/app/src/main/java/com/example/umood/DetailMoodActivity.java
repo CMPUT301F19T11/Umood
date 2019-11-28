@@ -157,6 +157,7 @@ public class DetailMoodActivity extends AppCompatActivity {
 
 
         Button delete = findViewById(R.id.save_button2);
+        final Intent intent2  = new Intent(this, MainActivity.class);
 
 
 
@@ -202,8 +203,9 @@ public class DetailMoodActivity extends AppCompatActivity {
                                 Log.w(TAG, "Error updating document", e);
                             }
                         });
-                //intent2.putExtra("User",new User(mood.getUsername()));
-                finish();
+                intent2.putExtra("User",new User(mood.getUsername()));
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
             }
         });
 
@@ -212,10 +214,9 @@ public class DetailMoodActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, mood.getUsername());
                 collectionReference.document(mood.getUsername()).update("moodHistory", FieldValue.arrayRemove(mood));
-                // intent2.putExtra("User",new User(mood.getUsername()));
-                // intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                // startActivity(intent2);
-                finish();
+                intent2.putExtra("User",new User(mood.getUsername()));
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
             }
         });
 

@@ -75,7 +75,6 @@ public class SignUpActivityTest {
         solo.assertCurrentActivity("Wrong Activity", SignUpActivity.class);
         solo.clickOnView(solo.getView(R.id.signup_cancel));
         solo.sleep(2000);
-        assertTrue(solo.waitForActivity(LoginActivity.class, 2000));
         //Asserts that the current activity is the LoginActivity. Otherwise, show "Wrong Activity".
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
     }
