@@ -1,12 +1,7 @@
 package com.example.umood;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -58,7 +52,7 @@ public class AddFollowingActivity extends AppCompatActivity {
         //XML touchable
         addFollowing = findViewById(R.id.add_following);
         Button confirm = findViewById(R.id.confirm);
-        ImageButton back = findViewById(R.id.cancel);
+        ImageButton back = findViewById(R.id.cancel2);
 
         Intent intent = getIntent();
         me = (User) intent.getSerializableExtra("user");

@@ -1,35 +1,20 @@
 package com.example.umood;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.baoyz.swipemenulistview.SwipeMenu;
-import com.baoyz.swipemenulistview.SwipeMenuCreator;
-import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 
@@ -51,10 +36,15 @@ import java.util.Collections;
 public class MoodHistory extends AppCompatActivity {
     private MoodAdapter adapter;
     private ArrayList<Mood> moodList;
-    private SwipeMenuListView listView;
+
     User user;
+
     private static final String TAG = "qian-MoodHistory";
     private static final String TAG2 = "py";
+
+    private static final int DELETE_MOOD_REQUEST = 2;
+    fire f;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,20 +54,19 @@ public class MoodHistory extends AppCompatActivity {
         setContentView(R.layout.mood_history);
 
         Intent intent = getIntent();
-        user = (User)intent.getSerializableExtra("User");
+        user = (User) intent.getSerializableExtra("User");
+        f = new fire(user);
         moodList = user.getMoodHistory();
         Collections.sort(moodList);
 
         final RecyclerView recyclerView = findViewById(R.id.history_recycle_view);
-        GridLayoutManager layoutManager = new GridLayoutManager(this,1);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MoodAdapter(moodList);
-
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
-
-        ImageButton cancelButton = findViewById(R.id.cancel);
+        ImageButton cancelButton = findViewById(R.id.cancel2);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,38 +74,42 @@ public class MoodHistory extends AppCompatActivity {
             }
         });
 
-        Spinner socialSituation = findViewById(R.id.spinner2);
-
-        socialSituation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Spinner filter = findViewById(R.id.spinner2);
+        filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String emotion = ((TextView)view).getText().toString();
-
-                if(!emotion.equals("All")){
+                String emotion = ((TextView) view).getText().toString();
+                if (!emotion.equals("All")) {
                     ArrayList<Mood> moodList_Filtered = new ArrayList<Mood>();
-                    for(Mood mood : moodList){
-                        if(mood.getEmotion().equals(emotion)){
+                    for (Mood mood : moodList) {
+                        if (mood.getEmotion().equals(emotion)) {
                             moodList_Filtered.add(mood);
                         }
                     }
-
                     adapter = new MoodAdapter(moodList_Filtered);
-                }else{
+                } else {
                     adapter = new MoodAdapter(moodList);
                 }
 
                 recyclerView.setAdapter(adapter);
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
+
     }
 
-
+    @Override
+    protected void onResume(){
+        super.onResume();
+        f.update();
+        user = f.getUser();
+        moodList = user.getMoodHistory();
+        Collections.sort(moodList);
+        adapter.notifyDataSetChanged();
+    }
 }
 
 /*

@@ -286,7 +286,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     }
                 }
             });
-            Toast.makeText(root.getContext(), "Displaying the mood events from your mood history list", Toast.LENGTH_LONG).show();
+            Toast.makeText(root.getContext(), "Your Mood Events", Toast.LENGTH_LONG).show();
         }
         else {
             // Need to call MapsInitializer before doing any CameraUpdateFactory calls
@@ -372,7 +372,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                     }
                 });
-                Toast.makeText(root.getContext(), "Displaying the mood events from your mood following list", Toast.LENGTH_LONG).show();
+                Toast.makeText(root.getContext(), "Following's Mood Events", Toast.LENGTH_LONG).show();
 
             }
             gMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {

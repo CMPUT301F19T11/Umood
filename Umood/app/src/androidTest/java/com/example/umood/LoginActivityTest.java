@@ -15,6 +15,26 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * 01.01.01
+ * 01.02.01
+ * 01.03.01
+ * 01.05.01
+ * 02.01.01
+ * 02.02.01
+ * 02.03.01
+ * 03.01.01
+ * 04.01.01
+ * 05.01.01
+ * 05.02.01
+ * 05.03.01
+ * 06.01.01 (new)
+ * 06.02.01 (new)
+ * 06.03.01 (new)
+ * 01.04.01 (new)
+ * 04.02.01 (new)
+ */
+
 public class LoginActivityTest {
     private Solo solo;
     @Rule
@@ -40,7 +60,7 @@ public class LoginActivityTest {
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
         //Get view for EditText and enter a username.
         solo.enterText((EditText)solo.getView(R.id.username),"yifan");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.sleep(6000);
         assertTrue(solo.waitForActivity(MainActivity.class, 2000));
         //Asserts that the current activity is the MainActivity. Otherwise, show "Wrong Activity".
@@ -69,7 +89,7 @@ public class LoginActivityTest {
     @Test
     public void emptyUsernameLogin(){
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         //solo.clickOnButton("SIGN IN");
         assertTrue(solo.waitForText("The username cannot be empty", 1,2000));
     }
@@ -84,7 +104,7 @@ public class LoginActivityTest {
     public void NotExistUserLogin(){
         solo.assertCurrentActivity("Wrong Activity", LoginActivity.class);
         solo.enterText((EditText)solo.getView(R.id.username),"NotExistedUsername");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         //solo.clickOnButton("SIGN IN");
         assertTrue(solo.waitForText("The username does not exist", 1,2000));
 
