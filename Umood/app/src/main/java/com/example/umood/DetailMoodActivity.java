@@ -39,9 +39,8 @@ import java.util.Locale;
  *
  * Corresponding Backlog:
  *      - US 01.03.01: As a participant, I want to view a given mood event and all its available details.
- *
+
  *      - US 01.04.01: As a participant, I want to edit the details of a given mood event of mine.
- *
  *      - US 01.05.01: As a participant, I want to delete a given mood event of mine.
  *
  * Last Modified:
@@ -116,8 +115,6 @@ public class DetailMoodActivity extends AppCompatActivity {
             photo.setImageBitmap(BitmapFactory.decodeFile(mood.getImagePath()));
         }
         // intent2 = new Intent(this,MainActivity.class);
-
-
         String social = mood.getSocialSituation();
         newSocialSituation = social;
         switch(social){

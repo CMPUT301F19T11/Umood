@@ -15,6 +15,26 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * 01.01.01
+ * 01.02.01
+ * 01.03.01
+ * 01.05.01
+ * 02.01.01
+ * 02.02.01
+ * 02.03.01
+ * 03.01.01
+ * 04.01.01
+ * 05.01.01
+ * 05.02.01
+ * 05.03.01
+ * 06.01.01 (new)
+ * 06.02.01 (new)
+ * 06.03.01 (new)
+ * 01.04.01 (new)
+ * 04.02.01 (new)
+ */
+
 public class LoginActivityTest {
     private Solo solo;
     @Rule
