@@ -233,6 +233,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+            int index = 0;
+            for(User test:followingUserList.getList()){
+                if(!followingList.contains(test.getUsername())){
+                    followingUserList.removeUser(index);
+                }
+                index++;
+            }
+
         }
 
 
@@ -259,6 +267,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+            int index = 0;
+            for(User test:UnverifiedUser.getList()){
+                if(!unverifyList.contains(test.getUsername())){
+                    UnverifiedUser.removeUser(index);
+                }
+                index++;
             }
         }
 
@@ -287,44 +302,52 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+            int index = 0;
+            for(User test:followerUserList.getList()){
+                if(!followerList.contains(test.getUsername())){
+                    followerUserList.removeUser(index);
+                }
+                index++;
+            }
         }
 
 
-
-        for (String username : followingList) {
-            collectionReference.document(username)
-                    .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        DocumentSnapshot document = task.getResult();
-                        if (document.exists()) {
-                            User following = document.toObject(User.class);
-                            if (following.getMoodHistory()!=null && !following.getMoodHistory().isEmpty()) {
-                                ArrayList<Mood> moodhis = following.getMoodHistory();
-                                Collections.sort(moodhis);
-                                Mood madd = moodhis.get(0);
-                                boolean cond = true;
-                                ArrayList<Mood> abc = moodEventList.getList();
-                                for(Mood m:abc){
-                                    if(m.getTime().equals(madd.getTime())){
-                                        cond = false;
-                                        break;
+        if(followerList!=null) {
+            for (String username : followingList) {
+                collectionReference.document(username)
+                        .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                User following = document.toObject(User.class);
+                                if (following.getMoodHistory() != null && !following.getMoodHistory().isEmpty()) {
+                                    ArrayList<Mood> moodhis = following.getMoodHistory();
+                                    Collections.sort(moodhis);
+                                    Mood madd = moodhis.get(0);
+                                    boolean cond = true;
+                                    ArrayList<Mood> abc = moodEventList.getList();
+                                    for (Mood m : abc) {
+                                        if (m.getTime().equals(madd.getTime())) {
+                                            cond = false;
+                                            break;
+                                        }
+                                    }
+                                    if (cond) {
+                                        moodEventList.addUser(madd);
                                     }
                                 }
-                                if(cond){
-                                    moodEventList.addUser(madd);
-                                }
-                            }
 
+                            } else {
+                                Log.d(TAG, "No such document");
+                            }
                         } else {
-                            Log.d(TAG, "No such document");
+                            Log.d(TAG, "get failed with ", task.getException());
                         }
-                    } else {
-                        Log.d(TAG, "get failed with ", task.getException());
                     }
-                }
-            });
+                });
+            }
         }
 
     }
