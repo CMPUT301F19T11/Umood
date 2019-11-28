@@ -15,8 +15,8 @@
 
         android:layout_marginTop="4dp"
         android:background="#ffffff"
-        android:drawableStart="@drawable/ic_follow"
-        android:drawableLeft="@drawable/ic_follow"
+        android:drawableStart="@drawable/ic_contact"
+        android:drawableLeft="@drawable/ic_contact"
         android:drawableEnd="@drawable/ic_right_arrow"
         android:drawableRight="@drawable/ic_right_arrow"
         android:drawablePadding="15dp"
@@ -39,8 +39,8 @@
 
         android:layout_marginTop="4dp"
         android:background="#ffffff"
-        android:drawableStart="@drawable/ic_followers"
-        android:drawableLeft="@drawable/ic_followers"
+        android:drawableStart="@drawable/ic_phone_book"
+        android:drawableLeft="@drawable/ic_phone_book"
         android:drawableEnd="@drawable/ic_right_arrow"
         android:drawableRight="@drawable/ic_right_arrow"
         android:drawablePadding="15dp"

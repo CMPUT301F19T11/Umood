@@ -52,12 +52,14 @@ public class NotificationsFragment extends Fragment {
     private Intent intent;
 
     private UserList UnverifiedUser;
+    Button request;
+    View root;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        root = inflater.inflate(R.layout.fragment_notifications, container, false);
         activity = (MainActivity) getActivity();
         final MoodList moodEventList = activity.getMoodEventList();
         user = activity.getUser();
@@ -69,17 +71,6 @@ public class NotificationsFragment extends Fragment {
         int picID =  context.getResources().getIdentifier(user.getAvatar(), "drawable", context.getPackageName());
         imageView.setImageResource(picID);
 
-        // Text view Setting
-        TextView usernameView = root.findViewById(R.id.username);
-        TextView followingNumber = root.findViewById(R.id.following_number);
-        TextView followerNumber = root.findViewById(R.id.follower_number);
-        TextView postNumber =  root.findViewById(R.id.postNumber);
-
-        usernameView.setText(user.getUsername());
-        followerNumber.setText(String.valueOf(activity.getFollowerUserList().size()) );
-        followingNumber.setText(String.valueOf(activity.getFollowingUserList().size()));
-        postNumber.setText(String.valueOf(user.getMoodHistory().size()));
-
         Button history =  root.findViewById(R.id.button_history);
         Button chart =  root.findViewById(R.id.button_chart);
         Button feed =  root.findViewById(R.id.button_feed);
@@ -88,29 +79,9 @@ public class NotificationsFragment extends Fragment {
 
 
         // Buttons and views in XML
-        Button request = root.findViewById(R.id.request);
+        request = root.findViewById(R.id.request);
         Button addFollowing = root.findViewById(R.id.addFollowing);
-
-        UnverifiedUser = activity.getUnverifiedUser();
-        if(!UnverifiedUser.getList().isEmpty()){
-            Log.d(TAG, "haha");
-            GradientDrawable gd = new GradientDrawable();
-            gd.setShape(GradientDrawable.OVAL);
-            gd.setColor(Color.rgb(134, 135, 255));
-            gd.setCornerRadius(5);
-            gd.setStroke(4, Color.rgb(255, 255, 255));
-            int h = gd.getIntrinsicHeight();
-            int w = gd.getIntrinsicWidth();
-            gd.setBounds( 0, 0, w, h );
-
-            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_followers),
-                    null,
-                    getResources().getDrawable(R.drawable.profilearrow),
-                    null);
-
-
-        }
-
+        change();
 
         addFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,12 +145,52 @@ public class NotificationsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         activity.update();
+        change();
+        Log.d(TAG, "onResume: ");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        activity.update();
+        change();
+        Log.d(TAG, "onPause: ");
+    }
+
+    private void change(){
+        UnverifiedUser = activity.getUnverifiedUser();
+        GradientDrawable gd = new GradientDrawable();
+        gd.setShape(GradientDrawable.OVAL);
+        gd.setColor(Color.rgb(134, 135, 255));
+        gd.setCornerRadius(5);
+        gd.setStroke(4, Color.rgb(255, 255, 255));
+        int h = gd.getIntrinsicHeight();
+        int w = gd.getIntrinsicWidth();
+        gd.setBounds( 0, 0, w, h );
+        if(!UnverifiedUser.getList().isEmpty()){
+            Log.d(TAG, "haha");
+            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_phone_book),
+                    null,
+                    getResources().getDrawable(R.drawable.profilearrow),
+                    null);
+        } else {
+            request.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.ic_phone_book),
+                    null,
+                    getResources().getDrawable(R.drawable.ic_right_arrow),
+                    null);
+
+        }
+
+        // Text view Setting
+        TextView usernameView = root.findViewById(R.id.username);
+        TextView followingNumber = root.findViewById(R.id.following_number);
+        TextView followerNumber = root.findViewById(R.id.follower_number);
+        TextView postNumber =  root.findViewById(R.id.postNumber);
+
+        usernameView.setText(user.getUsername());
+        followerNumber.setText(String.valueOf(activity.getFollowerUserList().size()) );
+        followingNumber.setText(String.valueOf(activity.getFollowingUserList().size()));
+        postNumber.setText(String.valueOf(user.getMoodHistory().size()));
+
     }
 
 

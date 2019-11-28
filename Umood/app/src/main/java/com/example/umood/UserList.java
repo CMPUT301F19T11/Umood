@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class UserList implements Serializable {
     private ArrayList<User> list;
 
+    public void setList(ArrayList<User> list) {
+        this.list = list;
+    }
+
     public UserList() {
         list = new ArrayList<>();
     }
@@ -56,5 +60,11 @@ public class UserList implements Serializable {
             }
         }
         return false;
+    }
+
+    public void clear(){
+        list = null;
+        list = new ArrayList<>();
+
     }
 }
