@@ -15,7 +15,7 @@ public class UserList implements Serializable {
     }
 
     /**
-     * 
+     * User
      * @return a list of users
      */
     public ArrayList<User> getList() {
