@@ -32,7 +32,7 @@ public class MoodFollowingTest {
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
         solo.enterText((EditText) solo.getView(R.id.username), "yifan");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.sleep(3000);
     }
 
@@ -72,7 +72,6 @@ public class MoodFollowingTest {
         solo.waitForActivity(FollowingRequest.class, 2000);
         ListView listView = (ListView) solo.getView(R.id.friend_request_list);
         assertTrue(listView.getAdapter().getCount() > 0);
-
 
     }
 
@@ -134,7 +133,7 @@ public class MoodFollowingTest {
         solo.clickOnView(solo.getView(R.id.addFollowing));
         solo.sleep(5000);
         solo.waitForActivity(AddFollowingActivity.class, 2000);
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.waitForFragmentById(R.id.navigation_notifications);
 
     }

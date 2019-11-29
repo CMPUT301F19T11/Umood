@@ -28,7 +28,7 @@ public class MainActivityTest {
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
         solo.enterText((EditText) solo.getView(R.id.username), "yifan");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.sleep(3000);
 
     }
@@ -69,9 +69,9 @@ public class MainActivityTest {
 
     @Test
     public void checkSwitchMapButton(){
-        solo.waitForText("Displaying the mood events from your mood history list",1,2000);
+        solo.waitForText("Your Mood Events",1,2000);
         solo.clickOnView(solo.getView(R.id.swapButton));
-        assertTrue(solo.waitForText("Displaying the mood events from your mood following list",1,2000));
+        assertTrue(solo.waitForText("Following's Mood Events",1,2000));
         solo.clickOnView(solo.getView(R.id.mapView));
         solo.sleep(2000);
         solo.clickOnView(solo.getView(R.id.swapButton));
