@@ -61,10 +61,10 @@ public class DashboardFragment extends Fragment{
     private ArrayList<String> followingList;
 
     //Debug:
+
     private static final String TAG = "qian-following";
     private MainActivity activity;
     private Intent intent;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
@@ -75,7 +75,6 @@ public class DashboardFragment extends Fragment{
         followingUserList = activity.getFollowingUserList();
         followerUserList = activity.getFollowerUserList();
         UnverifiedUser = activity.getUnverifiedUser();
-
 
         ArrayList<User> userView = followingUserList.getList();
         ArrayList<User> userFollowerView = followerUserList.getList();
