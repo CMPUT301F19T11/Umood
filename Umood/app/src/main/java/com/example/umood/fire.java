@@ -1,196 +1,101 @@
 package com.example.umood;
 
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.location.LocationManager;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.umood.ui.home.HomeFragment;
+import androidx.annotation.NonNull;
+
+import com.example.umood.Mood;
+import com.example.umood.MoodList;
+import com.example.umood.User;
+import com.example.umood.UserList;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * ------------------------------------------------------------------------------------------------------------
- * License:
- * This group project is under the MIT License
- *
- * MIT License
- *
- * Copyright (c) 2019 CMPUT301F19T11
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- * ------------------------------------------------------------------------------------------------------------
- *
- * ------------------------------------------------------------------------------------------------------------
- * Assignment:           Group Project Part 3
- * Due Date:             November 8, 2019
- * Team name:            CMPUT301F19T11
- * Mentor:               Alexander Filbert
- * Instructor:           Kenny Wong
- * Lab Section:          Monday 1700 - 1950
- * ------------------------------------------------------------------------------------------------------------
- *
- * ------------------------------------------------------------------------------------------------------------
- * Description:
- *      Umood is a simple, easy-to-use, user-friendly, attractive app with partial interaction function
- *  (a friend list which can track and share post but do not need functions to telephone each other ),
- *  and it can post, track, share users’ mood
- *
- * Last Modified:
- *      Nov 6 by Qian Yu
- * ------------------------------------------------------------------------------------------------------------
- *
- * ------------------------------------------------------------------------------------------------------------
- * Implemented Features:
- *      - 01.01.01
- *      - 01.02.01
- *      - 01.03.01
- *      - 01.05.01
- *      - 02.01.01
- *      - 02.03.01
- *      - 03.01.01
- *      - 04.01.01
- *      - 05.01.01 (*)
- *      - 05.02.01 (*)
- *      - 05.03.01 (*)
- *      - 06.01.01
- *      - 06.02.01 (new)
- *      - 06.03.01 (new)
- *      - 01.04.01 (new)
- *      - 02.02.01 (new)
- *      - 04.02.01 (new)
- *
- * Unimplemented Features:
-
- *
- *
- *
- *
- *
- *
- * ------------------------------------------------------------------------------------------------------------
- * Description for this file:
- *      This is mainActivity
- *      There is a update function here to update our data.
- *
- * Last Modified:
- *      Nov 21 by Qian Yu
- * ------------------------------------------------------------------------------------------------------------
- */
-
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "qian-main";
+public class fire {
+    private static final String TAG = "qian-firestore";
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference collectionReference = db.collection("users");
     private User user;
+    private UserList UnverifiedUser;
+    private UserList followerUserList;
+    private UserList followingUserList;
+    private MoodList moodEventList;
 
-    private UserList UnverifiedUser = new UserList();
-    private UserList followerUserList = new UserList();
-    private UserList followingUserList  = new UserList();
-    private MoodList moodEventList = new MoodList();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
-
-        Intent intent = getIntent();
-        user = (User) intent.getSerializableExtra("User");
+    public static String getTAG() {
+        return TAG;
     }
 
+    public FirebaseFirestore getDb() {
+        return db;
+    }
 
-    public User getUser(){
+    public CollectionReference getCollectionReference() {
+        return collectionReference;
+    }
+
+    public User getUser() {
         return user;
     }
-    public UserList getUnverifiedUser(){
+
+    public UserList getUnverifiedUser() {
         return UnverifiedUser;
     }
-    public UserList getFollowerUserList(){
+
+    public UserList getFollowerUserList() {
         return followerUserList;
     }
-    public UserList getFollowingUserList(){
+
+    public UserList getFollowingUserList() {
         return followingUserList;
     }
-    public MoodList getMoodEventList(){
+
+    public MoodList getMoodEventList() {
         return moodEventList;
     }
 
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG,"onStart");
+    public void setDb(FirebaseFirestore db) {
+        this.db = db;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    public void setCollectionReference(CollectionReference collectionReference) {
+        this.collectionReference = collectionReference;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setUnverifiedUser(UserList unverifiedUser) {
+        UnverifiedUser = unverifiedUser;
+    }
+
+    public void setFollowerUserList(UserList followerUserList) {
+        this.followerUserList = followerUserList;
+    }
+
+    public void setFollowingUserList(UserList followingUserList) {
+        this.followingUserList = followingUserList;
+    }
+
+    public void setMoodEventList(MoodList moodEventList) {
+        this.moodEventList = moodEventList;
+    }
+
+    public fire(User user){
+        UnverifiedUser = new UserList();
+        followerUserList = new UserList();
+        followingUserList  = new UserList();
+        moodEventList = new MoodList();
+        this.user = user;
         update();
-        Log.d(TAG,"onResume");
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG,"onStop");
-    }
-
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-        Log.d(TAG,"onDestroy");
-    }
-
-    @Override
-    protected void onRestart(){
-        super.onRestart();
-        Log.d(TAG,"onRestart");
-    }
 
     public void update(){
         collectionReference.document(user.getUsername())

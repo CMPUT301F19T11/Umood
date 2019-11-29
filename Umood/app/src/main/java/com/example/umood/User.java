@@ -19,7 +19,7 @@ public class User implements Serializable {
 
 
     public String getAvatar() {
-        return avatar;
+        return avatar==null?"avatar0":avatar;
     }
 
     public void setAvatar(String avatar) {

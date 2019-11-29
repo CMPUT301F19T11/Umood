@@ -13,7 +13,7 @@
 
 
     <Button
-        android:id="@+id/cancel"
+        android:id="@+id/cancel2"
         android:layout_width="335dp"
         android:layout_height="66dp"
         android:layout_gravity="start"

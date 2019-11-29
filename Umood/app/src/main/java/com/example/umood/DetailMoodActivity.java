@@ -39,9 +39,8 @@ import java.util.Locale;
  *
  * Corresponding Backlog:
  *      - US 01.03.01: As a participant, I want to view a given mood event and all its available details.
- *
+
  *      - US 01.04.01: As a participant, I want to edit the details of a given mood event of mine.
- *
  *      - US 01.05.01: As a participant, I want to delete a given mood event of mine.
  *
  * Last Modified:
@@ -116,8 +115,6 @@ public class DetailMoodActivity extends AppCompatActivity {
             photo.setImageBitmap(BitmapFactory.decodeFile(mood.getImagePath()));
         }
         // intent2 = new Intent(this,MainActivity.class);
-
-
         String social = mood.getSocialSituation();
         newSocialSituation = social;
         switch(social){
@@ -157,6 +154,7 @@ public class DetailMoodActivity extends AppCompatActivity {
 
 
         Button delete = findViewById(R.id.save_button2);
+        final Intent intent2  = new Intent(this, MainActivity.class);
 
 
 
@@ -202,8 +200,9 @@ public class DetailMoodActivity extends AppCompatActivity {
                                 Log.w(TAG, "Error updating document", e);
                             }
                         });
-                //intent2.putExtra("User",new User(mood.getUsername()));
-                finish();
+                intent2.putExtra("User",new User(mood.getUsername()));
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
             }
         });
 
@@ -212,10 +211,9 @@ public class DetailMoodActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, mood.getUsername());
                 collectionReference.document(mood.getUsername()).update("moodHistory", FieldValue.arrayRemove(mood));
-                // intent2.putExtra("User",new User(mood.getUsername()));
-                // intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                // startActivity(intent2);
-                finish();
+                intent2.putExtra("User",new User(mood.getUsername()));
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent2);
             }
         });
 

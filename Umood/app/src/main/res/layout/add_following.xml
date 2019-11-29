@@ -53,14 +53,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/cancel"
-        android:contentDescription="@string/title"
+        android:id="@+id/cancel2"
         android:layout_width="49dp"
         android:layout_height="43dp"
-        android:layout_marginStart="332dp"
-        android:layout_marginLeft="332dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:background="#00000000"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
