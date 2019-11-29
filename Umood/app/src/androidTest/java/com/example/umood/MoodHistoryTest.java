@@ -117,30 +117,13 @@ public class MoodHistoryTest {
         //solo.sleep(6000);
         solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test");
         solo.pressSpinnerItem(0,4);
-        boolean actual = solo.isSpinnerTextSelected(0, "With a Crowd");
-        assertTrue("spinner item With a Crowd is not selected", actual);
+        boolean actual1 = solo.isSpinnerTextSelected(0, "With a Crowd");
+        assertTrue("spinner item With a Crowd is not selected", actual1);
         solo.clickOnView(solo.getView(R.id.imageButton4));
         solo.clickOnView(solo.getView(R.id.save_button));
         solo.sleep(6000);
         solo.waitForActivity(MainActivity.class, 2000);
 
-
-        //Add new mood event2.
-        solo.clickOnView(solo.getView(R.id.floatingActionButton));
-        solo.assertCurrentActivity("Wrong Activity", AddMoodFirstActivity.class);
-        solo.clickOnView(solo.getView(R.id.happyButton2));
-        solo.clickOnView(solo.getView(R.id.save_button3));
-        assertTrue(solo.waitForActivity(addMoodInfo.class, 2000));
-        //solo.clickOnView(solo.getView(R.id.image_import2));//Click image button to choose an image from gallery.
-        //solo.sleep(6000);
-        solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test1");
-        solo.pressSpinnerItem(0,1);
-        boolean actual2 = solo.isSpinnerTextSelected(0, "Alone");
-        assertTrue("spinner item Alone is not selected", actual2);
-        solo.clickOnView(solo.getView(R.id.imageButton4));
-        solo.clickOnView(solo.getView(R.id.save_button));
-        solo.sleep(6000);
-        solo.waitForActivity(MainActivity.class, 2000);
 
 
         //Add new mood event3.
@@ -153,8 +136,8 @@ public class MoodHistoryTest {
         //solo.sleep(6000);
         solo.enterText((EditText) solo.getView(R.id.reason_text3), "new test2");
         solo.pressSpinnerItem(0,4);
-        boolean actual3 = solo.isSpinnerTextSelected(0, "With a Crowd");
-        assertTrue("spinner item With a Crowd is not selected", actual3);
+        boolean actual4 = solo.isSpinnerTextSelected(0, "With a Crowd");
+        assertTrue("spinner item With a Crowd is not selected", actual4);
         solo.clickOnView(solo.getView(R.id.imageButton4));
         solo.clickOnView(solo.getView(R.id.save_button));
         solo.sleep(6000);
@@ -168,8 +151,8 @@ public class MoodHistoryTest {
         solo.sleep(5000);
         solo.waitForActivity(MoodHistory.class, 2000);
         solo.pressSpinnerItem(0,1);
-        boolean actual1 = solo.isSpinnerTextSelected(0, "Happy");
-        assertTrue("spinner item Happy is not selected", actual1);
+        boolean actual5 = solo.isSpinnerTextSelected(0, "Happy");
+        assertTrue("spinner item Happy is not selected", actual5);
         solo.sleep(4000);
         solo.pressSpinnerItem(0,2);
         assertTrue("spinner item Scared is not selected", solo.isSpinnerTextSelected(0, "Scared"));

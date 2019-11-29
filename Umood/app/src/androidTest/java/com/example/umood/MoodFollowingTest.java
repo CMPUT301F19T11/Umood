@@ -70,8 +70,9 @@ public class MoodFollowingTest {
         solo.clickOnView(solo.getView(R.id.request));
         solo.sleep(3000);
         solo.waitForActivity(FollowingRequest.class, 2000);
-        RecyclerView recyclerView = (RecyclerView) solo.getView(R.id.history_recycle_view);
-        assertTrue(recyclerView.getAdapter().getItemCount() > 0);
+        ListView listView = (ListView) solo.getView(R.id.friend_request_list);
+        assertTrue(listView.getAdapter().getCount() > 0);
+
     }
 
     /**
