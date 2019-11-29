@@ -76,7 +76,6 @@ public class NotificationsFragment extends Fragment {
         Button chart =  root.findViewById(R.id.button_chart);
         Button feed =  root.findViewById(R.id.button_feed);
         Button setting =  root.findViewById(R.id.button_setting);
-        Button logout = root.findViewById(R.id.logout);
 
 
 
@@ -139,13 +138,6 @@ public class NotificationsFragment extends Fragment {
                 intent.putExtra("User",user);
                 startActivity(intent);
 
-            }
-        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent = new Intent(activity, LoginActivity.class);
-                startActivity(intent);
             }
         });
 

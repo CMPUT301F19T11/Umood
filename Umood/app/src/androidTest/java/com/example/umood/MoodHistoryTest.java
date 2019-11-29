@@ -38,7 +38,7 @@ public class MoodHistoryTest {
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
         solo.enterText((EditText) solo.getView(R.id.username), "yifan");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.sleep(5000);
     }
 
@@ -192,7 +192,7 @@ public class MoodHistoryTest {
         solo.clickOnView(solo.getView(R.id.button_history));
         solo.sleep(5000);
         solo.waitForActivity(MoodHistory.class, 2000);
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.waitForFragmentById(R.id.navigation_notifications);
 
 

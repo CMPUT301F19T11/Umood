@@ -28,7 +28,7 @@ public class MainActivityTest {
     public void setUp() throws Exception{
         solo = new Solo(InstrumentationRegistry.getInstrumentation(),rule.getActivity());
         solo.enterText((EditText) solo.getView(R.id.username), "yifan");
-        solo.clickOnView(solo.getView(R.id.cancel));
+        solo.clickOnView(solo.getView(R.id.cancel2));
         solo.sleep(3000);
 
     }

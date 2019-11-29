@@ -29,10 +29,8 @@ public class RequestAdapter extends ArrayAdapter<User> {
         );
 
         TextView UserName =  view.findViewById(R.id.following_username);
-        TextView secondName =  view.findViewById(R.id.foll);
 
         UserName.setText(user.getUsername());
-        secondName.setText(user.getUsername());
 
         return view;
 
