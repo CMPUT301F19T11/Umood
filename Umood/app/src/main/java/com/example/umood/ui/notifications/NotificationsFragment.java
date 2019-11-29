@@ -20,6 +20,7 @@ import com.example.umood.AddFollowingActivity;
 import com.example.umood.ChartActivity;
 import com.example.umood.FeedActivity;
 import com.example.umood.FollowingRequest;
+import com.example.umood.LoginActivity;
 import com.example.umood.MainActivity;
 import com.example.umood.MoodHistory;
 import com.example.umood.MoodList;
@@ -75,6 +76,7 @@ public class NotificationsFragment extends Fragment {
         Button chart =  root.findViewById(R.id.button_chart);
         Button feed =  root.findViewById(R.id.button_feed);
         Button setting =  root.findViewById(R.id.button_setting);
+        Button logout = root.findViewById(R.id.logout);
 
 
 
@@ -139,6 +141,14 @@ public class NotificationsFragment extends Fragment {
 
             }
         });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(activity, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
     @Override

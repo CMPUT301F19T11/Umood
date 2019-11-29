@@ -5,80 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_vague">
-    <Button
-        android:id="@+id/button_history"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="32dp"
-        android:background="#FBFCFC"
-        android:clickable="true"
-        android:drawableStart="@drawable/ic_clock"
-        android:drawableLeft="@drawable/ic_clock"
-        android:drawableEnd="@drawable/ic_right_arrow"
-        android:drawableRight="@drawable/ic_right_arrow"
-        android:drawablePadding="15dp"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/profile_moodHistory"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-
-
-    <Button
-        android:id="@+id/button_feed"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginTop="4dp"
-        android:background="#FBFCFC"
-        android:clickable="true"
-        android:drawableStart="@drawable/ic_rss"
-        android:drawableLeft="@drawable/ic_rss"
-        android:drawableEnd="@drawable/ic_right_arrow"
-        android:drawableRight="@drawable/ic_right_arrow"
-        android:drawablePadding="15dp"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center_vertical"
-
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/feed"
-        android:textAlignment="gravity"
-        app:layout_constraintTop_toBottomOf="@+id/button_history"
-        tools:layout_editor_absoluteX="2dp" />
-
-    <Button
-        android:id="@+id/request"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-
-
-        android:layout_marginTop="4dp"
-        android:background="#ffffff"
-        android:drawableStart="@drawable/ic_phone_book"
-        android:drawableLeft="@drawable/ic_phone_book"
-        android:drawableEnd="@drawable/ic_right_arrow"
-        android:drawableRight="@drawable/ic_right_arrow"
-        android:drawablePadding="15dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp"
-
-
-        android:paddingRight="10dp"
-        android:text="@string/request"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.277"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_feed" />
-
 
 
     <Button
@@ -105,34 +31,29 @@
 
         app:layout_constraintTop_toBottomOf="@id/request" />
 
-
-
     <Button
-        android:id="@+id/button_chart"
+        android:id="@+id/request"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="4dp"
-        android:background="#FBFCFC"
-        android:clickable="true"
-        android:drawableStart="@drawable/ic_pie_chart"
+        android:layout_height="52dp"
 
-        android:drawableLeft="@drawable/ic_pie_chart"
+
+        android:layout_marginTop="4dp"
+        android:background="#ffffff"
+        android:drawableStart="@drawable/ic_phone_book"
+        android:drawableLeft="@drawable/ic_phone_book"
         android:drawableEnd="@drawable/ic_right_arrow"
         android:drawableRight="@drawable/ic_right_arrow"
         android:drawablePadding="15dp"
-        android:focusable="true"
-
-        android:foreground="?attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingLeft="10dp"
+
+
         android:paddingRight="10dp"
-        android:text="@string/profile_chart"
+        android:text="@string/request"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addFollowing" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/button_feed" />
 
 
     <Button
@@ -161,8 +82,78 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_chart" />
 
+    <Button
+        android:id="@+id/button_feed"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="4dp"
+        android:background="#FBFCFC"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_rss"
+        android:drawableLeft="@drawable/ic_rss"
+        android:drawableEnd="@drawable/ic_right_arrow"
+        android:drawableRight="@drawable/ic_right_arrow"
+        android:drawablePadding="15dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
 
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/feed"
+        android:textAlignment="gravity"
+        app:layout_constraintTop_toBottomOf="@+id/button_history"
+        tools:layout_editor_absoluteX="2dp" />
 
+    <Button
+        android:id="@+id/button_chart"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
+        android:background="#FBFCFC"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_pie_chart"
+
+        android:drawableLeft="@drawable/ic_pie_chart"
+        android:drawableEnd="@drawable/ic_right_arrow"
+        android:drawableRight="@drawable/ic_right_arrow"
+        android:drawablePadding="15dp"
+        android:focusable="true"
+
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/profile_chart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addFollowing" />
+
+    <Button
+        android:id="@+id/button_history"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="32dp"
+        android:background="#FBFCFC"
+        android:clickable="true"
+        android:drawableStart="@drawable/ic_clock"
+        android:drawableLeft="@drawable/ic_clock"
+        android:drawableEnd="@drawable/ic_right_arrow"
+        android:drawableRight="@drawable/ic_right_arrow"
+        android:drawablePadding="15dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/profile_moodHistory"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     <ImageView
@@ -290,6 +281,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/button_history"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="@drawable/ic_action_logout"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
