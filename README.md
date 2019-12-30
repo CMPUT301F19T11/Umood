@@ -1,25 +1,10 @@
 # CMPUT301T11
 
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)                     [![Build Status](https://travis-ci.org/CMPUT301F19T11/RoadToFullStackDeveloper.svg?branch=master)](https://travis-ci.org/CMPUT301F19T11/RoadToFullStackDeveloper)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)        
 
-```
-呵     呵     呵呵呵呵呵     
-呵     呵     呵     
-呵     呵     呵              
-呵呵呵呵呵     呵呵呵呵呵  
-呵     呵     呵
-呵     呵     呵
-呵     呵     呵呵呵呵呵
-```
-```
-S      S     SSSSSSSS     B            B            BBBBBBBB
-S      S     S            B            B            B      B
-S      S     S            B            B            B      B
-SSSSSSSS     SSSSSSSS     B            B            B      B
-S      S     S            B            B            B      B
-S      S     S            B            B            B      B
-S      S     SSSSSSSS     BBBBBBBB     BBBBBBBB     BBBBBBBB
-```
+
+Please check our [wiki](https://github.com/CMPUT301F19T11/Umood/wiki) for more information.
+
 ## License:
 This group project is under the [MIT License](https://github.com/CMPUT301F19T11/RoadToFullStackDeveloper/blob/master/LICENSE)
 
